@@ -7,7 +7,7 @@ import { client } from './index';
 
 const updateCommands = async () => {
     const commandFiles = (await fs.readdir(__dirname + '/commands')).filter(
-        (file) => file.endsWith('.ts') || file.endsWith('.js')
+        file => file.endsWith('.ts') || file.endsWith('.js')
     );
 
     for (const file of commandFiles) {
@@ -38,15 +38,20 @@ export default async () => {
         );
         console.log(commands);
 
-        /* Use this when in development phase
-         * await rest.put(Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_DEV_GUILD_ID), {
-         *     body: commands,
-         * });
-         */
+        //  Use this when in development phase
+        await rest.put(
+            Routes.applicationGuildCommands(
+                process.env.DISCORD_CLIENT_ID,
+                process.env.DISCORD_DEV_GUILD_ID
+            ),
+            {
+                body: commands,
+            }
+        );
 
-        await rest.put(Routes.applicationCommands(client.user.id), {
-            body: commands,
-        });
+        // await rest.put(Routes.applicationCommands(client.user.id), {
+        //     body: commands,
+        // });
 
         console.log('Successfully reloaded application (/) commands.');
     } catch (error) {
