@@ -1,38 +1,42 @@
 {
-  "name": "change-me",
-  "version": "1.0.0",
-  "description": "A Discord bot in Typescript",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LEDBrain/discord-bot-typescript-template.git"
-  },
-  "author": "LEDBrain <opensource@ledbrain.de>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LEDBrain/discord-bot-typescript-template/issues"
-  },
-  "homepage": "https://github.com/LEDBrain/discord-bot-typescript-template#readme",
-  "dependencies": {
-    "@discordjs/builders": "^0.9.0",
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "@keyvhq/core": "^1.6.3",
-    "@keyvhq/sqlite": "^1.6.3",
-    "discord-api-types": "^0.25.2",
-    "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0"
-  },
-  "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
-    "eslint": "^8.4.1",
-    "prettier": "^2.5.1",
-    "ts-node": "^10.4.0",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.2"
-  }
+    "name": "change-me",
+    "version": "1.0.0",
+    "description": "A Discord bot in Typescript",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "dev:hot": "ts-node-dev --respawn --transpile-only src/index.ts",
+        "lint": "prettier --write 'src/**/*.ts' && eslint . --ext .ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LEDBrain/discord-bot-typescript-template.git"
+    },
+    "author": "LEDBrain <opensource@ledbrain.de>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/LEDBrain/discord-bot-typescript-template/issues"
+    },
+    "homepage": "https://github.com/LEDBrain/discord-bot-typescript-template#readme",
+    "dependencies": {
+        "@discordjs/builders": "^0.9.0",
+        "@discordjs/rest": "^0.1.0-canary.0",
+        "@keyvhq/core": "^1.6.3",
+        "@keyvhq/sqlite": "^1.6.3",
+        "discord-api-types": "^0.25.2",
+        "discord.js": "^13.3.1",
+        "dotenv": "^10.0.0"
+    },
+    "devDependencies": {
+        "@tsconfig/node16": "^1.0.2",
+        "@typescript-eslint/eslint-plugin": "^5.6.0",
+        "@typescript-eslint/parser": "^5.6.0",
+        "eslint": "^8.4.1",
+        "prettier": "^2.5.1",
+        "ts-node": "^10.4.0",
+        "ts-node-dev": "^1.1.8",
+        "typescript": "^4.5.2"
+    }
 }
