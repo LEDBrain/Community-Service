@@ -27,7 +27,7 @@
         "@keyvhq/sqlite": "^1.6.3",
         "discord-api-types": "^0.26.1",
         "discord.js": "^13.6.0",
-        "dotenv": "^14.3.0"
+        "dotenv": "^14.3.2"
     },
     "devDependencies": {
         "@tsconfig/node16": "^1.0.2",
