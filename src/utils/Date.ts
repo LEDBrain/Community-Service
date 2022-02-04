@@ -34,6 +34,7 @@ enum DateType {
 }
 
 /**
+ * @example
  * <t:1624855717> 		short date time: 	June 27, 2021 9:48 PM
  * <t:1624855717:f> 	short date time 	June 27, 2021 9:48 PM
  * <t:1624855717:F> 	long date time: 	Sunday, June 27, 2021 9:48 PM

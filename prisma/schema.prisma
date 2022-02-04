@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SanctionType {
+  BAN
+  KICK
+  MUTE
+  UNMUTE
+  WARN
+}
+
+model GuildSettings {
+  id String @id
+  logChannelId String
+}
+
+model Sanction {
+  id          Int          @id @default(autoincrement())
+  userId      String
+  moderatorId String
+  reason      String?      @default("N/A")
+  type        SanctionType
+  timestamp   DateTime     @default(now())
+
+  approved_by String[]
+
+  sanctioning_end DateTime?
+  terminatedBy    Int?
+
+
+  User                User       @relation("user", fields: [userId], references: [id])
+  Moderator           User       @relation("moderator", fields: [moderatorId], references: [id])
+  TerminatingSanction Sanction?  @relation("SanctionToSanction", fields: [terminatedBy], references: [id])
+  Sanction            Sanction[] @relation("SanctionToSanction")
+}
+
+model User {
+  id String @id
+
+  sanctions  Sanction[] @relation("user")
+  sanctioned Sanction[] @relation("moderator")
+}
