@@ -16,8 +16,8 @@ enum SanctionType {
 }
 
 model GuildSettings {
-  id String @id
-  logChannelId String
+  id           String @id
+  logChannelId String @default("")
 }
 
 model Sanction {

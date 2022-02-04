@@ -1,7 +1,6 @@
 import { CommandInteraction, GuildMember } from 'discord.js';
 import Command, { Config } from '../base/Command';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { prisma } from '../base/Prisma';
 
 export default class Ban extends Command {
     constructor() {
@@ -31,7 +30,7 @@ export default class Ban extends Command {
         ) as GuildMember;
         const reason = interaction.options.getString('reason', true);
 
-        await prisma.sanction.create({
+        await this.db.sanction.create({
             data: {
                 type: 'WARN',
                 reason,
