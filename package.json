@@ -25,7 +25,7 @@
         "@discordjs/rest": "^0.3.0",
         "@keyvhq/core": "^1.6.4",
         "@keyvhq/sqlite": "^1.6.3",
-        "discord-api-types": "^0.26.1",
+        "discord-api-types": "^0.27.0",
         "discord.js": "^13.6.0",
         "dotenv": "^16.0.0"
     },
