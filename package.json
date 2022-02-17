@@ -24,8 +24,6 @@
     "dependencies": {
         "@discordjs/builders": "^0.12.0",
         "@discordjs/rest": "^0.3.0",
-        "@keyvhq/core": "^1.6.4",
-        "@keyvhq/sqlite": "^1.6.3",
         "@prisma/client": "^3.9.2",
         "discord-api-types": "^0.27.2",
         "discord.js": "^13.6.0",
