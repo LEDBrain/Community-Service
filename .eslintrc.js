@@ -11,8 +11,9 @@ module.exports = {
         sourceType: 'module',
     },
     rules: {
-        'guard-for-in': 2,
-        'no-prototype-builtins': 0,
-        semi: ['error', 'always'],
+        '@typescript-eslint/consistent-type-imports': 'error',
+        'guard-for-in': 'error',
+        'no-prototype-builtins': 'off',
+        'semi': ['error', 'always'],
     },
 };

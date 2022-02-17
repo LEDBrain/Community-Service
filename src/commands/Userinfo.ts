@@ -1,7 +1,7 @@
-import { CommandInteraction, MessageEmbed } from 'discord.js';
-import Command, { Config } from '../base/Command';
+import type { CommandInteraction } from 'discord.js';
+import type { Config } from '../base/Command';
+import Command from '../base/Command';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Colors, Date as DateUtils } from '../utils';
 
 export default class Userinfo extends Command {
     constructor() {

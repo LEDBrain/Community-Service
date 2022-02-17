@@ -1,6 +1,6 @@
-import { Interaction } from 'discord.js';
+import type { Interaction } from 'discord.js';
 import Event from '../base/Event';
-import Client from '../base/Client';
+import type Client from '../base/Client';
 
 export default class InteractionCreate extends Event {
     constructor() {
