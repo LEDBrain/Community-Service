@@ -1,6 +1,5 @@
 import Client from './Client';
-import Keyv from '@keyvhq/core';
-import keyv from '../db';
+import { prisma } from './Prisma';
 
 export interface EventConfig {
     name: string;
@@ -10,11 +9,11 @@ export interface EventConfig {
 export default abstract class Event {
     name: string;
     once: boolean;
-    db: Keyv;
+    db: typeof prisma;
     constructor({ name, once = false }: EventConfig) {
         this.name = name;
         this.once = once;
-        this.db = keyv;
+        this.db = prisma;
     }
     public abstract execute(client: Client, ...args: unknown[]): void;
 }
