@@ -1,8 +1,9 @@
-import { Interaction } from 'discord.js';
+import { Interaction, GuildMember } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { prisma } from './Prisma';
 import util from 'util';
 import { TimerOptions } from 'node:timers';
+import SanctionManager from './SanctionManager';
 const wait = util.promisify(setTimeout);
 
 export interface Config {
@@ -21,6 +22,7 @@ export default abstract class Command implements Config {
         value?: T,
         options?: TimerOptions
     ) => Promise<T>;
+    Sanction: typeof SanctionManager;
 
     public abstract execute(
         interaction: Interaction
@@ -32,5 +34,6 @@ export default abstract class Command implements Config {
         this.options = options;
         this.db = prisma;
         this.wait = wait;
+        this.Sanction = SanctionManager;
     }
 }
