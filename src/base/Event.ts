@@ -1,4 +1,4 @@
-import Client from './Client';
+import type Client from './Client';
 import { prisma } from './Prisma';
 
 export interface EventConfig {

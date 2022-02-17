@@ -1,6 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import Command from './base/Command';
+import type Command from './base/Command';
 import fs from 'fs/promises';
 
 import { client } from './index';

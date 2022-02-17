@@ -3,7 +3,7 @@ import Client from './base/Client';
 import fs from 'fs/promises';
 
 import dotenv from 'dotenv';
-import Event from './base/Event';
+import type Event from './base/Event';
 dotenv.config();
 
 const client = new Client({
@@ -19,7 +19,7 @@ const client = new Client({
 
 (async () => {
     const eventFiles = (await fs.readdir(__dirname + '/events')).filter(
-        (file) => file.endsWith('.ts') || file.endsWith('.js')
+        file => file.endsWith('.ts') || file.endsWith('.js')
     );
 
     for (const file of eventFiles) {

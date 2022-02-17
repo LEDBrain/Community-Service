@@ -1,8 +1,8 @@
-import { Interaction, GuildMember } from 'discord.js';
-import { SlashCommandBuilder } from '@discordjs/builders';
+import type { Interaction } from 'discord.js';
+import type { SlashCommandBuilder } from '@discordjs/builders';
 import { prisma } from './Prisma';
 import util from 'util';
-import { TimerOptions } from 'node:timers';
+import type { TimerOptions } from 'node:timers';
 import SanctionManager from './SanctionManager';
 const wait = util.promisify(setTimeout);
 
