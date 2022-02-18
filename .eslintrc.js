@@ -3,8 +3,12 @@ module.exports = {
         node: true,
         es2020: true,
     },
-    plugins: ['@typescript-eslint'],
-    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+    plugins: ['@typescript-eslint', 'vue'],
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:vue/vue3-recommended',
+    ],
     parserOptions: {
         parser: '@typescript-eslint/parser',
         ecmaVersion: 2020,
@@ -15,5 +19,6 @@ module.exports = {
         'guard-for-in': 'error',
         'no-prototype-builtins': 'off',
         'semi': ['error', 'always'],
+        'vue/html-indent': ['error', 4],
     },
 };

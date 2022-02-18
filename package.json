@@ -1,15 +1,17 @@
 {
-    "name": "change-me",
+    "name": "dispatcher",
     "version": "1.0.0",
-    "description": "A Discord bot in Typescript",
+    "description": "A Discord bot for Community-Management, written in Typescript",
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.json",
         "start": "cross-env NODE_ENV=production && node dist/index.js",
         "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
-        "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
-        "commit": "cz"
+        "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts,.vue",
+        "commit": "cz",
+        "build:dashboard": "cd src/dashboard/client && vue-cli-service build",
+        "dev:dashboard": "cd src/dashboard/client && vue-cli-service serve"
     },
     "repository": {
         "type": "git",
@@ -25,18 +27,24 @@
         "@discordjs/builders": "^0.12.0",
         "@discordjs/rest": "^0.3.0",
         "@prisma/client": "^3.9.2",
+        "cors": "^2.8.5",
         "discord-api-types": "^0.27.2",
         "discord.js": "^13.6.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.0",
+        "express": "^4.17.3"
     },
     "devDependencies": {
         "@tsconfig/node16": "^1.0.2",
+        "@types/cors": "^2.8.12",
+        "@types/express": "^4.17.13",
         "@types/ms": "^0.7.31",
         "@typescript-eslint/eslint-plugin": "^5.12.0",
         "@typescript-eslint/parser": "^5.12.0",
+        "@vue/cli": "^5.0.1",
         "cross-env": "^7.0.3",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.9.0",
+        "eslint-plugin-vue": "^8.4.1",
         "prettier": "^2.5.1",
         "prisma": "^3.9.2",
         "ts-node": "^10.5.0",
