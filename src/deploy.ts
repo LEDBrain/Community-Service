@@ -34,7 +34,7 @@ export default async () => {
 
         const commands = client.commands.map(
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ({ execute, db, wait, ...data }) => data
+            ({ execute, db, wait, Sanction, ...data }) => data
         );
         console.log(commands);
 
