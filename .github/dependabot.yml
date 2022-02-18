@@ -21,7 +21,7 @@ updates:
       assignees:
           - 'kdev'
       commit-message:
-          prefix: 'chore(github-actions-deps)'
+          prefix: 'chore(gha-deps)'
           include: 'scope'
       reviewers:
           - 'kdev'
