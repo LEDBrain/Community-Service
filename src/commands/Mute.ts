@@ -30,7 +30,7 @@ export default class Mute extends Command {
         ) as GuildMember;
         const reason = interaction.options.getString('reason', false);
 
-        const { muteRoleId } = await this.db.guildSettings.findUnique({
+        const guildSettings = await this.db.guildSettings.findUnique({
             where: {
                 id: interaction.guild.id,
             },
@@ -38,12 +38,14 @@ export default class Mute extends Command {
                 muteRoleId: true,
             },
         });
-        if (!muteRoleId.length)
+        if (!guildSettings?.muteRoleId.length)
             return interaction.reply({
                 content: 'No mute role set',
                 ephemeral: true,
             });
-        const role = interaction.guild.roles.cache.get(muteRoleId);
+        const role = interaction.guild.roles.cache.get(
+            guildSettings.muteRoleId
+        );
         if (role.permissions.has('SEND_MESSAGES'))
             role.permissions.remove('SEND_MESSAGES');
         member.roles.add(role, reason);
