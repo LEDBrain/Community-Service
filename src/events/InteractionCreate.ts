@@ -1,10 +1,23 @@
-import type { Interaction } from 'discord.js';
+import type { CommandInteraction, Interaction } from 'discord.js';
 import Event from '../base/Event';
 import type Client from '../base/Client';
+import { prisma } from '../base/Prisma';
 
 export default class InteractionCreate extends Event {
     constructor() {
         super({ name: 'interactionCreate' });
+    }
+
+    private async isEnabled(interaction: CommandInteraction): Promise<boolean> {
+        const guildSettings = await prisma.guildSettings.findFirst({
+            where: {
+                id: interaction.guild.id,
+            },
+        });
+
+        return !guildSettings?.disabledCommands.includes(
+            interaction.commandName
+        );
     }
     public async execute(
         client: Client,
@@ -12,6 +25,13 @@ export default class InteractionCreate extends Event {
     ): Promise<void> {
         if (!interaction.isCommand()) return;
         if (!client.commands.has(interaction.commandName)) return;
+        if (!(await this.isEnabled(interaction))) {
+            interaction.reply({
+                content: 'This command is disabled',
+                ephemeral: true,
+            });
+            return;
+        }
         try {
             await client.commands
                 .get(interaction.commandName)
