@@ -14,15 +14,15 @@ updates:
       open-pull-requests-limit: 10
       target-branch: 'main'
 
-  - package-ecosystem: 'github-actions'
-    directory: '/'
-    schedule:
-      interval: 'daily'
-    assignees:
-      - 'kdev'
-    commit-message:
-        prefix: 'chore(github-actions-deps)'
-        include: 'scope'
-    reviewers:
-      - 'kdev'
-    target-branch: 'main'
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+      assignees:
+          - 'kdev'
+      commit-message:
+          prefix: 'chore(github-actions-deps)'
+          include: 'scope'
+      reviewers:
+          - 'kdev'
+      target-branch: 'main'
