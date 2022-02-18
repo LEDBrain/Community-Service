@@ -7,7 +7,7 @@ updates:
       assignees:
           - 'kdev'
       commit-message:
-          prefix: 'chore(npm-deps)'
+          prefix: 'chore'
           include: 'scope'
       reviewers:
           - 'kdev'
@@ -21,7 +21,7 @@ updates:
       assignees:
           - 'kdev'
       commit-message:
-          prefix: 'chore(gha-deps)'
+          prefix: 'chore'
           include: 'scope'
       reviewers:
           - 'kdev'
