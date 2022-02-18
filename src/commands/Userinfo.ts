@@ -18,6 +18,7 @@ export default class Userinfo extends Command {
     }
 
     public async execute(interaction: CommandInteraction) {
+        if (!this.isEnabled(interaction.guild.id)) return;
         const member =
             interaction.options.getMember('user', false) ?? interaction.member;
         interaction.reply(member.toString());

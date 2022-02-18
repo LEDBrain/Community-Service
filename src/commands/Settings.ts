@@ -49,6 +49,7 @@ export default class Ping extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: CommandInteraction) {
+        if (!this.isEnabled(interaction.guild.id)) return;
         switch (interaction.options.getSubcommand(true)) {
             case 'channels':
                 this.setChannel(interaction);

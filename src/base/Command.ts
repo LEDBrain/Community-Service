@@ -36,4 +36,13 @@ export default abstract class Command implements Config {
         this.wait = wait;
         this.Sanction = SanctionManager;
     }
+
+    public async isEnabled(guildId: string): Promise<boolean> {
+        const { disabledCommands } = await this.db.guildSettings.findUnique({
+            where: {
+                id: guildId,
+            },
+        });
+        return !disabledCommands.includes(this.name);
+    }
 }

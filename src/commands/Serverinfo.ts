@@ -14,6 +14,7 @@ export default class Serverinfo extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: CommandInteraction) {
+        if (!this.isEnabled(interaction.guild.id)) return;
         const embed = new MessageEmbed()
             .setColor(Colors.fromString(interaction.guild.name))
             .setDescription(interaction.guild.name)

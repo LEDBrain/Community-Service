@@ -24,6 +24,7 @@ export default class Mute extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: CommandInteraction) {
+        if (!this.isEnabled(interaction.guild.id)) return;
         const member = interaction.options.getMember(
             'user',
             true
