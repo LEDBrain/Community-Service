@@ -16,7 +16,6 @@ export default class SanctionManager {
     public sanctioning_end: Date;
     public terminatedBy: number;
 
-
     constructor(
         member: string,
         moderator: string,
