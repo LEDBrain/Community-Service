@@ -3,21 +3,21 @@ import type { Config } from '../base/Command';
 import Command from '../base/Command';
 import { SlashCommandBuilder } from '@discordjs/builders';
 
-export default class Mute extends Command {
+export default class Unmute extends Command {
     constructor() {
         const cmd = new SlashCommandBuilder()
-            .setName('mute')
-            .setDescription('Mute command')
+            .setName('unmute')
+            .setDescription('unmute command')
             .addUserOption(userOption =>
                 userOption
                     .setName('user')
-                    .setDescription('The user to mute')
+                    .setDescription('The user to unmute')
                     .setRequired(true)
             )
             .addStringOption(stringOption =>
                 stringOption
                     .setName('reason')
-                    .setDescription('The reason for the mute')
+                    .setDescription('The reason for the unmute')
                     .setRequired(false)
             );
 
@@ -46,19 +46,20 @@ export default class Mute extends Command {
         const role = interaction.guild.roles.cache.get(
             guildSettings.muteRoleId
         );
-        if (role.permissions.has('SEND_MESSAGES'))
-            role.permissions.remove('SEND_MESSAGES');
-        member.roles.add(role, reason).then(gm => {
-            new this.Sanction(
-                gm.id,
-                interaction.member.user.id,
-                interaction.guild.id,
-                'MUTE',
-                reason
-            ).create();
-            interaction.reply(
-                `Muted ${gm.toString()} by ${interaction.member.toString()} for ${reason}`
-            );
-        });
+        if (member.roles.cache.has(role.id))
+            member.roles.remove(role).then(async () => {
+                const sanction = new this.Sanction(
+                    member.id,
+                    interaction.member.user.id,
+                    interaction.guild.id,
+                    'UNMUTE',
+                    reason
+                );
+                await sanction.create();
+                sanction.link('MUTE', sanction);
+                interaction.reply(
+                    `Unmuted ${member.toString()} by ${interaction.member.toString()} for ${reason}`
+                );
+            });
     }
 }
