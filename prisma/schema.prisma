@@ -9,6 +9,7 @@ datasource db {
 
 enum SanctionType {
   BAN
+  UNBAN
   KICK
   MUTE
   UNMUTE
