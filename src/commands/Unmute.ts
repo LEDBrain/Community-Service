@@ -43,14 +43,23 @@ export default class Unmute extends Command {
                 content: 'No mute role set',
                 ephemeral: true,
             });
-        const sanction = new this.Sanction(
-            member.id,
-            interaction.member.user.id,
-            interaction.guild.id,
-            'UNMUTE',
-            reason
+        const role = interaction.guild.roles.cache.get(
+            guildSettings.muteRoleId
         );
-        await sanction.create();
-        const initialSanction = sanction.link('MUTE', sanction);
+        if (member.roles.cache.has(role.id))
+            member.roles.remove(role).then(async () => {
+                const sanction = new this.Sanction(
+                    member.id,
+                    interaction.member.user.id,
+                    interaction.guild.id,
+                    'UNMUTE',
+                    reason
+                );
+                await sanction.create();
+                sanction.link('MUTE', sanction);
+                interaction.reply(
+                    `Unmuted ${member.toString()} by ${interaction.member.toString()} for ${reason}`
+                );
+            });
     }
 }
