@@ -37,7 +37,7 @@
         "cross-env": "^7.0.3",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.11.0",
-        "prettier": "^2.5.1",
+        "prettier": "^2.6.0",
         "prisma": "^3.10.0",
         "ts-node": "^10.7.0",
         "ts-node-dev": "^1.1.8",
