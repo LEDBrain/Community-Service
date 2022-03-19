@@ -49,3 +49,16 @@ model User {
   sanctions  Sanction[] @relation("user")
   sanctioned Sanction[] @relation("moderator")
 }
+
+model BanRequest {
+  id           Int      @id @default(autoincrement())
+  userId       String
+  moderatorId  String
+  messageId    String
+  guildId      String
+  reason       String?  @default("N/A")
+  daysToDelete Int?     @default(0)
+  timestamp    DateTime @default(now())
+
+  approved_by String[]
+}
