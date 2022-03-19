@@ -44,6 +44,23 @@ export default class Ping extends Command {
                             .setDescription('The role to set')
                             .setRequired(true)
                     )
+            )
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName('ban-approvals')
+                    .setDescription('Set ban approvals')
+                    .addNumberOption(numberOption =>
+                        numberOption
+                            .setName('ban-approvals-setting')
+                            .setDescription('The ban approvals setting to set')
+                            .setRequired(true)
+                            .addChoices([
+                                ['1', 1],
+                                ['2', 2],
+                                ['3', 3],
+                                ['4', 4],
+                            ])
+                    )
             );
 
         super(cmd as unknown as Config);
@@ -56,27 +73,49 @@ export default class Ping extends Command {
             case 'roles':
                 this.setRole(interaction);
                 break;
+            case 'ban-approvals':
+                this.setBanApprovals(interaction);
+                break;
             default:
                 break;
         }
+    }
+
+    private async setSetting(
+        guildId: string,
+        setting: string,
+        value: string | number
+    ) {
+        this.db.guildSettings.upsert({
+            where: {
+                id: guildId,
+            },
+            create: {
+                id: guildId,
+                [setting]: value,
+            },
+            update: {
+                [setting]: value,
+            },
+        });
+    }
+
+    private async setBanApprovals(interaction: CommandInteraction) {
+        const approvalsNeeded = interaction.options.getNumber(
+            'ban-approvals-setting'
+        );
+        await this.setSetting(
+            interaction.guildId,
+            'banApprovalsNeeded',
+            approvalsNeeded
+        );
     }
 
     private async setChannel(interaction: CommandInteraction) {
         const setting = interaction.options.getString('channel-setting');
         const channel = interaction.options.getChannel('channel', true);
 
-        await this.db.guildSettings.upsert({
-            where: {
-                id: interaction.guild.id,
-            },
-            create: {
-                id: interaction.guild.id,
-                [setting]: channel.id,
-            },
-            update: {
-                [setting]: channel.id,
-            },
-        });
+        await this.setSetting(interaction.guildId, setting, channel.id);
 
         interaction.reply(`${setting} set to ${channel}`);
     }
@@ -85,18 +124,7 @@ export default class Ping extends Command {
         const setting = interaction.options.getString('role-setting');
         const role = interaction.options.getRole('role', true);
 
-        await this.db.guildSettings.upsert({
-            where: {
-                id: interaction.guild.id,
-            },
-            create: {
-                id: interaction.guild.id,
-                [setting]: role.id,
-            },
-            update: {
-                [setting]: role.id,
-            },
-        });
+        await this.setSetting(interaction.guildId, setting, role.id);
 
         interaction.reply(`${setting} set to ${role}`);
     }
