@@ -1,6 +1,6 @@
 {
     "name": "change-me",
-    "version": "1.0.0",
+    "version": "0.0.0-development",
     "description": "A Discord bot in Typescript",
     "main": "dist/index.js",
     "scripts": {
@@ -9,11 +9,12 @@
         "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
         "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
-        "commit": "cz"
+        "commit": "cz",
+        "semantic-release": "semantic-release"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LEDBrain/discord-bot-typescript-template.git"
+        "url": "https://github.com/LEDBrain/discord-bot-typescript-template.git"
     },
     "author": "LEDBrain <opensource@ledbrain.de>",
     "license": "MIT",
@@ -41,11 +42,25 @@
         "prisma": "^3.11.0",
         "ts-node": "^10.7.0",
         "ts-node-dev": "^1.1.8",
-        "typescript": "^4.6.2"
+        "typescript": "^4.6.2",
+        "semantic-release": "^19.0.2"
     },
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/github"
+        ]
     }
 }
