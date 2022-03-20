@@ -1,6 +1,6 @@
 {
-    "name": "change-me",
-    "version": "0.0.0-development",
+    "name": "community-service",
+    "version": "0.1.0",
     "description": "A Discord bot in Typescript",
     "main": "dist/index.js",
     "scripts": {
@@ -14,14 +14,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/LEDBrain/discord-bot-typescript-template.git"
+        "url": "https://github.com/LEDBrain/Community-Service.git"
     },
     "author": "LEDBrain <opensource@ledbrain.de>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/LEDBrain/discord-bot-typescript-template/issues"
+        "url": "https://github.com/LEDBrain/Community-Service/issues"
     },
-    "homepage": "https://github.com/LEDBrain/discord-bot-typescript-template#readme",
+    "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
         "@discordjs/builders": "^0.12.0",
         "@discordjs/rest": "^0.3.0",
