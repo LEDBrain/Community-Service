@@ -1,10 +1,9 @@
 import type { ButtonInteraction } from 'discord.js';
-import { prisma } from './Prisma';
+import Base from './Base';
 
-export default abstract class InteractionHandler {
-    db: typeof prisma;
+export default abstract class InteractionHandler extends Base {
     constructor() {
-        this.db = prisma;
+        super();
     }
 
     public abstract execute(
