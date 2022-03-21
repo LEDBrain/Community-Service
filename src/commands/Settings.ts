@@ -86,7 +86,7 @@ export default class Ping extends Command {
         setting: string,
         value: string | number
     ) {
-        this.db.guildSettings.upsert({
+        await this.db.guildSettings.upsert({
             where: {
                 id: guildId,
             },
@@ -109,6 +109,7 @@ export default class Ping extends Command {
             'banApprovalsNeeded',
             approvalsNeeded
         );
+        interaction.reply(`banApprovalsNeeded set to ${approvalsNeeded}`);
     }
 
     private async setChannel(interaction: CommandInteraction) {
