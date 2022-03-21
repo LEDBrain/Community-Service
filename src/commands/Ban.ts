@@ -75,14 +75,7 @@ export default class Ban extends Command {
                 ephemeral: true,
             });
 
-        const guildSettings = await this.db.guildSettings.findUnique({
-            where: {
-                id: interaction.guild.id,
-            },
-            select: {
-                logChannelId: true,
-            },
-        });
+        const guildSettings = await this.getGuildSettings(interaction.guildId);
 
         if (!guildSettings?.logChannelId.length)
             return interaction.reply({
@@ -136,8 +129,12 @@ export default class Ban extends Command {
                     value: `Days: ${days}`,
                     inline: true,
                 },
+                {
+                    name: `Approved By (0/${guildSettings.banApprovalsNeeded})`,
+                    value: 'None',
+                },
             ])
-            .setDescription(`Reason:\n${reason}`);
+            .setDescription(`**Reason:**\n${reason}`);
         const row = new MessageActionRow().addComponents(
             new MessageButton()
                 .setCustomId('banRequestApprove')
