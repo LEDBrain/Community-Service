@@ -1,9 +1,5 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type {
-    ButtonInteraction,
-    GuildMember,
-    Message,
-} from 'discord.js';
+import type { ButtonInteraction, GuildMember, Message } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { BanRequest, GuildSettings } from '@prisma/client';
 
