@@ -1,6 +1,6 @@
 {
-    "name": "change-me",
-    "version": "1.0.0",
+    "name": "community-service",
+    "version": "0.1.0",
     "description": "A Discord bot in Typescript",
     "main": "dist/index.js",
     "scripts": {
@@ -9,37 +9,40 @@
         "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
         "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
-        "commit": "cz"
+        "commit": "cz",
+        "semantic-release": "semantic-release"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LEDBrain/discord-bot-typescript-template.git"
+        "url": "https://github.com/LEDBrain/Community-Service.git"
     },
     "author": "LEDBrain <opensource@ledbrain.de>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/LEDBrain/discord-bot-typescript-template/issues"
+        "url": "https://github.com/LEDBrain/Community-Service/issues"
     },
-    "homepage": "https://github.com/LEDBrain/discord-bot-typescript-template#readme",
+    "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
         "@discordjs/builders": "^0.12.0",
         "@discordjs/rest": "^0.3.0",
-        "@prisma/client": "^3.10.0",
-        "discord-api-types": "^0.27.3",
+        "@prisma/client": "^3.11.0",
+        "discord-api-types": "^0.29.0",
         "discord.js": "^13.6.0",
         "dotenv": "^16.0.0"
     },
     "devDependencies": {
+        "@semantic-release/git": "^10.0.1",
         "@tsconfig/node16": "^1.0.2",
         "@types/ms": "^0.7.31",
-        "@typescript-eslint/eslint-plugin": "^5.13.0",
-        "@typescript-eslint/parser": "^5.13.0",
+        "@typescript-eslint/eslint-plugin": "^5.16.0",
+        "@typescript-eslint/parser": "^5.16.0",
         "cross-env": "^7.0.3",
         "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.10.0",
-        "prettier": "^2.5.1",
-        "prisma": "^3.10.0",
-        "ts-node": "^10.6.0",
+        "eslint": "^8.11.0",
+        "prettier": "^2.6.0",
+        "prisma": "^3.11.0",
+        "semantic-release": "^19.0.2",
+        "ts-node": "^10.7.0",
         "ts-node-dev": "^1.1.8",
         "typescript": "^4.6.2"
     },
@@ -47,5 +50,19 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/github",
+            "@semantic-release/git"
+        ]
     }
 }
