@@ -100,18 +100,19 @@ export default class Ban extends Command {
                 AND: {
                     guildId: interaction.guild.id,
                     userId: member.id,
+                    isRejected: false,
                 },
             },
         });
         if (banRequests)
             return interaction.reply(
-                `There is already a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
+                `There already is a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
                     interaction.guild.id
                 }/${guildSettings.logChannelId}/${banRequests.messageId})`
             );
 
         const banEmbed = new MessageEmbed()
-            .setTitle('Ban request')
+            .setTitle('[OPEN] Ban request')
             .setColor('#ff0000')
             .addFields([
                 {
@@ -161,10 +162,28 @@ export default class Ban extends Command {
             data: {
                 guildId: interaction.guild.id,
                 messageId: message.id,
-                userId: member.id,
-                moderatorId: (interaction.member as GuildMember).id,
                 reason,
                 daysToDelete: days,
+                User: {
+                    connectOrCreate: {
+                        create: {
+                            id: member.id,
+                        },
+                        where: {
+                            id: member.id,
+                        },
+                    },
+                },
+                Moderator: {
+                    connectOrCreate: {
+                        create: {
+                            id: (interaction.member as GuildMember).id,
+                        },
+                        where: {
+                            id: (interaction.member as GuildMember).id,
+                        },
+                    },
+                },
             },
         });
 
