@@ -1,9 +1,4 @@
-import type {
-    CommandInteraction,
-    GuildMember,
-    Guild,
-    TextChannel,
-} from 'discord.js';
+import type { CommandInteraction, GuildMember, Guild } from 'discord.js';
 import { MessageActionRow, MessageButton } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { Config } from '../base/Command';
@@ -92,6 +87,33 @@ export default class Ban extends Command {
                 content: `Banned ${member.toString()}`,
                 ephemeral: true,
             });
+            await this.log(interaction.guild, {
+                embeds: [
+                    new MessageEmbed()
+                        .setTitle('User banned')
+                        .setColor('#ff0000')
+                        .setDescription(
+                            `This Ban was forced by the moderator!\n**Reason:**\n${reason}`
+                        )
+                        .addFields([
+                            {
+                                name: 'User',
+                                value: member.toString(),
+                                inline: true,
+                            },
+                            {
+                                name: 'Moderator',
+                                value: interaction.member.toString(),
+                                inline: true,
+                            },
+                            {
+                                name: 'Messages to delete',
+                                value: `Days: ${days}`,
+                                inline: true,
+                            },
+                        ]),
+                ],
+            });
             return;
         }
 
@@ -149,11 +171,7 @@ export default class Ban extends Command {
                 .setEmoji('❌')
         );
 
-        const message = await (
-            (await interaction.guild.channels.fetch(
-                guildSettings.logChannelId
-            )) as TextChannel
-        ).send({
+        const message = await this.log(interaction.guild, {
             embeds: [banEmbed],
             components: [row],
         });
