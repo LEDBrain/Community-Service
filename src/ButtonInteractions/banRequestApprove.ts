@@ -52,27 +52,17 @@ export default class BanRequestApprove extends InteractionHandler {
                 approved_by,
             },
         });
-
-        if (
-            updatedBanRequest.approved_by.length >=
-            guildSettings.banApprovalsNeeded
-        )
-            return this.banUser(updatedBanRequest);
-        else return this.updateButton(updatedBanRequest, button, guildSettings);
+        return await this.updateButton(
+            updatedBanRequest,
+            button,
+            guildSettings
+        );
     }
-    updateButton(
+    async updateButton(
         updatedBanRequest: BanRequest,
         button: ButtonInteraction,
         guildSettings: GuildSettings
     ) {
-        button.reply({
-            content: `You have approved this ban request. ${
-                guildSettings.banApprovalsNeeded -
-                updatedBanRequest.approved_by.length
-            } more approvals are needed.`,
-            ephemeral: true,
-        });
-
         const receivedEmbed = button.message.embeds[0];
         const approvedByField = receivedEmbed.fields.find(field =>
             field.name.startsWith('Approved By')
@@ -93,9 +83,54 @@ export default class BanRequestApprove extends InteractionHandler {
             ),
             approvedByField,
         ]);
-        return (button.message as Message).edit({ embeds: [updatedEmbed] });
+        await (button.message as Message).edit({ embeds: [updatedEmbed] });
+        button.reply({
+            content: `You have approved this ban request. ${
+                guildSettings.banApprovalsNeeded -
+                    updatedBanRequest.approved_by.length !==
+                0
+                    ? `${
+                          guildSettings.banApprovalsNeeded -
+                          updatedBanRequest.approved_by.length
+                      } more approvals are needed.`
+                    : 'The user will be banned shortly.'
+            }`,
+            ephemeral: true,
+        });
+        if (
+            updatedBanRequest.approved_by.length >=
+            guildSettings.banApprovalsNeeded
+        ) {
+            this.banUser(button, updatedBanRequest);
+        }
     }
-    banUser(updatedBanRequest: BanRequest) {
-        console.log('Method not implemented.');
+    async banUser(button: ButtonInteraction, banRequest: BanRequest) {
+        const {
+            guildId,
+            userId,
+            moderatorId,
+            reason,
+            daysToDelete: days,
+        } = banRequest;
+
+        const updatedMessage = await (button.message as Message).fetch();
+        const embed = new MessageEmbed(updatedMessage.embeds[0]).setTitle(
+            '[BANNED] Ban request'
+        );
+
+        button.guild.bans.create(userId, { reason, days }).then(() =>
+            new this.Sanction(userId, moderatorId, guildId, 'BAN', reason)
+                .create()
+                .then(() =>
+                    updatedMessage
+                        .edit({ embeds: [embed], components: [] })
+                        .then(() =>
+                            this.db.banRequest.update({
+                                where: { id: banRequest.id },
+                                data: { isRejected: true },
+                            })
+                        )
+                )
+        );
     }
 }
