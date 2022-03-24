@@ -2,7 +2,6 @@ import type { Interaction } from 'discord.js';
 import type { SlashCommandBuilder } from '@discordjs/builders';
 import util from 'util';
 import type { TimerOptions } from 'node:timers';
-import SanctionManager from './SanctionManager';
 import Base from './Base';
 const wait = util.promisify(setTimeout);
 
@@ -21,7 +20,6 @@ export default abstract class Command extends Base implements Config {
         value?: T,
         options?: TimerOptions
     ) => Promise<T>;
-    Sanction: typeof SanctionManager;
 
     public abstract execute(
         interaction: Interaction
@@ -33,6 +31,5 @@ export default abstract class Command extends Base implements Config {
         this.description = description;
         this.options = options;
         this.wait = wait;
-        this.Sanction = SanctionManager;
     }
 }
