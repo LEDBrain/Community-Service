@@ -40,7 +40,7 @@
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.11.0",
         "prettier": "^2.6.1",
-        "prisma": "^3.11.0",
+        "prisma": "^3.11.1",
         "semantic-release": "^19.0.2",
         "ts-node": "^10.7.0",
         "ts-node-dev": "^1.1.8",
