@@ -22,6 +22,7 @@ model GuildSettings {
   muteRoleId         String   @default("")
   disabledCommands   String[]
   banApprovalsNeeded Int      @default(1)
+  moderatorRoleId    String   @default("")
 }
 
 model Sanction {

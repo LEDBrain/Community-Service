@@ -36,7 +36,10 @@ export default class Ping extends Command {
                             .setName('role-setting')
                             .setDescription('The role setting to set')
                             .setRequired(true)
-                            .addChoices([['muterole', 'muteRoleId']])
+                            .addChoices([
+                                ['muterole', 'muteRoleId'],
+                                ['moderatorrole', 'moderatorRoleId'], // TODO: allow for more than one role
+                            ])
                     )
                     .addRoleOption(roleOption =>
                         roleOption

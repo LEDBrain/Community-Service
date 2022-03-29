@@ -22,17 +22,18 @@ export default class Ban extends Command {
                     .setDescription('The reason for the ban')
                     .setRequired(true)
             )
-            .addBooleanOption(booleanOption =>
-                booleanOption
-                    .setName('force')
-                    .setDescription('Force the ban')
-                    .setRequired(false)
+            .addBooleanOption(
+                booleanOption =>
+                    booleanOption
+                        .setName('force')
+                        .setDescription('Force the ban')
+                        .setRequired(true) // Change this when the issue with weird discord errors is fixed
             )
             .addNumberOption(numberOption =>
                 numberOption
                     .setName('days')
                     .setDescription('Number of days of messages to delete')
-                    .setRequired(false)
+                    .setRequired(true) // Change this when the issue with weird discord errors is fixed
                     .setMinValue(0)
                     .setMaxValue(1)
                     .addChoices([
@@ -172,6 +173,9 @@ export default class Ban extends Command {
         );
 
         const message = await this.log(interaction.guild, {
+            ...(guildSettings?.moderatorRoleId
+                ? { content: `<@&${guildSettings.moderatorRoleId}>` }
+                : {}),
             embeds: [banEmbed],
             components: [row],
         });
