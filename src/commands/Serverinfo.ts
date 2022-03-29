@@ -77,10 +77,10 @@ export default class Serverinfo extends Command {
                 },
             ])
             .setThumbnail(interaction.guild.iconURL())
-            .setFooter(
-                interaction.user.tag,
-                interaction.user.displayAvatarURL()
-            );
+            .setFooter({
+                text: interaction.user.tag,
+                iconURL: interaction.user.displayAvatarURL(),
+            });
 
         interaction.reply({ embeds: [embed] });
     }

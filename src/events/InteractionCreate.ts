@@ -2,6 +2,7 @@ import type { CommandInteraction, Interaction } from 'discord.js';
 import Event from '../base/Event';
 import type Client from '../base/Client';
 import { prisma } from '../base/Prisma';
+import buttonHandler from '../ButtonInteractions/handler';
 
 export default class InteractionCreate extends Event {
     constructor() {
@@ -23,6 +24,8 @@ export default class InteractionCreate extends Event {
         client: Client,
         interaction: Interaction
     ): Promise<void> {
+        if (interaction.isButton()) return buttonHandler(interaction);
+
         if (!interaction.isCommand()) return;
         if (!client.commands.has(interaction.commandName)) return;
         if (!(await this.isEnabled(interaction))) {
