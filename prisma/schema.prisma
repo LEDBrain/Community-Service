@@ -70,3 +70,21 @@ model BanRequest {
   User      User @relation("banRequestUser", fields: [userId], references: [id])
   Moderator User @relation("banRequestModerator", fields: [moderatorId], references: [id])
 }
+
+model ReactionRoleMessage {
+  id         Int    @id @default(autoincrement())
+  guildId    String
+  messageId  String
+  roleAmount Int    @default(0)
+
+  roleToEmoji RoleToEmoji[]
+}
+
+model RoleToEmoji {
+  id      Int    @id @default(autoincrement())
+  roleId  String
+  emojiId String
+
+  ReactionRoleMessage   ReactionRoleMessage? @relation(fields: [reactionRoleMessageId], references: [id])
+  reactionRoleMessageId Int?
+}
