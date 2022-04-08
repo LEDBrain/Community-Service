@@ -19,6 +19,7 @@ enum SanctionType {
 model GuildSettings {
   id                 String   @id
   logChannelId       String   @default("")
+  welcomeChannelId   String   @default("")
   muteRoleId         String   @default("")
   disabledCommands   String[]
   banApprovalsNeeded Int      @default(1)
