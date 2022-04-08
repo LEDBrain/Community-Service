@@ -17,7 +17,10 @@ export default class Ping extends Command {
                             .setName('channel-setting')
                             .setDescription('The channel setting to set')
                             .setRequired(true)
-                            .addChoices([['logchannel', 'logChannelId']])
+                            .addChoices([
+                                ['logchannel', 'logChannelId'],
+                                ['welcomechannel', 'welcomeChannelId'],
+                            ])
                     )
                     .addChannelOption(channelOption =>
                         channelOption
