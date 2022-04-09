@@ -8,7 +8,11 @@ export default class GuildMemberAdd extends Event {
     }
     public async execute(_: Client, member: GuildMember) {
         const guildSettings = await this.getGuildSettings(member.guild.id);
-        if (!guildSettings?.welcomeChannelId) return;
+        if (
+            !guildSettings?.welcomeChannelId ||
+            guildSettings?.disabledCommands.includes(this.name)
+        )
+            return;
         const channel = await member.guild.channels.fetch(
             guildSettings.welcomeChannelId
         );
