@@ -5,9 +5,12 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.json",
-        "start": "cross-env NODE_ENV=production && node dist/index.js",
-        "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
-        "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
+        "start-bot": "cross-env NODE_ENV=production && node dist/index.js",
+        "dev-bot": "cross-env NODE_ENV=development && ts-node src/index.ts",
+        "dev-bot:hot": "cross-env NODE_ENV=development && ts-node-dev --ignore-watch src/api --respawn --transpile-only  src/index.ts",
+        "dev-api": "cross-env NODE_ENV=development && ts-node src/api/server.ts",
+        "dev-api:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only  src/api/server.ts",
+        "dev:hot": "concurrently -n BOT,API -c \"bgBlue.white,bgGreen.white\" \"npm run dev-bot:hot\" \"npm run dev-api:hot\"",
         "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
         "commit": "cz",
         "semantic-release": "semantic-release"
@@ -25,7 +28,9 @@
     "dependencies": {
         "@discordjs/builders": "^0.12.0",
         "@discordjs/rest": "^0.3.0",
+        "@hapi/hapi": "^20.2.1",
         "@prisma/client": "^3.12.0",
+        "concurrently": "^7.1.0",
         "discord-api-types": "^0.31.0",
         "discord.js": "^13.6.0",
         "dotenv": "^16.0.0"
@@ -33,6 +38,7 @@
     "devDependencies": {
         "@semantic-release/git": "^10.0.1",
         "@tsconfig/node16": "^1.0.2",
+        "@types/hapi__hapi": "^20.0.10",
         "@types/ms": "^0.7.31",
         "@typescript-eslint/eslint-plugin": "^5.18.0",
         "@typescript-eslint/parser": "^5.18.0",
