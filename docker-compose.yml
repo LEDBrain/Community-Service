@@ -1,25 +1,18 @@
 version: '3.7'
 
-environment:
-    PG_USER: postgresql
-    PG_PASSWORD: supersecret
-    PG_DB: community-service
-
 services:
     postgres:
         image: postgres:14.2
-        environment:
-            POSTGRES_USER: ${PG_USER}
-            POSTGRES_PASSWORD: ${PG_PASSWORD}
-            POSTGRES_DB: ${PG_DB}
+        env_file:
+            - prod.env
+        volumes:
+            - ./data:/var/lib/postgresql/data
 
     community-service:
         build: .
+        depends_on:
+            - postgres
         ports:
             - '3000:3000'
-        environment:
-            NODE_ENV: production
-            DISCORD_TOKEN: # discord token
-            DISCORD_CLIENT_ID: # some client id
-            # DISCORD_DEV_GUILD_ID: NOT USED IN PROD
-            DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}?schema=public
+        env_file:
+            - prod.env
