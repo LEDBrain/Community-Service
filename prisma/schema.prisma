@@ -72,10 +72,12 @@ model BanRequest {
 }
 
 model ReactionRoleMessage {
-  id         Int    @id @default(autoincrement())
-  guildId    String
-  messageId  String
-  roleAmount Int    @default(0)
+  id                   Int    @id @default(autoincrement())
+  guildId              String
+  channelId            String
+  messageId            String
+  assignableRoleAmount Int    @default(0)
+  name                 String
 
   roleToEmoji RoleToEmoji[]
 }
