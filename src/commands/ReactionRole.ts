@@ -1,4 +1,9 @@
-import type { CommandInteraction, TextChannel } from 'discord.js';
+import type {
+    CommandInteraction,
+    MessageSelectOptionData,
+    TextChannel,
+} from 'discord.js';
+import { MessageSelectMenu, MessageActionRow } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
@@ -50,22 +55,22 @@ export default class ReactionRole extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: CommandInteraction) {
+        if (!interaction.memberPermissions.has('MANAGE_MESSAGES'))
+            interaction.reply({
+                content: 'You have the permission to manage reaction roles',
+                ephemeral: true,
+            });
+
         const subcommand = interaction.options.getSubcommand(true);
 
         if (subcommand === 'create') {
-            await this.createReactionRole(interaction);
+            return await this.createReactionRole(interaction);
         } else if (subcommand === 'edit') {
-            await this.editReactionRole(interaction);
+            return await this.editReactionRole(interaction);
         }
     }
 
     private async createReactionRole(interaction: CommandInteraction) {
-        if (!interaction.memberPermissions.has('MANAGE_MESSAGES'))
-            interaction.reply({
-                content: 'You have the permission to create reaction roles',
-                ephemeral: true,
-            });
-
         const name = interaction.options.getString('name');
         const channel =
             (interaction.options.getChannel('channel') as TextChannel) ??
@@ -82,9 +87,11 @@ export default class ReactionRole extends Command {
                     data: {
                         messageId: msg.id,
                         guildId: msg.guildId,
-                        roleAmount:
+                        assignableRoleAmount:
                             interaction.options.getInteger('amount', false) ??
                             undefined,
+                        channelId: msg.channelId,
+                        name,
                         roleToEmoji: {},
                     },
                 })
@@ -97,8 +104,34 @@ export default class ReactionRole extends Command {
                         })
                 );
         });
+        return;
     }
     private async editReactionRole(interaction: CommandInteraction) {
-        throw new Error('Method not implemented.');
+        const reactionRoles = await this.db.reactionRoleMessage.findMany({
+            where: {
+                guildId: interaction.guildId,
+            },
+        });
+        const row = new MessageActionRow().addComponents(
+            new MessageSelectMenu()
+                .setCustomId('reactionRoleSelect')
+                .setPlaceholder('Choose a reaction role message')
+                .setMinValues(1)
+                .setMaxValues(1)
+                .addOptions(
+                    ...reactionRoles.map(
+                        rr =>
+                            ({
+                                label: rr.name,
+                                value: rr.id.toString(),
+                            } as MessageSelectOptionData)
+                    )
+                )
+        );
+        return await interaction.reply({
+            content: 'Choose a reaction role message',
+            components: [row],
+            ephemeral: true,
+        });
     }
 }
