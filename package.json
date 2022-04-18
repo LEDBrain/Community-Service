@@ -23,7 +23,7 @@
     },
     "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
-        "@discordjs/builders": "^0.12.0",
+        "@discordjs/builders": "^0.13.0",
         "@discordjs/rest": "^0.4.1",
         "@prisma/client": "^3.12.0",
         "discord-api-types": "^0.31.1",
