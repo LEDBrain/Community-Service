@@ -38,7 +38,8 @@
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.31.0",
         "discord.js": "^13.6.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.0",
+        "joi": "^17.6.0"
     },
     "devDependencies": {
         "@hapi/code": "^8.0.7",

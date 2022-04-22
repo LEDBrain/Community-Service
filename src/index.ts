@@ -37,5 +37,12 @@ const client = new Client({
 })();
 
 client.login(process.env.DISCORD_TOKEN);
+global.client = client;
+console.log(global);
 
 export { client };
+
+declare global {
+    // eslint-disable-next-line no-var
+    var client: Client;
+}
