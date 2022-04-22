@@ -34,15 +34,9 @@ const client = new Client({
             client.on(event.name, (...args) => event.execute(client, ...args));
         }
     }
+    //
 })();
 
-client.login(process.env.DISCORD_TOKEN);
-global.client = client;
-console.log(global);
+client.login(process.env.DISCORD_TOKEN).then(() => import('./api/server'));
 
 export { client };
-
-declare global {
-    // eslint-disable-next-line no-var
-    var client: Client;
-}
