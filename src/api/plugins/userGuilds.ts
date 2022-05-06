@@ -16,7 +16,7 @@ const userGuildsPlugin = {
                     params: Joi.object({
                         userId: Joi.string()
                             .required()
-                            .regex(/^[0-9]{18}$/),
+                            .regex(/^[0-9]{18,19}$/),
                     }),
                     query: Joi.object({
                         force: Joi.boolean(),

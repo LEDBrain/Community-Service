@@ -1,5 +1,6 @@
 import type Hapi from '@hapi/hapi';
 import { client } from '../../index';
+import Joi from 'joi';
 
 const botAppearancePlugin = {
     name: 'app/botAppearance',
@@ -9,6 +10,15 @@ const botAppearancePlugin = {
             method: 'GET',
             path: '/botAppearance/{guildId}',
             handler: botAppearanceByGuildId,
+            options: {
+                validate: {
+                    params: Joi.object({
+                        guildId: Joi.string()
+                            .required()
+                            .regex(/^[0-9]{18,19}$/),
+                    }),
+                },
+            },
         });
     },
 };

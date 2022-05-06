@@ -1,4 +1,5 @@
 import type Hapi from '@hapi/hapi';
+import Joi from 'joi';
 
 const guildSettingsPlugin = {
     name: 'app/guildSettings',
@@ -8,11 +9,30 @@ const guildSettingsPlugin = {
             method: 'GET',
             path: '/guildSettings/{guildId}',
             handler: guildSettingsById,
+            options: {
+                validate: {
+                    params: Joi.object({
+                        guildId: Joi.string()
+                            .required()
+                            .regex(/^[0-9]{18,19}$/),
+                    }),
+                },
+            },
         });
         server.route({
             method: ['POST', 'OPTIONS'],
             path: '/guildSettings/{guildId}',
             handler: updateGuildSettings,
+            options: {
+                validate: {
+                    params: Joi.object({
+                        guildId: Joi.string()
+                            .required()
+                            .regex(/^[0-9]{18,19}$/),
+                    }),
+                    // TODO: validate payload? @kdev
+                },
+            },
         });
     },
 };
