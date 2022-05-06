@@ -12,7 +12,9 @@
         "lint:prettier": "prettier --write \"src/**/*.ts\"",
         "lint:eslint": "eslint . --ext .ts",
         "commit": "cz",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release",
+        "migrate:prod": "prisma migrate deploy",
+        "test:api": "lab --typescript -v"
     },
     "repository": {
         "type": "git",
@@ -27,18 +29,24 @@
     "dependencies": {
         "@discordjs/builders": "^0.13.0",
         "@discordjs/rest": "^0.4.1",
+        "@hapi/hapi": "^20.2.1",
         "@prisma/client": "^3.13.0",
+        "concurrently": "^7.1.0",
+        "cross-env": "^7.0.3",
         "discord-api-types": "^0.32.1",
         "discord.js": "^13.6.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.0",
+        "joi": "^17.6.0"
     },
     "devDependencies": {
+        "@hapi/code": "^8.0.7",
+        "@hapi/lab": "^24.6.0",
         "@semantic-release/git": "^10.0.1",
         "@tsconfig/node16": "^1.0.2",
+        "@types/hapi__hapi": "^20.0.10",
         "@types/ms": "^0.7.31",
         "@typescript-eslint/eslint-plugin": "^5.22.0",
         "@typescript-eslint/parser": "^5.22.0",
-        "cross-env": "^7.0.3",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.14.0",
         "prettier": "^2.6.2",

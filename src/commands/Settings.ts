@@ -17,13 +17,16 @@ export default class Ping extends Command {
                             .setName('channel-setting')
                             .setDescription('The channel setting to set')
                             .setRequired(true)
-                            .addChoices([['logchannel', 'logChannelId']])
+                            .addChoices({
+                                name: 'logchannel',
+                                value: 'logChannelId',
+                            })
                     )
                     .addChannelOption(channelOption =>
                         channelOption
                             .setName('channel')
                             .setDescription('The channel to set')
-                            .addChannelType(0)
+                            .addChannelTypes(0)
                             .setRequired(true)
                     )
             )
@@ -36,10 +39,13 @@ export default class Ping extends Command {
                             .setName('role-setting')
                             .setDescription('The role setting to set')
                             .setRequired(true)
-                            .addChoices([
-                                ['muterole', 'muteRoleId'],
-                                ['moderatorrole', 'moderatorRoleId'], // TODO: allow for more than one role
-                            ])
+                            .addChoices(
+                                { name: 'muterole', value: 'muteRoleId' },
+                                {
+                                    name: 'moderatorrole',
+                                    value: 'moderatorRoleId',
+                                } // TODO: allow for more than one role
+                            )
                     )
                     .addRoleOption(roleOption =>
                         roleOption
@@ -57,12 +63,12 @@ export default class Ping extends Command {
                             .setName('ban-approvals-setting')
                             .setDescription('The ban approvals setting to set')
                             .setRequired(true)
-                            .addChoices([
-                                ['1', 1],
-                                ['2', 2],
-                                ['3', 3],
-                                ['4', 4],
-                            ])
+                            .addChoices(
+                                { name: '1', value: 1 },
+                                { name: '2', value: 2 },
+                                { name: '3', value: 3 },
+                                { name: '4', value: 4 }
+                            )
                     )
             );
 
