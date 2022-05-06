@@ -39,7 +39,7 @@
         "joi": "^17.6.0"
     },
     "devDependencies": {
-        "@hapi/code": "^8.0.7",
+        "@hapi/code": "^9.0.0",
         "@hapi/lab": "^24.6.0",
         "@semantic-release/git": "^10.0.1",
         "@tsconfig/node16": "^1.0.2",
