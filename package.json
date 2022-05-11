@@ -30,7 +30,7 @@
         "@discordjs/builders": "^0.13.0",
         "@discordjs/rest": "^0.4.1",
         "@hapi/hapi": "^20.2.2",
-        "@prisma/client": "^3.13.0",
+        "@prisma/client": "^3.14.0",
         "concurrently": "^7.1.0",
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.32.1",
