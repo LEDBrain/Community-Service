@@ -36,16 +36,16 @@ export default class Ban extends Command {
                     .setRequired(true) // Change this when the issue with weird discord errors is fixed
                     .setMinValue(0)
                     .setMaxValue(1)
-                    .addChoices([
-                        ['0', 0],
-                        ['1', 1],
-                        ['2', 2],
-                        ['3', 3],
-                        ['4', 4],
-                        ['5', 5],
-                        ['6', 6],
-                        ['7', 7],
-                    ])
+                    .addChoices(
+                        { name: '0', value: 0 },
+                        { name: '1', value: 1 },
+                        { name: '2', value: 2 },
+                        { name: '3', value: 3 },
+                        { name: '4', value: 4 },
+                        { name: '5', value: 5 },
+                        { name: '6', value: 6 },
+                        { name: '7', value: 7 }
+                    )
             );
 
         super(cmd as unknown as Config);

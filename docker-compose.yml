@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    postgres:
+        image: postgres:14.2
+        env_file:
+            - prod.env
+        volumes:
+            - ./data:/var/lib/postgresql/data
+
+    community-service:
+        build: .
+        depends_on:
+            - postgres
+        ports:
+            - '3000:3000'
+        env_file:
+            - prod.env
