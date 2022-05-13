@@ -17,6 +17,9 @@ export default class GuildMemberAdd extends Event {
             guildSettings.welcomeChannelId
         );
         if (!channel || !channel.isText()) return;
-        channel.send(`Welcome to the server, ${member}!`); // TODO: Make this text editable (command & dashboard)
+        const message = guildSettings.welcomeMessage
+            .replaceAll('{{servername}}', channel.guild.toString())
+            .replaceAll('{{username}}', member.toString());
+        channel.send(message); // TODO: Make this text editable (command & dashboard)
     }
 }
