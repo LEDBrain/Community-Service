@@ -9,7 +9,7 @@ jobs:
         uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
 
     release:
-        needs: [lint, build-project]
+        needs: test
         runs-on: ubuntu-latest
         steps:
             - name: '☁️ checkout repository'
