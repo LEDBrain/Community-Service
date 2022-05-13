@@ -76,6 +76,19 @@ export default class Ping extends Command {
                                 { name: '4', value: 4 }
                             )
                     )
+            )
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName('welcome-message')
+                    .setDescription('Set welcome message')
+                    .addStringOption(stringOption =>
+                        stringOption
+                            .setName('welcome-message-setting')
+                            .setDescription(
+                                'The welcome message template ({{username}}, and {{servername}} is supported)'
+                            )
+                            .setRequired(true)
+                    )
             );
 
         super(cmd as unknown as Config);
@@ -90,6 +103,9 @@ export default class Ping extends Command {
                 break;
             case 'ban-approvals':
                 this.setBanApprovals(interaction);
+                break;
+            case 'welcome-message':
+                this.setWelcomeMessage(interaction);
                 break;
             default:
                 break;
@@ -143,5 +159,17 @@ export default class Ping extends Command {
         await this.setSetting(interaction.guildId, setting, role.id);
 
         interaction.reply(`${setting} set to ${role}`);
+    }
+
+    private async setWelcomeMessage(interaction: CommandInteraction) {
+        const welcomeMessage = interaction.options.getString(
+            'welcome-message-setting'
+        );
+        await this.setSetting(
+            interaction.guildId,
+            'welcomeMessage',
+            welcomeMessage
+        );
+        interaction.reply(`welcomeMessage set to ${welcomeMessage}`);
     }
 }
