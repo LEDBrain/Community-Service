@@ -43,7 +43,7 @@ export default class ReactionRole extends Command {
                                     'The channel to create the reaction role in'
                                 )
                                 .setRequired(false)
-                                .addChannelType(0) // Text channel
+                                .addChannelTypes(0) // Text channel
                     )
             )
             .addSubcommand(subcommand =>
