@@ -1,24 +1,88 @@
-name: Release
+name: Release workflow
 on:
     push:
         branches:
             - main
 jobs:
-    release:
-        name: Release
+    lint:
+        if: "!contains(github.event.head_commit.message, 'skip ci')"
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
+            - name: '☁️ checkout repository'
+              uses: actions/checkout@v3
+
+            - name: '🔧 Setup Node.js'
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+
+            - name: '📦 install dependencies'
+              run: npm ci
+
+            - name: '✅ run ESLint'
+              run: npm run lint:eslint
+
+            - name: '✅ run Prettier'
+              run: npm run lint:prettier
+
+    build-project:
+        needs: lint
+        if: "!contains(github.event.head_commit.message, 'skip ci')"
+        runs-on: ubuntu-latest
+        env:
+            PG_USER: postgres
+            PG_PW: supersecret
+            PG_DB: community-service-test
+            DATABASE_URL: postgres://postgres:supersecret@localhost:5432/community-service-test?schema=public
+
+        services:
+            postgres:
+                image: postgres:14.2
+                env:
+                    POSTGRES_USER: ${ PG_USER }
+                    POSTGRES_PASSWORD: ${ PG_PW }
+                    POSTGRES_DB: ${ PG_DB }
+                ports:
+                    - 5432:5432
+                options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+        steps:
+            - name: '📄 Log Database URL'
+              run: echo "Database URL $DATABASE_URL; PG_USER $PG_USER; PG_PW $PG_PW; PG_DB $PG_DB"
+
+            - name: '☁️ checkout repository'
+              uses: actions/checkout@v3
+
+            - name: '🔧 Setup Node.js'
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+
+            - name: '📦 install dependencies'
+              run: npm ci
+
+            - name: '📂 build'
+              run: npm run build
+
+            - name: '✅ run API tests'
+              run: npm run test:api
+
+    release:
+        needs: [lint, build-project]
+        runs-on: ubuntu-latest
+        steps:
+            - name: '☁️ checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
-            - name: Setup Node.js
+            - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
               with:
                   node-version: 'lts/*'
-            - name: Install dependencies
+            - name: '📦 install dependencies'
               run: npm ci
-            - name: Release
+
+            - name: '🚀 release'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release

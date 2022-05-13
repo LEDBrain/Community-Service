@@ -1,10 +1,35 @@
-name: Build
+name: Development workflow
+
 on:
     push:
+        branches-ignore:
+            - 'main'
     workflow_dispatch:
 
 jobs:
+    lint:
+        if: "!contains(github.event.head_commit.message, 'skip ci')"
+        runs-on: ubuntu-latest
+        steps:
+            - name: '☁️ checkout repository'
+              uses: actions/checkout@v3
+
+            - name: '🔧 Setup Node.js'
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+
+            - name: '📦 install dependencies'
+              run: npm ci
+
+            - name: '✅ run ESLint'
+              run: npm run lint:eslint
+
+            - name: '✅ run Prettier'
+              run: npm run lint:prettier
+
     build-project:
+        needs: lint
         if: "!contains(github.event.head_commit.message, 'skip ci')"
         runs-on: ubuntu-latest
         env:
@@ -25,17 +50,22 @@ jobs:
                 options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
         steps:
-            - name: Log Database URL
+            - name: '📄 Log Database URL'
               run: echo "Database URL $DATABASE_URL; PG_USER $PG_USER; PG_PW $PG_PW; PG_DB $PG_DB"
-            - name: Checkout Repository
+
+            - name: '☁️ checkout repository'
               uses: actions/checkout@v3
-            - name: Setup Node
+
+            - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
               with:
                   node-version: '16.x'
-            - name: Install Dependencies
+
+            - name: '📦 install dependencies'
               run: npm ci
-            - name: Build
+
+            - name: '📂 build'
               run: npm run build
-            - name: Run API tests
+
+            - name: '✅ run API tests'
               run: npm run test:api
