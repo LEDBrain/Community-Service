@@ -19,10 +19,13 @@ enum SanctionType {
 model GuildSettings {
   id                 String   @id
   logChannelId       String   @default("")
+  welcomeChannelId   String   @default("")
   muteRoleId         String   @default("")
   disabledCommands   String[]
+  disabledEvents     String[]
   banApprovalsNeeded Int      @default(1)
   moderatorRoleId    String   @default("")
+  welcomeMessage     String   @default("Welcome to {{servername}} {{username}}! Enjoy your stay!")
 }
 
 model Sanction {
