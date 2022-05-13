@@ -9,8 +9,12 @@
         "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
         "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
+        "lint:prettier": "prettier --write \"src/**/*.ts\"",
+        "lint:eslint": "eslint . --ext .ts",
         "commit": "cz",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release",
+        "migrate:prod": "prisma migrate deploy",
+        "test:api": "lab --typescript -v"
     },
     "repository": {
         "type": "git",
@@ -23,28 +27,34 @@
     },
     "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
-        "@discordjs/builders": "^0.12.0",
-        "@discordjs/rest": "^0.3.0",
-        "@prisma/client": "^3.11.1",
-        "discord-api-types": "^0.30.0",
+        "@discordjs/builders": "^0.13.0",
+        "@discordjs/rest": "^0.4.1",
+        "@hapi/hapi": "^20.2.2",
+        "@prisma/client": "^3.14.0",
+        "concurrently": "^7.1.0",
+        "cross-env": "^7.0.3",
+        "discord-api-types": "^0.32.1",
         "discord.js": "^13.6.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.1",
+        "joi": "^17.6.0"
     },
     "devDependencies": {
+        "@hapi/code": "^9.0.0",
+        "@hapi/lab": "^25.0.1",
         "@semantic-release/git": "^10.0.1",
         "@tsconfig/node16": "^1.0.2",
+        "@types/hapi__hapi": "^20.0.10",
         "@types/ms": "^0.7.31",
-        "@typescript-eslint/eslint-plugin": "^5.17.0",
-        "@typescript-eslint/parser": "^5.17.0",
-        "cross-env": "^7.0.3",
+        "@typescript-eslint/eslint-plugin": "^5.23.0",
+        "@typescript-eslint/parser": "^5.23.0",
         "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.12.0",
-        "prettier": "^2.6.1",
-        "prisma": "^3.11.1",
+        "eslint": "^8.15.0",
+        "prettier": "^2.6.2",
+        "prisma": "^3.14.0",
         "semantic-release": "^19.0.2",
         "ts-node": "^10.7.0",
         "ts-node-dev": "^1.1.8",
-        "typescript": "^4.6.3"
+        "typescript": "^4.6.4"
     },
     "config": {
         "commitizen": {
