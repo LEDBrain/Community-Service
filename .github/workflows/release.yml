@@ -5,10 +5,10 @@ on:
             - main
 jobs:
     test:
-        name: '🧪 Test and lint'
+        name: Test and lint
         uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
 
-    release-github:
+    release:
         needs: test
         runs-on: ubuntu-latest
         steps:
@@ -27,7 +27,3 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
-
-    release-registry:
-        name: '🐋 Release to Docker registry'
-        uses: LEDBrain/Community-Service/.github/workflows/docker-release.yml@main
