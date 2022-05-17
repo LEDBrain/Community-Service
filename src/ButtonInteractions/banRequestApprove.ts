@@ -9,7 +9,6 @@ import type {
 } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { BanRequest, GuildSettings } from '@prisma/client';
-import { string } from 'joi';
 
 export default class BanRequestApprove extends InteractionHandler {
     async execute(button: ButtonInteraction) {
