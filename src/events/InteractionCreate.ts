@@ -1,8 +1,9 @@
-import type { CommandInteraction, Interaction } from 'discord.js';
+import type { CommandInteraction, Guild, Interaction } from 'discord.js';
 import Event from '../base/Event';
 import type Client from '../base/Client';
 import { prisma } from '../base/Prisma';
 import buttonHandler from '../ButtonInteractions/handler';
+import type Command from '../base/Command';
 
 export default class InteractionCreate extends Event {
     constructor() {
@@ -12,7 +13,7 @@ export default class InteractionCreate extends Event {
     private async isEnabled(interaction: CommandInteraction): Promise<boolean> {
         const guildSettings = await prisma.guildSettings.findFirst({
             where: {
-                id: interaction.guild.id,
+                id: (interaction.guild as Guild).id,
             },
         });
 
@@ -36,9 +37,9 @@ export default class InteractionCreate extends Event {
             return;
         }
         try {
-            await client.commands
-                .get(interaction.commandName)
-                .execute(interaction);
+            await (
+                client.commands.get(interaction.commandName) as Command
+            ).execute(interaction);
         } catch (error) {
             console.error(error);
             if (interaction.deferred || interaction.replied) return;

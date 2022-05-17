@@ -1,4 +1,9 @@
-import type { CommandInteraction, GuildMember, Guild } from 'discord.js';
+import type {
+    CommandInteraction,
+    GuildMember,
+    Guild,
+    Message,
+} from 'discord.js';
 import { MessageActionRow, MessageButton } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { Config } from '../base/Command';
@@ -61,7 +66,7 @@ export default class Ban extends Command {
 
         if (
             !this.canBan(
-                interaction.guild,
+                interaction.guild as Guild,
                 interaction.member as GuildMember,
                 member
             )
@@ -71,7 +76,9 @@ export default class Ban extends Command {
                 ephemeral: true,
             });
 
-        const guildSettings = await this.getGuildSettings(interaction.guildId);
+        const guildSettings = await this.getGuildSettings(
+            interaction.guildId as string
+        );
 
         if (!guildSettings?.logChannelId.length)
             return interaction.reply({
@@ -88,7 +95,7 @@ export default class Ban extends Command {
                 content: `Banned ${member.toString()}`,
                 ephemeral: true,
             });
-            await this.log(interaction.guild, {
+            await this.log(interaction.guild as Guild, {
                 embeds: [
                     new MessageEmbed()
                         .setTitle('User banned')
@@ -104,7 +111,9 @@ export default class Ban extends Command {
                             },
                             {
                                 name: 'Moderator',
-                                value: interaction.member.toString(),
+                                value: (
+                                    interaction.member as GuildMember
+                                ).toString(),
                                 inline: true,
                             },
                             {
@@ -121,7 +130,7 @@ export default class Ban extends Command {
         const banRequests = await this.db.banRequest.findFirst({
             where: {
                 AND: {
-                    guildId: interaction.guild.id,
+                    guildId: (interaction.guild as Guild).id,
                     userId: member.id,
                     isRejected: false,
                 },
@@ -130,7 +139,7 @@ export default class Ban extends Command {
         if (banRequests)
             return interaction.reply(
                 `There already is a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
-                    interaction.guild.id
+                    (interaction.guild as Guild).id
                 }/${guildSettings.logChannelId}/${banRequests.messageId})`
             );
 
@@ -145,7 +154,7 @@ export default class Ban extends Command {
                 },
                 {
                     name: 'Moderator',
-                    value: interaction.member.toString(),
+                    value: (interaction.member as GuildMember).toString(),
                     inline: true,
                 },
                 {
@@ -172,7 +181,7 @@ export default class Ban extends Command {
                 .setEmoji('❌')
         );
 
-        const message = await this.log(interaction.guild, {
+        const message = await this.log(interaction.guild as Guild, {
             ...(guildSettings?.moderatorRoleId
                 ? { content: `<@&${guildSettings.moderatorRoleId}>` }
                 : {}),
@@ -182,8 +191,8 @@ export default class Ban extends Command {
 
         await this.db.banRequest.create({
             data: {
-                guildId: interaction.guild.id,
-                messageId: message.id,
+                guildId: (interaction.guild as Guild).id,
+                messageId: (message as Message).id,
                 reason,
                 daysToDelete: days,
                 User: {
@@ -212,7 +221,7 @@ export default class Ban extends Command {
         await interaction.reply(
             `I've created a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
                 interaction.guildId
-            }/${guildSettings.logChannelId}/${message.id})`
+            }/${guildSettings.logChannelId}/${(message as Message).id})`
         );
     }
 
