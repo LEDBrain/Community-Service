@@ -27,8 +27,3 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
-
-    release-registry:
-        needs: [test, release-github]
-        name: '🐋 Release to Docker registry'
-        uses: LEDBrain/Community-Service/.github/workflows/docker-release.yml@main
