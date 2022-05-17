@@ -1,4 +1,4 @@
-import type { CommandInteraction } from 'discord.js';
+import type { CommandInteraction, Guild } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
@@ -15,49 +15,51 @@ export default class Serverinfo extends Command {
     }
     public async execute(interaction: CommandInteraction) {
         const embed = new MessageEmbed()
-            .setColor(Colors.fromString(interaction.guild.name))
-            .setDescription(interaction.guild.name)
+            .setColor(Colors.fromString((interaction.guild as Guild).name))
+            .setDescription((interaction.guild as Guild).name)
             .setFields([
                 {
                     name: 'Serverowner',
-                    value: `${interaction.guild.members.resolve(
-                        interaction.guild.ownerId
+                    value: `${(interaction.guild as Guild).members.resolve(
+                        (interaction.guild as Guild).ownerId
                     )}`,
                 },
                 {
                     name: 'Created at',
-                    value: `${DateUtils.format(interaction.guild.createdAt)}`,
+                    value: `${DateUtils.format(
+                        (interaction.guild as Guild).createdAt
+                    )}`,
                     inline: true,
                 },
                 {
                     name: 'Member count',
-                    value: `${interaction.guild.memberCount}`,
+                    value: `${(interaction.guild as Guild).memberCount}`,
                     inline: true,
                 },
                 {
                     name: 'Channels',
                     inline: true,
                     value: `Total: ${
-                        interaction.guild.channels.cache.size
+                        (interaction.guild as Guild).channels.cache.size
                     }\nCategories: ${
-                        interaction.guild.channels.cache.filter(
+                        (interaction.guild as Guild).channels.cache.filter(
                             c => c.type === 'GUILD_CATEGORY'
                         ).size
                     }\nVoice: ${
-                        interaction.guild.channels.cache.filter(
+                        (interaction.guild as Guild).channels.cache.filter(
                             c =>
                                 c.type === 'GUILD_VOICE' ||
                                 c.type === 'GUILD_STAGE_VOICE'
                         ).size
                     }\nText: ${
-                        interaction.guild.channels.cache.filter(
+                        (interaction.guild as Guild).channels.cache.filter(
                             c =>
                                 c.type === 'GUILD_TEXT' ||
                                 c.type === 'GUILD_NEWS' ||
                                 c.type === 'GUILD_STORE'
                         ).size
                     }\nThreads: ${
-                        interaction.guild.channels.cache.filter(
+                        (interaction.guild as Guild).channels.cache.filter(
                             c =>
                                 c.type === 'GUILD_PUBLIC_THREAD' ||
                                 c.type === 'GUILD_NEWS_THREAD'
@@ -65,9 +67,11 @@ export default class Serverinfo extends Command {
                     }`,
                 },
                 {
-                    name: `Roles: ${interaction.guild.roles.cache.size}`,
+                    name: `Roles: ${
+                        (interaction.guild as Guild).roles.cache.size
+                    }`,
                     value: [
-                        ...interaction.guild.roles.cache
+                        ...(interaction.guild as Guild).roles.cache
                             .sort(
                                 (first, second) =>
                                     second.position - first.position
@@ -76,7 +80,7 @@ export default class Serverinfo extends Command {
                     ].join(', '),
                 },
             ])
-            .setThumbnail(interaction.guild.iconURL())
+            .setThumbnail((interaction.guild as Guild).iconURL() ?? '')
             .setFooter({
                 text: interaction.user.tag,
                 iconURL: interaction.user.displayAvatarURL(),

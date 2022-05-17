@@ -1,18 +1,30 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type { ButtonInteraction, GuildMember, Message } from 'discord.js';
+import type {
+    ButtonInteraction,
+    EmbedField,
+    Guild,
+    GuildMember,
+    Message,
+    Permissions,
+} from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 import type { BanRequest, GuildSettings } from '@prisma/client';
+import { string } from 'joi';
 
 export default class BanRequestApprove extends InteractionHandler {
     async execute(button: ButtonInteraction) {
         // Check if the user is allowed to add to that ban request
-        if (!button.memberPermissions.has('MANAGE_MESSAGES'))
+        if (
+            !(button.memberPermissions as Readonly<Permissions>).has(
+                'MANAGE_MESSAGES'
+            )
+        )
             return button.deferUpdate();
 
         const banRequest = await this.db.banRequest.findFirst({
             where: {
                 AND: {
-                    guildId: button.guild.id,
+                    guildId: (button.guild as Guild).id,
                     messageId: button.message.id,
                     isRejected: false,
                 },
@@ -35,7 +47,9 @@ export default class BanRequestApprove extends InteractionHandler {
             (button.member as GuildMember).id,
         ];
 
-        const guildSettings = await this.getGuildSettings(button.guild.id);
+        const guildSettings = await this.getGuildSettings(
+            (button.guild as Guild).id
+        );
         if (!guildSettings?.banApprovalsNeeded)
             return button.reply({
                 content:
@@ -64,8 +78,8 @@ export default class BanRequestApprove extends InteractionHandler {
         guildSettings: GuildSettings
     ) {
         const receivedEmbed = button.message.embeds[0];
-        const approvedByField = receivedEmbed.fields.find(field =>
-            field.name.startsWith('Approved By')
+        const approvedByField = (receivedEmbed.fields as EmbedField[]).find(
+            field => field.name.startsWith('Approved By')
         ) || {
             name: `Approved By (${updatedBanRequest.approved_by.length}/${guildSettings.banApprovalsNeeded})`,
             value: '',
@@ -78,7 +92,7 @@ export default class BanRequestApprove extends InteractionHandler {
         approvedByField.name = `Approved By (${updatedBanRequest.approved_by.length}/${guildSettings.banApprovalsNeeded})`;
 
         const updatedEmbed = new MessageEmbed(receivedEmbed).setFields([
-            ...receivedEmbed.fields.filter(
+            ...(receivedEmbed.fields as EmbedField[]).filter(
                 field => !field.name.startsWith('Approved By')
             ),
             approvedByField,
@@ -118,19 +132,27 @@ export default class BanRequestApprove extends InteractionHandler {
             '[BANNED] Ban request'
         );
 
-        button.guild.bans.create(userId, { reason, days }).then(() =>
-            new this.Sanction(userId, moderatorId, guildId, 'BAN', reason)
-                .create()
-                .then(() =>
-                    updatedMessage
-                        .edit({ embeds: [embed], components: [] })
-                        .then(() =>
-                            this.db.banRequest.update({
-                                where: { id: banRequest.id },
-                                data: { isRejected: true },
-                            })
-                        )
+        (button.guild as Guild).bans
+            .create(userId, { reason: reason ?? '', days: days ?? 0 })
+            .then(() =>
+                new this.Sanction(
+                    userId,
+                    moderatorId,
+                    guildId,
+                    'BAN',
+                    reason ?? ''
                 )
-        );
+                    .create()
+                    .then(() =>
+                        updatedMessage
+                            .edit({ embeds: [embed], components: [] })
+                            .then(() =>
+                                this.db.banRequest.update({
+                                    where: { id: banRequest.id },
+                                    data: { isRejected: true },
+                                })
+                            )
+                    )
+            );
     }
 }
