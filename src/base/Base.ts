@@ -10,7 +10,7 @@ export default abstract class Base {
         this.db = prisma;
         this.Sanction = SanctionManager;
     }
-    async getGuildSettings(guildId: string): Promise<GuildSettings> {
+    async getGuildSettings(guildId: string): Promise<GuildSettings | null> {
         return await this.db.guildSettings.findUnique({
             where: {
                 id: guildId,
@@ -20,7 +20,7 @@ export default abstract class Base {
     async log(
         guild: Guild,
         options: Parameters<TextChannel['send']>[0]
-    ): ReturnType<TextChannel['send']> {
+    ): Promise<ReturnType<TextChannel['send']> | undefined> {
         const guildSettings = await this.getGuildSettings(guild.id);
         if (!guildSettings?.logChannelId) {
             return;

@@ -25,7 +25,7 @@ export default abstract class Command extends Base implements Config {
         interaction: Interaction
     ): Promise<unknown> | unknown;
 
-    constructor({ name, description, options = null }: Config) {
+    constructor({ name, description, options = [] }: Config) {
         super();
         this.name = name;
         this.description = description;

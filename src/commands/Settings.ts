@@ -136,9 +136,9 @@ export default class Ping extends Command {
             'ban-approvals-setting'
         );
         await this.setSetting(
-            interaction.guildId,
+            interaction.guildId as string,
             'banApprovalsNeeded',
-            approvalsNeeded
+            approvalsNeeded ?? 1
         );
         interaction.reply(`banApprovalsNeeded set to ${approvalsNeeded}`);
     }
@@ -147,7 +147,11 @@ export default class Ping extends Command {
         const setting = interaction.options.getString('channel-setting');
         const channel = interaction.options.getChannel('channel', true);
 
-        await this.setSetting(interaction.guildId, setting, channel.id);
+        await this.setSetting(
+            interaction.guildId as string,
+            setting as string,
+            channel.id
+        );
 
         interaction.reply(`${setting} set to ${channel}`);
     }
@@ -156,7 +160,11 @@ export default class Ping extends Command {
         const setting = interaction.options.getString('role-setting');
         const role = interaction.options.getRole('role', true);
 
-        await this.setSetting(interaction.guildId, setting, role.id);
+        await this.setSetting(
+            interaction.guildId as string,
+            setting as string,
+            role.id
+        );
 
         interaction.reply(`${setting} set to ${role}`);
     }
@@ -166,9 +174,9 @@ export default class Ping extends Command {
             'welcome-message-setting'
         );
         await this.setSetting(
-            interaction.guildId,
+            interaction.guildId as string,
             'welcomeMessage',
-            welcomeMessage
+            welcomeMessage as string
         );
         interaction.reply(`welcomeMessage set to ${welcomeMessage}`);
     }
