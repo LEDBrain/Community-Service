@@ -42,6 +42,7 @@
         "@hapi/code": "^9.0.0",
         "@hapi/lab": "^25.0.1",
         "@semantic-release/git": "^10.0.1",
+        "@semantic-release/npm": "^9.0.1",
         "@tsconfig/node16": "^1.0.2",
         "@types/hapi__hapi": "^20.0.12",
         "@types/ms": "^0.7.31",
@@ -69,8 +70,34 @@
             "main"
         ],
         "plugins": [
-            "@semantic-release/commit-analyzer",
+            [
+                "@semantic-release/commit-analyzer",
+                {
+                    "preset": "angular",
+                    "releaseRules": [
+                        {
+                            "type": "docs",
+                            "scope": "README",
+                            "release": "patch"
+                        },
+                        {
+                            "type": "refactor",
+                            "release": "patch"
+                        },
+                        {
+                            "scope": "no-release",
+                            "release": false
+                        }
+                    ]
+                }
+            ],
             "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/npm",
+                {
+                    "npmPublish": false
+                }
+            ],
             "@semantic-release/github",
             "@semantic-release/git"
         ]
