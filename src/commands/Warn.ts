@@ -1,4 +1,4 @@
-import type { CommandInteraction, GuildMember } from 'discord.js';
+import type { CommandInteraction, Guild, GuildMember } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
 import { SlashCommandBuilder } from '@discordjs/builders';
@@ -31,8 +31,8 @@ export default class Warn extends Command {
         const reason = interaction.options.getString('reason', true);
         new this.Sanction(
             member.id,
-            interaction.member.user.id,
-            interaction.guild.id,
+            (interaction.member as GuildMember).user.id,
+            (interaction.guild as Guild).id,
             'WARN',
             reason
         ).create();

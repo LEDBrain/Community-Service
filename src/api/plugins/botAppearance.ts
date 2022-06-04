@@ -1,3 +1,4 @@
+import type { GuildMember } from 'discord.js';
 import type Hapi from '@hapi/hapi';
 import { client } from '../../index';
 import Joi from 'joi';
@@ -34,8 +35,8 @@ const botAppearanceByGuildId = async (
         const guild = await client.guilds.fetch(guildId);
         return h
             .response({
-                nickname: guild.me.displayName,
-                color: guild.me.displayColor,
+                nickname: (guild.me as GuildMember).displayName,
+                color: (guild.me as GuildMember).displayColor,
             })
             .code(200);
     } catch (err) {

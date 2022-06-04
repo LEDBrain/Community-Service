@@ -1,24 +1,29 @@
-name: Release
+name: Release workflow
 on:
     push:
         branches:
             - main
 jobs:
-    release:
-        name: Release
+    test:
+        name: '🧪 Test and lint'
+        uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
+
+    release-github:
+        needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
+            - name: '☁️ checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
-            - name: Setup Node.js
+            - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
               with:
                   node-version: 'lts/*'
-            - name: Install dependencies
+            - name: '📦 install dependencies'
               run: npm ci
-            - name: Release
+
+            - name: '🚀 release'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
