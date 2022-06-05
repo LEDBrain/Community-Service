@@ -55,7 +55,7 @@ export default class ReactionRole extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: CommandInteraction) {
-        if (!interaction.memberPermissions.has('MANAGE_MESSAGES'))
+        if (!interaction.memberPermissions?.has('MANAGE_MESSAGES'))
             interaction.reply({
                 content: 'You have the permission to manage reaction roles',
                 ephemeral: true,
@@ -71,7 +71,7 @@ export default class ReactionRole extends Command {
     }
 
     private async createReactionRole(interaction: CommandInteraction) {
-        const name = interaction.options.getString('name');
+        const name = interaction.options.getString('name', true);
         const channel =
             (interaction.options.getChannel('channel') as TextChannel) ??
             interaction.channel;
@@ -86,7 +86,7 @@ export default class ReactionRole extends Command {
                 .create({
                     data: {
                         messageId: msg.id,
-                        guildId: msg.guildId,
+                        guildId: msg.guildId as string,
                         assignableRoleAmount:
                             interaction.options.getInteger('amount', false) ??
                             undefined,
@@ -109,7 +109,7 @@ export default class ReactionRole extends Command {
     private async editReactionRole(interaction: CommandInteraction) {
         const reactionRoles = await this.db.reactionRoleMessage.findMany({
             where: {
-                guildId: interaction.guildId,
+                guildId: interaction.guildId as string,
             },
         });
         const row = new MessageActionRow().addComponents(

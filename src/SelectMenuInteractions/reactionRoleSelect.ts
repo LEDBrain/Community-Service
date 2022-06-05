@@ -5,7 +5,7 @@ import { MessageButton, MessageEmbed, MessageActionRow } from 'discord.js';
 export default class ReactionRoleSelect extends InteractionHandler {
     async execute(selectMenu: SelectMenuInteraction) {
         // Never
-        if (!selectMenu.memberPermissions.has('MANAGE_MESSAGES'))
+        if (!selectMenu.memberPermissions?.has('MANAGE_MESSAGES'))
             return selectMenu.deferUpdate();
         const reactionRoleId = selectMenu.values[0];
         const reactionRole = await this.db.reactionRoleMessage.findUnique({
@@ -16,6 +16,7 @@ export default class ReactionRoleSelect extends InteractionHandler {
                 roleToEmoji: true,
             },
         });
+        if (!reactionRole) return selectMenu.deferUpdate(); // TODO: Handle no reactionRole found
         const embed = new MessageEmbed()
             .setTitle(`Reaction Role: ${reactionRole.name}`)
             .setDescription(

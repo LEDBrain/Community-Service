@@ -1,5 +1,10 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type { ButtonInteraction, TextChannel } from 'discord.js';
+import type {
+    ButtonInteraction,
+    Guild,
+    MessageEmbedFooter,
+    TextChannel,
+} from 'discord.js';
 
 export default class reactionRoleDelete extends InteractionHandler {
     constructor() {
@@ -7,7 +12,9 @@ export default class reactionRoleDelete extends InteractionHandler {
     }
     async execute(button: ButtonInteraction) {
         const id = parseInt(
-            button.message.embeds[0].footer.text.replace('ID: ', '')
+            (
+                button.message.embeds[0].footer as MessageEmbedFooter
+            ).text.replace('ID: ', '')
         );
         const reactionRole = await this.db.reactionRoleMessage.findUnique({
             where: {
@@ -16,7 +23,7 @@ export default class reactionRoleDelete extends InteractionHandler {
         });
         if (!reactionRole) return button.deferUpdate();
         const rrMessage = await (
-            (await button.guild.channels.fetch(
+            (await (button.guild as Guild).channels.fetch(
                 reactionRole.channelId
             )) as TextChannel
         ).messages.fetch(reactionRole.messageId);
