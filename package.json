@@ -43,7 +43,7 @@
         "@hapi/lab": "^25.0.1",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/npm": "^9.0.1",
-        "@tsconfig/node16": "^1.0.2",
+        "@tsconfig/node16": "^1.0.3",
         "@types/hapi__hapi": "^20.0.12",
         "@types/ms": "^0.7.31",
         "@typescript-eslint/eslint-plugin": "^5.27.1",
