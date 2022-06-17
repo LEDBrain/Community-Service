@@ -12,7 +12,7 @@ jobs:
         needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: '☁️ checkout repository'
+            - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
@@ -20,10 +20,10 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 'lts/*'
-            - name: '📦 install dependencies'
+            - name: '📦 Install dependencies'
               run: npm ci
 
-            - name: '🚀 release'
+            - name: '🚀 Release'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
