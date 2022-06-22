@@ -27,7 +27,7 @@ jobs:
               run: npm ci
 
             - name: '🔓 Lift Branch Restrictions'
-              uses: LEDBrain/branch-protection-action@v2.1.16
+              uses: LEDBrain/branch-protection-action@v1.0.0
               with:
                   branch: main
                   token: ${{ secrets.PROTECTION_TOKEN }}
