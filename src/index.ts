@@ -1,4 +1,4 @@
-import { Intents } from 'discord.js';
+import { Intents, Options } from 'discord.js';
 import Client from './base/Client';
 import fs from 'fs/promises';
 
@@ -15,6 +15,15 @@ const client = new Client({
         Intents.FLAGS.GUILD_PRESENCES,
         Intents.FLAGS.GUILD_VOICE_STATES,
     ],
+    sweepers: {
+        messages: {
+            interval: 43200, // 12 hours
+            lifetime: 21600, // 6 hours,
+        },
+    },
+    makeCache: Options.cacheWithLimits({
+        MessageManager: 100,
+    }),
 });
 
 (async () => {
