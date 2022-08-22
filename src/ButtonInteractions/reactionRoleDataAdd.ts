@@ -1,5 +1,5 @@
 import InteractionHandler from '../base/InteractionHandler';
-import { MessageCollector } from 'discord.js';
+import { MessageCollector, MessageMentions } from 'discord.js';
 import type {
     ButtonInteraction,
     Message,
@@ -7,6 +7,7 @@ import type {
     TextBasedChannel,
     EmbedFooterOptions,
     Guild,
+    Role,
 } from 'discord.js';
 import ms from 'ms';
 import type { ReactionRoleMessage } from '@prisma/client';
@@ -28,18 +29,62 @@ export default class ReactionDataAdd extends InteractionHandler {
             },
         });
         if (!this.reactionRole) return button.deferUpdate();
-        const message = (await button.reply({
+        const emojiMessage = (await button.reply({
             content: 'Send the emoji as a message',
             fetchReply: true,
         })) as Message;
-        const { content: emoji } = await this.collectEmoji(
-            message.channel,
+        const collectedEmojiMessage = await this.collectMessage(
+            emojiMessage.channel,
             button.member as GuildMember
         );
-        const isValid = await this.validateEmoji(message.guild as Guild, emoji);
-        if (!isValid) return;
+        const isValidEmoji = await this.validateEmoji(
+            emojiMessage.guild as Guild,
+            collectedEmojiMessage.content
+        );
+        if (!isValidEmoji) return; // TODO: Do error handling
+
+        const roleMessage = (await button.followUp({
+            content: 'Tag the role to assing to the emoji',
+            fetchReply: true,
+        })) as Message;
+        const collectedRoleMessage = await this.collectMessage(
+            roleMessage.channel,
+            button.member as GuildMember
+        );
+
+        const role =
+            collectedRoleMessage.mentions.roles.values.length > 0
+                ? collectedRoleMessage.mentions
+                : collectedRoleMessage.cleanContent;
+        const isValidRole = this.validateRole(roleMessage.guild as Guild, role);
+        if (!isValidRole) return; // TODO: Do error handling
+        console.log(isValidRole);
+
+        await this.db.roleToEmoji.create({
+            data: {
+                emojiId: collectedEmojiMessage.content,
+                roleId:
+                    role instanceof MessageMentions
+                        ? (role.roles.first() as Role).id
+                        : role,
+                reactionRoleMessageId: this.reactionRole.id,
+            },
+        });
+
+        try {
+            await emojiMessage.delete();
+            await collectedEmojiMessage.delete();
+            await roleMessage.delete();
+            await collectedRoleMessage.delete();
+            // eslint-disable-next-line no-empty
+        } catch (err) {}
+
+        button.followUp({
+            content: 'Added!',
+            ephemeral: true,
+        });
     }
-    async collectEmoji(
+    async collectMessage(
         channel: TextBasedChannel,
         member: GuildMember
     ): Promise<Message> {
@@ -70,5 +115,10 @@ export default class ReactionDataAdd extends InteractionHandler {
                 .then(() => res(true))
                 .catch(() => rej(false));
         });
+    }
+    validateRole(guild: Guild, role: MessageMentions | string): boolean {
+        if (role instanceof MessageMentions)
+            role = role.roles.first()?.id || '';
+        return guild.roles.cache.has(role as string);
     }
 }
