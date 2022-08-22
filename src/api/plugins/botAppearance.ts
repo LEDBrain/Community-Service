@@ -35,8 +35,8 @@ const botAppearanceByGuildId = async (
         const guild = await client.guilds.fetch(guildId);
         return h
             .response({
-                nickname: (guild.me as GuildMember).displayName,
-                color: (guild.me as GuildMember).displayColor,
+                nickname: (guild.members.me as GuildMember).displayName,
+                color: (guild.members.me as GuildMember).displayColor,
             })
             .code(200);
     } catch (err) {

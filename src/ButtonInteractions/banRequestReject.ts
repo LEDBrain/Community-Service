@@ -3,10 +3,11 @@ import type {
     ButtonInteraction,
     Guild,
     GuildMember,
-    Message,
-    Permissions,
+    Message} from 'discord.js';
+import {
+    PermissionsBitField,
 } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export default class BanRequestReject extends InteractionHandler {
     constructor() {
@@ -14,8 +15,8 @@ export default class BanRequestReject extends InteractionHandler {
     }
     public async execute(button: ButtonInteraction) {
         if (
-            !(button.memberPermissions as Readonly<Permissions>).has(
-                'MANAGE_MESSAGES'
+            !(button.memberPermissions as Readonly<PermissionsBitField>).has(
+                PermissionsBitField.Flags.ManageMessages
             )
         )
             return button.deferUpdate();
@@ -38,9 +39,14 @@ export default class BanRequestReject extends InteractionHandler {
                 isRejected: true,
             },
         });
-        const embed = new MessageEmbed(button.message.embeds[0])
+        const embed = new EmbedBuilder(button.message.embeds[0].data)
             .setTitle('[REJECTED] Ban request')
-            .addField('Rejected by', (button.member as GuildMember).toString());
+            .addFields([
+                {
+                    name: 'Rejected by',
+                    value: (button.member as GuildMember).toString(),
+                },
+            ]);
         (button.message as Message).edit({
             embeds: [embed],
             components: [],

@@ -1,7 +1,10 @@
-import type { CommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
+import type {
+    CommandInteraction,
+    ChatInputCommandInteraction,
+} from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Ping extends Command {
     constructor() {
@@ -93,7 +96,7 @@ export default class Ping extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
+    public async execute(interaction: ChatInputCommandInteraction) {
         switch (interaction.options.getSubcommand(true)) {
             case 'channels':
                 this.setChannel(interaction);
@@ -131,7 +134,7 @@ export default class Ping extends Command {
         });
     }
 
-    private async setBanApprovals(interaction: CommandInteraction) {
+    private async setBanApprovals(interaction: ChatInputCommandInteraction) {
         const approvalsNeeded = interaction.options.getNumber(
             'ban-approvals-setting'
         );
@@ -143,7 +146,7 @@ export default class Ping extends Command {
         interaction.reply(`banApprovalsNeeded set to ${approvalsNeeded}`);
     }
 
-    private async setChannel(interaction: CommandInteraction) {
+    private async setChannel(interaction: ChatInputCommandInteraction) {
         const setting = interaction.options.getString('channel-setting');
         const channel = interaction.options.getChannel('channel', true);
 
@@ -156,7 +159,7 @@ export default class Ping extends Command {
         interaction.reply(`${setting} set to ${channel}`);
     }
 
-    private async setRole(interaction: CommandInteraction) {
+    private async setRole(interaction: ChatInputCommandInteraction) {
         const setting = interaction.options.getString('role-setting');
         const role = interaction.options.getRole('role', true);
 
@@ -169,7 +172,7 @@ export default class Ping extends Command {
         interaction.reply(`${setting} set to ${role}`);
     }
 
-    private async setWelcomeMessage(interaction: CommandInteraction) {
+    private async setWelcomeMessage(interaction: ChatInputCommandInteraction) {
         const welcomeMessage = interaction.options.getString(
             'welcome-message-setting'
         );

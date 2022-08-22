@@ -5,17 +5,16 @@ import type {
     Guild,
     GuildMember,
     Message,
-    Permissions,
 } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder, PermissionsBitField } from 'discord.js';
 import type { BanRequest, GuildSettings } from '@prisma/client';
 
 export default class BanRequestApprove extends InteractionHandler {
     async execute(button: ButtonInteraction) {
         // Check if the user is allowed to add to that ban request
         if (
-            !(button.memberPermissions as Readonly<Permissions>).has(
-                'MANAGE_MESSAGES'
+            !(button.memberPermissions as Readonly<PermissionsBitField>).has(
+                PermissionsBitField.Flags.ManageMessages
             )
         )
             return button.deferUpdate();
@@ -90,7 +89,7 @@ export default class BanRequestApprove extends InteractionHandler {
             .join(', ');
         approvedByField.name = `Approved By (${updatedBanRequest.approved_by.length}/${guildSettings.banApprovalsNeeded})`;
 
-        const updatedEmbed = new MessageEmbed(receivedEmbed).setFields([
+        const updatedEmbed = new EmbedBuilder(receivedEmbed.data).setFields([
             ...(receivedEmbed.fields as EmbedField[]).filter(
                 field => !field.name.startsWith('Approved By')
             ),
@@ -127,12 +126,15 @@ export default class BanRequestApprove extends InteractionHandler {
         } = banRequest;
 
         const updatedMessage = await (button.message as Message).fetch();
-        const embed = new MessageEmbed(updatedMessage.embeds[0]).setTitle(
+        const embed = new EmbedBuilder(updatedMessage.embeds[0].data).setTitle(
             '[BANNED] Ban request'
         );
 
         (button.guild as Guild).bans
-            .create(userId, { reason: reason ?? '', days: days ?? 0 })
+            .create(userId, {
+                reason: reason ?? '',
+                deleteMessageDays: days ?? 0,
+            })
             .then(() =>
                 new this.Sanction(
                     userId,
