@@ -1,4 +1,4 @@
-import { Intents } from 'discord.js';
+import { GatewayIntentBits, Options } from 'discord.js';
 import Client from './base/Client';
 import fs from 'fs/promises';
 
@@ -8,13 +8,22 @@ dotenv.config();
 
 const client = new Client({
     intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-        Intents.FLAGS.GUILD_PRESENCES,
-        Intents.FLAGS.GUILD_VOICE_STATES,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildVoiceStates,
     ],
+    sweepers: {
+        messages: {
+            interval: 43200, // 12 hours
+            lifetime: 21600, // 6 hours,
+        },
+    },
+    makeCache: Options.cacheWithLimits({
+        MessageManager: 100,
+    }),
 });
 
 (async () => {

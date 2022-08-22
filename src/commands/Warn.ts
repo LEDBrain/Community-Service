@@ -1,7 +1,11 @@
-import type { CommandInteraction, Guild, GuildMember } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
+import type {
+    Guild,
+    GuildMember,
+    ChatInputCommandInteraction,
+} from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Warn extends Command {
     constructor() {
@@ -23,11 +27,8 @@ export default class Warn extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        const member = interaction.options.getMember(
-            'user',
-            true
-        ) as GuildMember;
+    public async execute(interaction: ChatInputCommandInteraction) {
+        const member = interaction.options.getMember('user') as GuildMember;
         const reason = interaction.options.getString('reason', true);
         new this.Sanction(
             member.id,

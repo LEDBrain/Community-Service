@@ -1,5 +1,6 @@
 import Event from '../base/Event';
 import type { GuildMember } from 'discord.js';
+import { ChannelType } from 'discord.js';
 import type Client from '../base/Client';
 
 export default class GuildMemberAdd extends Event {
@@ -16,7 +17,7 @@ export default class GuildMemberAdd extends Event {
         const channel = await member.guild.channels.fetch(
             guildSettings.welcomeChannelId
         );
-        if (!channel || !channel.isText()) return;
+        if (!channel || channel.type !== ChannelType.GuildText) return;
         const message = guildSettings.welcomeMessage
             .replaceAll('{{servername}}', channel.guild.toString())
             .replaceAll('{{username}}', member.toString());

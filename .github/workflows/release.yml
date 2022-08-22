@@ -9,21 +9,30 @@ jobs:
         uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
 
     release-github:
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'skip release') }}
         needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: '☁️ checkout repository'
+            - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
+
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
               with:
                   node-version: 'lts/*'
-            - name: '📦 install dependencies'
+
+            - name: '📦 Install dependencies'
               run: npm ci
 
-            - name: '🚀 release'
+            - name: '🔓 Lift Branch Restrictions'
+              uses: LEDBrain/branch-protection-action@v1.0.3
+              with:
+                  branch: 'main'
+                  token: ${{ secrets.PROTECTION_TOKEN }}
+
+            - name: '🚀 Release'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release

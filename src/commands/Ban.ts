@@ -1,14 +1,11 @@
-import type {
-    CommandInteraction,
-    GuildMember,
-    Guild,
-    Message,
-} from 'discord.js';
-import { MessageActionRow, MessageButton } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import type { GuildMember, Guild, Message, Interaction } from 'discord.js';
+import { InteractionType } from 'discord.js';
+import { ButtonStyle } from 'discord.js';
+import { PermissionsBitField } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder } from 'discord.js';
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Ban extends Command {
     constructor() {
@@ -55,14 +52,17 @@ export default class Ban extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        const member = interaction.options.getMember(
-            'user',
-            true
-        ) as GuildMember;
-        const reason = interaction.options.getString('reason', true);
-        const force = interaction.options.getBoolean('force', false) ?? false;
-        const days = interaction.options.getNumber('days', false) ?? 0;
+    public async execute(interaction: Interaction) {
+        if (interaction.type !== InteractionType.ApplicationCommand) return;
+
+        const member = interaction.options.getMember('user') as GuildMember;
+        const reason = interaction.options.get('reason', true).value as string;
+        const force =
+            (interaction.options.get('force', false)?.value as
+                | boolean
+                | null) ?? false;
+        const days =
+            (interaction.options.get('days', false)?.value as number) ?? 0;
 
         if (
             !this.canBan(
@@ -89,7 +89,7 @@ export default class Ban extends Command {
         if (force) {
             await member.ban({
                 reason: reason,
-                days: days,
+                deleteMessageDays: days,
             });
             await interaction.reply({
                 content: `Banned ${member.toString()}`,
@@ -97,7 +97,7 @@ export default class Ban extends Command {
             });
             await this.log(interaction.guild as Guild, {
                 embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                         .setTitle('User banned')
                         .setColor('#ff0000')
                         .setDescription(
@@ -143,7 +143,7 @@ export default class Ban extends Command {
                 }/${guildSettings.logChannelId}/${banRequests.messageId})`
             );
 
-        const banEmbed = new MessageEmbed()
+        const banEmbed = new EmbedBuilder()
             .setTitle('[OPEN] Ban request')
             .setColor('#ff0000')
             .addFields([
@@ -168,16 +168,16 @@ export default class Ban extends Command {
                 },
             ])
             .setDescription(`**Reason:**\n${reason}`);
-        const row = new MessageActionRow().addComponents(
-            new MessageButton()
+        const row = new ActionRowBuilder<ButtonBuilder>().setComponents(
+            new ButtonBuilder()
                 .setCustomId('banRequestApprove')
                 .setLabel('Approve')
-                .setStyle('DANGER')
+                .setStyle(ButtonStyle.Danger)
                 .setEmoji('✅'),
-            new MessageButton()
+            new ButtonBuilder()
                 .setCustomId('banRequestReject')
                 .setLabel('Reject')
-                .setStyle('PRIMARY')
+                .setStyle(ButtonStyle.Primary)
                 .setEmoji('❌')
         );
 
@@ -231,7 +231,9 @@ export default class Ban extends Command {
                 guild.ownerId !== user.id ||
                 (user.roles.highest.position >=
                     moderator.roles.highest.position &&
-                    moderator.permissions.has('BAN_MEMBERS'))) &&
+                    moderator.permissions.has(
+                        PermissionsBitField.Flags.BanMembers
+                    ))) &&
             moderator.id !== user.id
         );
     }

@@ -1,4 +1,5 @@
 import type { GuildSettings } from '@prisma/client';
+import { ChannelType } from 'discord.js';
 import type { Guild, TextChannel } from 'discord.js';
 import { prisma } from './Prisma';
 import SanctionManager from './SanctionManager';
@@ -26,7 +27,7 @@ export default abstract class Base {
             return;
         }
         const channel = await guild.channels.fetch(guildSettings.logChannelId);
-        if (!channel || !channel.isText()) return;
+        if (!channel || channel.type !== ChannelType.GuildText) return;
 
         return await channel.send(options);
     }

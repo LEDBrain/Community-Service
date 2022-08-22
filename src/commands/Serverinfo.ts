@@ -1,8 +1,8 @@
-import type { CommandInteraction, Guild } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import type { ChatInputCommandInteraction, Guild } from 'discord.js';
+import { ChannelType } from 'discord.js';
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 import { Colors, Date as DateUtils } from '../utils';
 
 export default class Serverinfo extends Command {
@@ -13,8 +13,8 @@ export default class Serverinfo extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        const embed = new MessageEmbed()
+    public async execute(interaction: ChatInputCommandInteraction) {
+        const embed = new EmbedBuilder()
             .setColor(Colors.fromString((interaction.guild as Guild).name))
             .setDescription((interaction.guild as Guild).name)
             .setFields([
@@ -43,26 +43,25 @@ export default class Serverinfo extends Command {
                         (interaction.guild as Guild).channels.cache.size
                     }\nCategories: ${
                         (interaction.guild as Guild).channels.cache.filter(
-                            c => c.type === 'GUILD_CATEGORY'
+                            c => c.type === ChannelType.GuildCategory
                         ).size
                     }\nVoice: ${
                         (interaction.guild as Guild).channels.cache.filter(
                             c =>
-                                c.type === 'GUILD_VOICE' ||
-                                c.type === 'GUILD_STAGE_VOICE'
+                                c.type === ChannelType.GuildVoice ||
+                                c.type === ChannelType.GuildStageVoice
                         ).size
                     }\nText: ${
                         (interaction.guild as Guild).channels.cache.filter(
                             c =>
-                                c.type === 'GUILD_TEXT' ||
-                                c.type === 'GUILD_NEWS' ||
-                                c.type === 'GUILD_STORE'
+                                c.type === ChannelType.GuildText ||
+                                c.type === ChannelType.GuildNews
                         ).size
                     }\nThreads: ${
                         (interaction.guild as Guild).channels.cache.filter(
                             c =>
-                                c.type === 'GUILD_PUBLIC_THREAD' ||
-                                c.type === 'GUILD_NEWS_THREAD'
+                                c.type === ChannelType.GuildPublicThread ||
+                                c.type === ChannelType.GuildNewsThread
                         ).size
                     }`,
                 },

@@ -1,7 +1,11 @@
-import type { CommandInteraction, Guild, GuildMember, Role } from 'discord.js';
+import {
+    InteractionType,
+    PermissionsBitField,
+    SlashCommandBuilder,
+} from 'discord.js';
+import type { Guild, GuildMember, Role, Interaction } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Mute extends Command {
     constructor() {
@@ -23,12 +27,11 @@ export default class Mute extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        const member = interaction.options.getMember(
-            'user',
-            true
-        ) as GuildMember;
-        const reason = interaction.options.getString('reason', false);
+    public async execute(interaction: Interaction) {
+        if (interaction.type !== InteractionType.ApplicationCommand) return;
+        const member = interaction.options.getMember('user') as GuildMember;
+        const reason = interaction.options.get('reason', false)
+            ?.value as string;
 
         const guildSettings = await this.db.guildSettings.findUnique({
             where: {
@@ -46,8 +49,14 @@ export default class Mute extends Command {
         const role = (interaction.guild as Guild).roles.cache.get(
             guildSettings.muteRoleId
         );
-        if ((role as Role).permissions.has('SEND_MESSAGES'))
-            (role as Role).permissions.remove('SEND_MESSAGES');
+        if (
+            (role as Role).permissions.has(
+                PermissionsBitField.Flags.SendMessages
+            )
+        )
+            (role as Role).permissions.remove(
+                PermissionsBitField.Flags.SendMessages
+            );
         member.roles.add(role as Role, reason ?? '').then(gm => {
             new this.Sanction(
                 gm.id,
