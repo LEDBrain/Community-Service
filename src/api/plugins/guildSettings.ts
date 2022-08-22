@@ -51,7 +51,7 @@ const guildSettingsById = async (
         });
         if (!guildSettings) return h.response().code(404);
         return h.response(guildSettings).code(200);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         return h.response(error).code(500);
     }

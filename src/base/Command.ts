@@ -1,5 +1,4 @@
-import type { Interaction } from 'discord.js';
-import type { SlashCommandBuilder } from '@discordjs/builders';
+import type { Interaction, SlashCommandBuilder } from 'discord.js';
 import util from 'util';
 import type { TimerOptions } from 'node:timers';
 import Base from './Base';

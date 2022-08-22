@@ -8,7 +8,7 @@
         "start": "cross-env NODE_ENV=production && node dist/index.js",
         "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
-        "lint": "prettier --write 'src/**/*.ts' && eslint --fix . --ext .ts",
+        "lint": "prettier --write \"src/**/*.ts\" && eslint --fix . --ext .ts",
         "lint:prettier": "prettier --write \"src/**/*.ts\"",
         "lint:eslint": "eslint . --ext .ts",
         "commit": "cz",
@@ -27,7 +27,6 @@
     },
     "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
-        "@discordjs/builders": "^0.15.0",
         "@discordjs/rest": "^1.1.0",
         "@hapi/hapi": "^20.2.2",
         "@prisma/client": "^4.1.1",
