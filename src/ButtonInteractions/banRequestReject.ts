@@ -3,10 +3,9 @@ import type {
     ButtonInteraction,
     Guild,
     GuildMember,
-    Message} from 'discord.js';
-import {
-    PermissionsBitField,
+    Message,
 } from 'discord.js';
+import { PermissionFlagsBits } from 'discord.js';
 import { EmbedBuilder } from 'discord.js';
 
 export default class BanRequestReject extends InteractionHandler {
@@ -14,11 +13,7 @@ export default class BanRequestReject extends InteractionHandler {
         super();
     }
     public async execute(button: ButtonInteraction) {
-        if (
-            !(button.memberPermissions as Readonly<PermissionsBitField>).has(
-                PermissionsBitField.Flags.ManageMessages
-            )
-        )
+        if (!button.memberPermissions?.has(PermissionFlagsBits.ManageMessages))
             return button.deferUpdate();
         const banRequest = await this.db.banRequest.findFirst({
             where: {

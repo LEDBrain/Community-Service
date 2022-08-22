@@ -1,8 +1,8 @@
 import InteractionHandler from '../base/InteractionHandler';
 import type {
     ButtonInteraction,
+    EmbedFooterOptions,
     Guild,
-    MessageEmbedFooter,
     TextChannel,
 } from 'discord.js';
 
@@ -13,7 +13,7 @@ export default class reactionRoleDelete extends InteractionHandler {
     async execute(button: ButtonInteraction) {
         const id = parseInt(
             (
-                button.message.embeds[0].footer as MessageEmbedFooter
+                button.message.embeds[0].data.footer as EmbedFooterOptions
             ).text.replace('ID: ', '')
         );
         const reactionRole = await this.db.reactionRoleMessage.findUnique({

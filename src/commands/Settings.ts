@@ -1,6 +1,5 @@
 import { SlashCommandBuilder } from 'discord.js';
 import type {
-    CommandInteraction,
     ChatInputCommandInteraction,
 } from 'discord.js';
 import type { Config } from '../base/Command';

@@ -1,13 +1,18 @@
 import type {
-    CommandInteraction,
-    MessageSelectOptionData,
+    ChatInputCommandInteraction,
+    SelectMenuComponentOptionData,
     TextChannel,
 } from 'discord.js';
-import { MessageSelectMenu, MessageActionRow } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import {
+    SelectMenuBuilder,
+    ActionRowBuilder,
+    SlashCommandBuilder,
+    PermissionFlagsBits,
+    EmbedBuilder,
+} from 'discord.js';
+
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 import { Colors } from '../utils';
 
 export default class ReactionRole extends Command {
@@ -54,8 +59,12 @@ export default class ReactionRole extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        if (!interaction.memberPermissions?.has('MANAGE_MESSAGES'))
+    public async execute(interaction: ChatInputCommandInteraction) {
+        if (
+            !interaction.memberPermissions?.has(
+                PermissionFlagsBits.ManageMessages
+            )
+        )
             interaction.reply({
                 content: 'You have the permission to manage reaction roles',
                 ephemeral: true,
@@ -70,13 +79,13 @@ export default class ReactionRole extends Command {
         }
     }
 
-    private async createReactionRole(interaction: CommandInteraction) {
+    private async createReactionRole(interaction: ChatInputCommandInteraction) {
         const name = interaction.options.getString('name', true);
         const channel =
             (interaction.options.getChannel('channel') as TextChannel) ??
             interaction.channel;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(name)
             .setDescription('Use the Buttons to assign yourself to roles.')
             .setColor(Colors.fromString(name))
@@ -106,14 +115,14 @@ export default class ReactionRole extends Command {
         });
         return;
     }
-    private async editReactionRole(interaction: CommandInteraction) {
+    private async editReactionRole(interaction: ChatInputCommandInteraction) {
         const reactionRoles = await this.db.reactionRoleMessage.findMany({
             where: {
                 guildId: interaction.guildId as string,
             },
         });
-        const row = new MessageActionRow().addComponents(
-            new MessageSelectMenu()
+        const row = new ActionRowBuilder<SelectMenuBuilder>().addComponents(
+            new SelectMenuBuilder()
                 .setCustomId('reactionRoleSelect')
                 .setPlaceholder('Choose a reaction role message')
                 .setMinValues(1)
@@ -124,7 +133,7 @@ export default class ReactionRole extends Command {
                             ({
                                 label: rr.name,
                                 value: rr.id.toString(),
-                            } as MessageSelectOptionData)
+                            } as SelectMenuComponentOptionData)
                     )
                 )
         );

@@ -6,17 +6,13 @@ import type {
     GuildMember,
     Message,
 } from 'discord.js';
-import { EmbedBuilder, PermissionsBitField } from 'discord.js';
+import { EmbedBuilder, PermissionFlagsBits } from 'discord.js';
 import type { BanRequest, GuildSettings } from '@prisma/client';
 
 export default class BanRequestApprove extends InteractionHandler {
     async execute(button: ButtonInteraction) {
         // Check if the user is allowed to add to that ban request
-        if (
-            !(button.memberPermissions as Readonly<PermissionsBitField>).has(
-                PermissionsBitField.Flags.ManageMessages
-            )
-        )
+        if (!button.memberPermissions?.has(PermissionFlagsBits.ManageMessages))
             return button.deferUpdate();
 
         const banRequest = await this.db.banRequest.findFirst({
