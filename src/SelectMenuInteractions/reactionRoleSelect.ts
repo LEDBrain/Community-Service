@@ -1,11 +1,22 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type { SelectMenuInteraction } from 'discord.js';
-import { MessageButton, MessageEmbed, MessageActionRow } from 'discord.js';
+import type { ChannelType, SelectMenuInteraction } from 'discord.js';
+import {
+    PermissionFlagsBits,
+    ButtonBuilder,
+    EmbedBuilder,
+    ActionRowBuilder,
+    ButtonStyle,
+    messageLink,
+} from 'discord.js';
 
 export default class ReactionRoleSelect extends InteractionHandler {
     async execute(selectMenu: SelectMenuInteraction) {
         // Never
-        if (!selectMenu.memberPermissions?.has('MANAGE_MESSAGES'))
+        if (
+            !selectMenu.memberPermissions?.has(
+                PermissionFlagsBits.ManageMessages
+            )
+        )
             return selectMenu.deferUpdate();
         const reactionRoleId = selectMenu.values[0];
         const reactionRole = await this.db.reactionRoleMessage.findUnique({
@@ -17,34 +28,38 @@ export default class ReactionRoleSelect extends InteractionHandler {
             },
         });
         if (!reactionRole) return selectMenu.deferUpdate(); // TODO: Handle no reactionRole found
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`Reaction Role: ${reactionRole.name}`)
             .setDescription(
-                'Use the buttons below to edit the reaction role message and emojis'
+                `Use the buttons below to edit the reaction role message and emojis\n[Link](${messageLink(
+                    reactionRole.channelId,
+                    reactionRole.messageId,
+                    reactionRole.guildId
+                )})`
             )
             .setTimestamp()
             .setFooter({ text: `ID: ${reactionRole.id}` });
-        const row = new MessageActionRow().addComponents(
-            new MessageButton()
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+            new ButtonBuilder()
                 .setCustomId('reactionRoleDataAdd')
                 .setEmoji('➕')
                 .setLabel('Add Emoji')
-                .setStyle('PRIMARY'),
-            new MessageButton()
+                .setStyle(ButtonStyle.Primary),
+            new ButtonBuilder()
                 .setCustomId('reactionRoleDataEdit')
                 .setEmoji('📝')
                 .setLabel('Edit Emojis/Roles')
-                .setStyle('SUCCESS'),
-            new MessageButton()
+                .setStyle(ButtonStyle.Success),
+            new ButtonBuilder()
                 .setCustomId('reactionRoleDataDelete')
                 .setEmoji('🗑')
                 .setLabel('Delete Emojis/Roles')
-                .setStyle('DANGER'),
-            new MessageButton()
+                .setStyle(ButtonStyle.Danger),
+            new ButtonBuilder()
                 .setCustomId('reactionRoleDelete')
                 .setEmoji('🗑️')
                 .setLabel('Delete Reaction Role Message')
-                .setStyle('DANGER')
+                .setStyle(ButtonStyle.Danger)
         );
         await selectMenu.update({
             components: [],
