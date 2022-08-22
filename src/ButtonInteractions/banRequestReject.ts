@@ -3,9 +3,11 @@ import type {
     ButtonInteraction,
     Guild,
     GuildMember,
-    Message,
+    Message} from 'discord.js';
+import {
+    PermissionsBitField,
 } from 'discord.js';
-import { EmbedBuilder, PermissionsBitField } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export default class BanRequestReject extends InteractionHandler {
     constructor() {

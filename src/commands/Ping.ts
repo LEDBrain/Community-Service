@@ -1,7 +1,7 @@
-import type { CommandInteraction } from 'discord.js';
+import type { ChatInputCommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Ping extends Command {
     constructor() {
@@ -11,7 +11,7 @@ export default class Ping extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
+    public async execute(interaction: ChatInputCommandInteraction) {
         await interaction.reply('Pong!');
     }
 }
