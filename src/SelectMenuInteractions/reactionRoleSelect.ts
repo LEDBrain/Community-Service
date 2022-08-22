@@ -1,5 +1,5 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type { ChannelType, SelectMenuInteraction } from 'discord.js';
+import type { SelectMenuInteraction } from 'discord.js';
 import {
     PermissionFlagsBits,
     ButtonBuilder,
