@@ -30,10 +30,21 @@ jobs:
             - name: '✅ run Prettier'
               run: npm run lint:prettier
 
+    collect-todos:
+        name: Collect todos
+        needs: lint
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
+        runs-on: 'ubuntu-latest'
+        steps:
+            - uses: 'actions/checkout@master'
+            - name: '📝 Convert ToDo comments to issues'
+              uses: 'alstr/todo-to-issue-action@v4'
+              id: 'todo'
+
     build-project:
         name: Build and test project
         needs: lint
-        if: "!contains(github.event.head_commit.message, 'skip ci')"
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         runs-on: ubuntu-latest
         env:
             PG_USER: postgres
