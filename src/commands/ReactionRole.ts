@@ -54,7 +54,7 @@ export default class ReactionRole extends Command {
             .addSubcommand(subcommand =>
                 subcommand
                     .setName('edit')
-                    .setDescription('Add a reaction to a reaction role')
+                    .setDescription('edit message & roles to select')
             );
 
         super(cmd as unknown as Config);
