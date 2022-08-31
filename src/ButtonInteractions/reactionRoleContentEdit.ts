@@ -73,6 +73,7 @@ export default class ReactionDataAdd extends ReactionRole {
                 submittedModal.fields.getTextInputValue('contentField')
             );
         await oldMessage.edit({ embeds: [newEmbed] });
-        button.reply({ content: 'Embed updated!', ephemeral: true });
+        button.followUp({ content: 'Embed updated!', ephemeral: true });
+        submittedModal.deferUpdate();
     }
 }
