@@ -51,6 +51,11 @@ export default class ReactionRoleSelect extends InteractionHandler {
                 .setLabel('Edit Emojis/Roles')
                 .setStyle(ButtonStyle.Success),
             new ButtonBuilder()
+                .setCustomId('reactionRoleContentEdit')
+                .setEmoji('🖊')
+                .setLabel('Edit Embed Content')
+                .setStyle(ButtonStyle.Success),
+            new ButtonBuilder()
                 .setCustomId('reactionRoleDataDelete')
                 .setEmoji('🗑')
                 .setLabel('Delete Emojis/Roles')
