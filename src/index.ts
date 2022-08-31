@@ -19,7 +19,7 @@ const client = new Client({
     sweepers: {
         messages: {
             interval: 43200, // 12 hours
-            lifetime: 21600, // 6 hours,
+            lifetime: 21600, // 6 hours
         },
     },
     makeCache: Options.cacheWithLimits({
