@@ -28,6 +28,14 @@ export default class ReactionDataAdd extends ReactionRole {
         const modal = new ModalBuilder()
             .setCustomId('contentModal')
             .setTitle('Edit the embed message content');
+        const modalTitleField = new TextInputBuilder()
+            .setCustomId('titleField')
+            .setLabel('Title')
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true)
+            .setPlaceholder(oldMessage?.embeds[0]?.title || 'Reaction Role')
+            .setValue(oldMessage?.embeds[0]?.title || 'Reaction Role')
+            .setMaxLength(256);
         const modalContentField = new TextInputBuilder()
             .setCustomId('contentField')
             .setLabel('Content')
@@ -41,25 +49,30 @@ export default class ReactionDataAdd extends ReactionRole {
                 oldMessage.embeds[0]?.description ||
                     'React to an emoji to get a role!'
             )
-            .setMaxLength(4096);
+            .setMaxLength(4000);
 
-        const row =
+        const firstRow =
+            new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+                modalTitleField
+            );
+        const secondRow =
             new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
                 modalContentField
             );
 
-        modal.addComponents(row);
+        modal.addComponents(firstRow, secondRow);
 
         await button.showModal(modal);
         const submittedModal = await button.awaitModalSubmit({
             filter: i => i.customId === 'contentModal',
             time: ms('20min'),
         });
-        const newEmbed = new EmbedBuilder(
-            oldMessage.embeds[0].data
-        ).setDescription(
-            submittedModal.fields.getTextInputValue('contentField')
-        );
+        const newEmbed = new EmbedBuilder(oldMessage.embeds[0].data)
+            .setTitle(submittedModal.fields.getTextInputValue('titleField'))
+            .setDescription(
+                submittedModal.fields.getTextInputValue('contentField')
+            );
         await oldMessage.edit({ embeds: [newEmbed] });
+        button.reply({ content: 'Embed updated!', ephemeral: true });
     }
 }
