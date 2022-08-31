@@ -1,34 +1,23 @@
-import InteractionHandler from '../base/InteractionHandler';
+import ReactionRole from '../base/ReactionRole';
 import { MessageCollector, MessageMentions } from 'discord.js';
 import type {
     ButtonInteraction,
     Message,
     GuildMember,
     TextBasedChannel,
-    EmbedFooterOptions,
     Guild,
     Role,
+    MessageReaction,
 } from 'discord.js';
 import ms from 'ms';
-import type { ReactionRoleMessage } from '@prisma/client';
 
-export default class ReactionDataAdd extends InteractionHandler {
-    private reactionRole: ReactionRoleMessage | null | undefined;
+export default class ReactionDataAdd extends ReactionRole {
     constructor() {
         super();
     }
     async execute(button: ButtonInteraction) {
-        const id = parseInt(
-            (
-                button.message.embeds[0].data.footer as EmbedFooterOptions
-            ).text.replace('ID: ', '')
-        );
-        this.reactionRole = await this.db.reactionRoleMessage.findUnique({
-            where: {
-                id,
-            },
-        });
-        if (!this.reactionRole) return button.deferUpdate();
+        await this.getReactionRole(button);
+        if (!this.reactionRole) return;
         const emojiMessage = (await button.reply({
             content: 'Send the emoji as a message',
             fetchReply: true,
@@ -103,7 +92,7 @@ export default class ReactionDataAdd extends InteractionHandler {
             });
         });
     }
-    async validateEmoji(guild: Guild, emoji: string): Promise<boolean> {
+    async validateEmoji(guild: Guild, emoji: string): Promise<string> {
         const message = await (
             (await guild.channels.fetch(
                 this.reactionRole?.channelId as string
@@ -112,8 +101,10 @@ export default class ReactionDataAdd extends InteractionHandler {
         return new Promise((res, rej) => {
             message
                 .react(emoji)
-                .then(() => res(true))
-                .catch(() => rej(false));
+                .then((reaction: MessageReaction) =>
+                    res(reaction.emoji.identifier)
+                )
+                .catch(() => rej(null));
         });
     }
     validateRole(guild: Guild, role: MessageMentions | string): boolean {

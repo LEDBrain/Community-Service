@@ -1,34 +1,22 @@
-import InteractionHandler from '../base/InteractionHandler';
-import type {
-    ButtonInteraction,
-    EmbedFooterOptions,
-    Guild,
-    TextChannel,
-} from 'discord.js';
+import type { ButtonInteraction, Guild, TextChannel } from 'discord.js';
+import ReactionRole from '../base/ReactionRole';
 
-export default class reactionRoleDelete extends InteractionHandler {
+export default class reactionRoleDelete extends ReactionRole {
     constructor() {
         super();
     }
     async execute(button: ButtonInteraction) {
-        const id = parseInt(
-            (
-                button.message.embeds[0].data.footer as EmbedFooterOptions
-            ).text.replace('ID: ', '')
-        );
-        const reactionRole = await this.db.reactionRoleMessage.findUnique({
-            where: {
-                id,
-            },
-        });
-        if (!reactionRole) return button.deferUpdate();
+        await this.getReactionRole(button);
+        if (!this.reactionRole) return;
         const rrMessage = await (
             (await (button.guild as Guild).channels.fetch(
-                reactionRole.channelId
+                this.reactionRole.channelId
             )) as TextChannel
-        ).messages.fetch(reactionRole.messageId);
+        ).messages.fetch(this.reactionRole.messageId);
         rrMessage.delete().then(async () => {
-            await this.db.reactionRoleMessage.delete({ where: { id } });
+            await this.db.reactionRoleMessage.delete({
+                where: { id: this.id },
+            });
             button.update({
                 content: 'Reaction Role Deleted',
                 components: [],
