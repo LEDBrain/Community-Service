@@ -79,7 +79,7 @@ export default class Serverinfo extends Command {
                     ].join(', '),
                 },
             ])
-            .setThumbnail((interaction.guild as Guild).iconURL() ?? '')
+            .setThumbnail((interaction.guild as Guild).iconURL() ?? null)
             .setFooter({
                 text: interaction.user.tag,
                 iconURL: interaction.user.displayAvatarURL(),
