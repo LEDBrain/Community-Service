@@ -11,6 +11,14 @@ export default class MessageReactionRemove extends Event {
         messageReaction: MessageReaction,
         user: User
     ): Promise<void> {
+        if (messageReaction.partial) {
+            try {
+                await messageReaction.fetch();
+            } catch (error) {
+                console.log(error);
+                return;
+            }
+        }
         const message = await messageReaction.message.fetch();
         try {
             const rrMessage =
@@ -31,7 +39,10 @@ export default class MessageReactionRemove extends Event {
 
             message.guild?.members.fetch(user.id).then(member => {
                 if (member.roles.resolve(role.roleId))
-                    member.roles.remove(role.roleId);
+                    member.roles.remove(
+                        role.roleId,
+                        'Reaction Role auto remove'
+                    );
             });
         } catch (error) {
             return;

@@ -11,6 +11,14 @@ export default class MessageReactionAdd extends Event {
         messageReaction: MessageReaction,
         user: User
     ): Promise<void> {
+        if (messageReaction.partial) {
+            try {
+                await messageReaction.fetch();
+            } catch (error) {
+                console.log(error);
+                return;
+            }
+        }
         const message = await messageReaction.message.fetch();
         try {
             const rrMessage =
@@ -30,7 +38,7 @@ export default class MessageReactionAdd extends Event {
             if (!role) throw new Error('No role found for the emoji');
 
             message.guild?.members.fetch(user.id).then(member => {
-                member.roles.add(role.roleId);
+                member.roles.add(role.roleId, 'Reaction Role auto assign');
             });
         } catch (error) {
             return;
