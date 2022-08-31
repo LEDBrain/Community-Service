@@ -42,7 +42,7 @@ export default class ReactionDataAdd extends ReactionRole {
         );
 
         const role =
-            collectedRoleMessage.mentions.roles.values.length > 0
+            collectedRoleMessage.mentions.roles.size > 0
                 ? collectedRoleMessage.mentions
                 : collectedRoleMessage.cleanContent;
         const isValidRole = this.validateRole(roleMessage.guild as Guild, role);
@@ -51,12 +51,16 @@ export default class ReactionDataAdd extends ReactionRole {
 
         await this.db.roleToEmoji.create({
             data: {
-                emojiId: collectedEmojiMessage.content,
+                emojiId: isValidEmoji,
                 roleId:
                     role instanceof MessageMentions
                         ? (role.roles.first() as Role).id
                         : role,
-                reactionRoleMessageId: this.reactionRole.id,
+                ReactionRoleMessage: {
+                    connect: {
+                        id: this.reactionRole.id,
+                    },
+                },
             },
         });
 
