@@ -4,7 +4,7 @@ on:
         branches:
             - main
         paths-ignore:
-            - '*.package*.json'
+            - 'package*.json'
 jobs:
     test:
         name: '🧪 Test and lint'
