@@ -1,24 +1,40 @@
-name: Release
+name: Release workflow
 on:
     push:
         branches:
             - main
+        paths-ignore:
+            - 'package*.json'
 jobs:
-    release:
-        name: Release
+    test:
+        name: '🧪 Test and lint'
+        uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
+
+    release-github:
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'skip release') }}
+        needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
+            - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
-            - name: Setup Node.js
+
+            - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
               with:
                   node-version: 'lts/*'
-            - name: Install dependencies
+
+            - name: '📦 Install dependencies'
               run: npm ci
-            - name: Release
+
+            - name: '🔓 Lift Branch Restrictions'
+              uses: LEDBrain/branch-protection-action@v1.0.3
+              with:
+                  branch: 'main'
+                  token: ${{ secrets.PROTECTION_TOKEN }}
+
+            - name: '🚀 Release'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release

@@ -1,7 +1,12 @@
-import type { CommandInteraction, GuildMember } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
+import type {
+    ChatInputCommandInteraction,
+    Guild,
+    GuildMember,
+    Role,
+} from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Unmute extends Command {
     constructor() {
@@ -23,16 +28,13 @@ export default class Unmute extends Command {
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
-        const member = interaction.options.getMember(
-            'user',
-            true
-        ) as GuildMember;
+    public async execute(interaction: ChatInputCommandInteraction) {
+        const member = interaction.options.getMember('user') as GuildMember;
         const reason = interaction.options.getString('reason', false);
 
         const guildSettings = await this.db.guildSettings.findUnique({
             where: {
-                id: interaction.guild.id,
+                id: (interaction.guild as Guild).id,
             },
             select: {
                 muteRoleId: true,
@@ -43,22 +45,24 @@ export default class Unmute extends Command {
                 content: 'No mute role set',
                 ephemeral: true,
             });
-        const role = interaction.guild.roles.cache.get(
+        const role = (interaction.guild as Guild).roles.cache.get(
             guildSettings.muteRoleId
         );
-        if (member.roles.cache.has(role.id))
-            member.roles.remove(role).then(async () => {
+        if (member.roles.cache.has((role as Role).id))
+            member.roles.remove(role as Role).then(async () => {
                 const sanction = new this.Sanction(
                     member.id,
-                    interaction.member.user.id,
-                    interaction.guild.id,
+                    (interaction.member as GuildMember).user.id,
+                    (interaction.guild as Guild).id,
                     'UNMUTE',
-                    reason
+                    reason ?? 'No reason provided'
                 );
                 await sanction.create();
                 sanction.link('MUTE', sanction);
                 interaction.reply(
-                    `Unmuted ${member.toString()} by ${interaction.member.toString()} for ${reason}`
+                    `Unmuted ${member.toString()} by ${(
+                        interaction.member as GuildMember
+                    ).toString()} for ${reason}`
                 );
             });
     }

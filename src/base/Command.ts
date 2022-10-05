@@ -1,9 +1,11 @@
-import type { Interaction } from 'discord.js';
-import type { SlashCommandBuilder } from '@discordjs/builders';
-import { prisma } from './Prisma';
+import type {
+    ButtonInteraction,
+    Interaction,
+    SlashCommandBuilder,
+} from 'discord.js';
 import util from 'util';
 import type { TimerOptions } from 'node:timers';
-import SanctionManager from './SanctionManager';
+import Base from './Base';
 const wait = util.promisify(setTimeout);
 
 export interface Config {
@@ -12,28 +14,25 @@ export interface Config {
     options?: ReturnType<SlashCommandBuilder['toJSON']>['options'];
 }
 
-export default abstract class Command implements Config {
+export default abstract class Command extends Base implements Config {
     name: string;
     description: string;
     options?: ReturnType<SlashCommandBuilder['toJSON']>['options'];
-    db: typeof prisma;
     wait: <T = void>(
         delay?: number,
         value?: T,
         options?: TimerOptions
     ) => Promise<T>;
-    Sanction: typeof SanctionManager;
 
     public abstract execute(
         interaction: Interaction
     ): Promise<unknown> | unknown;
 
-    constructor({ name, description, options = null }: Config) {
+    constructor({ name, description, options = [] }: Config) {
+        super();
         this.name = name;
         this.description = description;
         this.options = options;
-        this.db = prisma;
         this.wait = wait;
-        this.Sanction = SanctionManager;
     }
 }

@@ -1,7 +1,7 @@
-import type { CommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
+import type { GuildMember, ChatInputCommandInteraction } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Userinfo extends Command {
     constructor() {
@@ -17,9 +17,9 @@ export default class Userinfo extends Command {
         super(cmd as unknown as Config);
     }
 
-    public async execute(interaction: CommandInteraction) {
+    public async execute(interaction: ChatInputCommandInteraction) {
         const member =
-            interaction.options.getMember('user', false) ?? interaction.member;
-        interaction.reply(member.toString());
+            interaction.options.getMember('user') ?? interaction.member;
+        interaction.reply((member as GuildMember).toString());
     }
 }

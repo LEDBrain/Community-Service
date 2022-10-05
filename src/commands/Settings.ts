@@ -1,7 +1,10 @@
-import type { CommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
+import type {
+    CommandInteraction,
+    ChatInputCommandInteraction,
+} from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class Ping extends Command {
     constructor() {
@@ -17,13 +20,22 @@ export default class Ping extends Command {
                             .setName('channel-setting')
                             .setDescription('The channel setting to set')
                             .setRequired(true)
-                            .addChoices([['logchannel', 'logChannelId']])
+                            .addChoices(
+                                {
+                                    name: 'logchannel',
+                                    value: 'logChannelId',
+                                },
+                                {
+                                    name: 'welcomechannel',
+                                    value: 'welcomeChannelId',
+                                }
+                            )
                     )
                     .addChannelOption(channelOption =>
                         channelOption
                             .setName('channel')
                             .setDescription('The channel to set')
-                            .addChannelType(0)
+                            .addChannelTypes(0)
                             .setRequired(true)
                     )
             )
@@ -36,7 +48,13 @@ export default class Ping extends Command {
                             .setName('role-setting')
                             .setDescription('The role setting to set')
                             .setRequired(true)
-                            .addChoices([['muterole', 'muteRoleId']])
+                            .addChoices(
+                                { name: 'muterole', value: 'muteRoleId' },
+                                {
+                                    name: 'moderatorrole',
+                                    value: 'moderatorRoleId',
+                                } // TODO: allow for more than one role
+                            )
                     )
                     .addRoleOption(roleOption =>
                         roleOption
@@ -44,11 +62,41 @@ export default class Ping extends Command {
                             .setDescription('The role to set')
                             .setRequired(true)
                     )
+            )
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName('ban-approvals')
+                    .setDescription('Set ban approvals')
+                    .addNumberOption(numberOption =>
+                        numberOption
+                            .setName('ban-approvals-setting')
+                            .setDescription('The ban approvals setting to set')
+                            .setRequired(true)
+                            .addChoices(
+                                { name: '1', value: 1 },
+                                { name: '2', value: 2 },
+                                { name: '3', value: 3 },
+                                { name: '4', value: 4 }
+                            )
+                    )
+            )
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName('welcome-message')
+                    .setDescription('Set welcome message')
+                    .addStringOption(stringOption =>
+                        stringOption
+                            .setName('welcome-message-setting')
+                            .setDescription(
+                                'The welcome message template ({{username}}, and {{servername}} is supported)'
+                            )
+                            .setRequired(true)
+                    )
             );
 
         super(cmd as unknown as Config);
     }
-    public async execute(interaction: CommandInteraction) {
+    public async execute(interaction: ChatInputCommandInteraction) {
         switch (interaction.options.getSubcommand(true)) {
             case 'channels':
                 this.setChannel(interaction);
@@ -56,48 +104,83 @@ export default class Ping extends Command {
             case 'roles':
                 this.setRole(interaction);
                 break;
+            case 'ban-approvals':
+                this.setBanApprovals(interaction);
+                break;
+            case 'welcome-message':
+                this.setWelcomeMessage(interaction);
+                break;
             default:
                 break;
         }
     }
 
-    private async setChannel(interaction: CommandInteraction) {
+    private async setSetting(
+        guildId: string,
+        setting: string,
+        value: string | number
+    ) {
+        await this.db.guildSettings.upsert({
+            where: {
+                id: guildId,
+            },
+            create: {
+                id: guildId,
+                [setting]: value,
+            },
+            update: {
+                [setting]: value,
+            },
+        });
+    }
+
+    private async setBanApprovals(interaction: ChatInputCommandInteraction) {
+        const approvalsNeeded = interaction.options.getNumber(
+            'ban-approvals-setting'
+        );
+        await this.setSetting(
+            interaction.guildId as string,
+            'banApprovalsNeeded',
+            approvalsNeeded ?? 1
+        );
+        interaction.reply(`banApprovalsNeeded set to ${approvalsNeeded}`);
+    }
+
+    private async setChannel(interaction: ChatInputCommandInteraction) {
         const setting = interaction.options.getString('channel-setting');
         const channel = interaction.options.getChannel('channel', true);
 
-        await this.db.guildSettings.upsert({
-            where: {
-                id: interaction.guild.id,
-            },
-            create: {
-                id: interaction.guild.id,
-                [setting]: channel.id,
-            },
-            update: {
-                [setting]: channel.id,
-            },
-        });
+        await this.setSetting(
+            interaction.guildId as string,
+            setting as string,
+            channel.id
+        );
 
         interaction.reply(`${setting} set to ${channel}`);
     }
 
-    private async setRole(interaction: CommandInteraction) {
+    private async setRole(interaction: ChatInputCommandInteraction) {
         const setting = interaction.options.getString('role-setting');
         const role = interaction.options.getRole('role', true);
 
-        await this.db.guildSettings.upsert({
-            where: {
-                id: interaction.guild.id,
-            },
-            create: {
-                id: interaction.guild.id,
-                [setting]: role.id,
-            },
-            update: {
-                [setting]: role.id,
-            },
-        });
+        await this.setSetting(
+            interaction.guildId as string,
+            setting as string,
+            role.id
+        );
 
         interaction.reply(`${setting} set to ${role}`);
+    }
+
+    private async setWelcomeMessage(interaction: ChatInputCommandInteraction) {
+        const welcomeMessage = interaction.options.getString(
+            'welcome-message-setting'
+        );
+        await this.setSetting(
+            interaction.guildId as string,
+            'welcomeMessage',
+            welcomeMessage as string
+        );
+        interaction.reply(`welcomeMessage set to ${welcomeMessage}`);
     }
 }

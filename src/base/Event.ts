@@ -1,19 +1,18 @@
+import Base from './Base';
 import type Client from './Client';
-import { prisma } from './Prisma';
 
 export interface EventConfig {
     name: string;
     once?: boolean;
 }
 
-export default abstract class Event {
+export default abstract class Event extends Base {
     name: string;
     once: boolean;
-    db: typeof prisma;
     constructor({ name, once = false }: EventConfig) {
+        super();
         this.name = name;
         this.once = once;
-        this.db = prisma;
     }
     public abstract execute(client: Client, ...args: unknown[]): void;
 }

@@ -10,7 +10,7 @@ export default class SanctionManager {
 
     private db: typeof prisma;
 
-    public id: number;
+    public id: number | undefined;
 
     constructor(
         member: string,

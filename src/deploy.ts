@@ -25,7 +25,9 @@ const updateCommands = async () => {
     }
 };
 
-const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '9' }).setToken(
+    process.env.DISCORD_TOKEN as string
+);
 
 export default async () => {
     try {
@@ -41,8 +43,8 @@ export default async () => {
         //  Use this when in development phase
         await rest.put(
             Routes.applicationGuildCommands(
-                process.env.DISCORD_CLIENT_ID,
-                process.env.DISCORD_DEV_GUILD_ID
+                process.env.DISCORD_CLIENT_ID as string,
+                process.env.DISCORD_DEV_GUILD_ID as string
             ),
             {
                 body: commands,
