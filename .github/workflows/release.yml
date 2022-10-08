@@ -15,6 +15,13 @@ jobs:
         needs: test
         runs-on: ubuntu-latest
         steps:
+            - name: Generate Token
+              id: generate_token
+              uses: tibdex/github-app-token@f66c1c31c49c0a4d593a5820a9f1e231af3321ad
+              with:
+                  app_id: ${{ secrets.APP_ID }}
+                  private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
             - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
               with:
@@ -28,13 +35,7 @@ jobs:
             - name: '📦 Install dependencies'
               run: npm ci
 
-            - name: '🔓 Lift Branch Restrictions'
-              uses: LEDBrain/branch-protection-action@v1.0.3
-              with:
-                  branch: 'main'
-                  token: ${{ secrets.PROTECTION_TOKEN }}
-
             - name: '🚀 Release'
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
               run: npx semantic-release
