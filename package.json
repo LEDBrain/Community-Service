@@ -48,7 +48,7 @@
         "@typescript-eslint/eslint-plugin": "^5.46.0",
         "@typescript-eslint/parser": "^5.46.0",
         "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.28.0",
+        "eslint": "^8.29.0",
         "prettier": "^2.8.1",
         "prisma": "^4.7.1",
         "semantic-release": "^19.0.5",
