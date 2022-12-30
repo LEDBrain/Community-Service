@@ -1,5 +1,5 @@
 import InteractionHandler from '../base/InteractionHandler';
-import type { SelectMenuInteraction } from 'discord.js';
+import type { StringSelectMenuInteraction } from 'discord.js';
 import {
     PermissionFlagsBits,
     ButtonBuilder,
@@ -10,7 +10,7 @@ import {
 } from 'discord.js';
 
 export default class ReactionRoleSelect extends InteractionHandler {
-    async execute(selectMenu: SelectMenuInteraction) {
+    async execute(selectMenu: StringSelectMenuInteraction) {
         // Never
         if (
             !selectMenu.memberPermissions?.has(

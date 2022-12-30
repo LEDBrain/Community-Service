@@ -4,13 +4,13 @@ import type {
     TextChannel,
 } from 'discord.js';
 import {
-    SelectMenuBuilder,
     ActionRowBuilder,
-    SlashCommandBuilder,
-    PermissionFlagsBits,
+    ChannelType,
     EmbedBuilder,
+    PermissionFlagsBits,
+    SlashCommandBuilder,
+    StringSelectMenuBuilder,
 } from 'discord.js';
-
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
 import { Colors } from '../utils';
@@ -40,15 +40,14 @@ export default class ReactionRole extends Command {
                             .setMinValue(0)
                             .setMaxValue(25)
                     )
-                    .addChannelOption(
-                        channelOption =>
-                            channelOption
-                                .setName('channel')
-                                .setDescription(
-                                    'The channel to create the reaction role in'
-                                )
-                                .setRequired(false)
-                                .addChannelTypes(0) // Text channel
+                    .addChannelOption(channelOption =>
+                        channelOption
+                            .setName('channel')
+                            .setDescription(
+                                'The channel to create the reaction role in'
+                            )
+                            .setRequired(false)
+                            .addChannelTypes(ChannelType.GuildText)
                     )
             )
             .addSubcommand(subcommand =>
@@ -121,22 +120,23 @@ export default class ReactionRole extends Command {
                 guildId: interaction.guildId as string,
             },
         });
-        const row = new ActionRowBuilder<SelectMenuBuilder>().addComponents(
-            new SelectMenuBuilder()
-                .setCustomId('reactionRoleSelect')
-                .setPlaceholder('Choose a reaction role message')
-                .setMinValues(1)
-                .setMaxValues(1)
-                .addOptions(
-                    ...reactionRoles.map(
-                        rr =>
-                            ({
-                                label: rr.name,
-                                value: rr.id.toString(),
-                            } as SelectMenuComponentOptionData)
+        const row =
+            new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                new StringSelectMenuBuilder()
+                    .setCustomId('reactionRoleSelect')
+                    .setPlaceholder('Choose a reaction role message')
+                    .setMinValues(1)
+                    .setMaxValues(1)
+                    .addOptions(
+                        ...reactionRoles.map(
+                            rr =>
+                                ({
+                                    label: rr.name,
+                                    value: rr.id.toString(),
+                                } as SelectMenuComponentOptionData)
+                        )
                     )
-                )
-        );
+            );
         return await interaction.reply({
             content: 'Choose a reaction role message',
             components: [row],

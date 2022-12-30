@@ -55,13 +55,13 @@ export default class Serverinfo extends Command {
                         (interaction.guild as Guild).channels.cache.filter(
                             c =>
                                 c.type === ChannelType.GuildText ||
-                                c.type === ChannelType.GuildNews
+                                c.type === ChannelType.GuildAnnouncement
                         ).size
                     }\nThreads: ${
                         (interaction.guild as Guild).channels.cache.filter(
                             c =>
-                                c.type === ChannelType.GuildPublicThread ||
-                                c.type === ChannelType.GuildNewsThread
+                                c.type === ChannelType.PublicThread ||
+                                c.type === ChannelType.AnnouncementThread
                         ).size
                     }`,
                 },

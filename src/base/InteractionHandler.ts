@@ -1,4 +1,7 @@
-import type { ButtonInteraction, SelectMenuInteraction } from 'discord.js';
+import type {
+    ButtonInteraction,
+    StringSelectMenuInteraction,
+} from 'discord.js';
 import Base from './Base';
 
 export default abstract class InteractionHandler extends Base {
@@ -10,6 +13,6 @@ export default abstract class InteractionHandler extends Base {
         button: ButtonInteraction | unknown
     ): Promise<unknown> | unknown;
     public abstract execute(
-        selectMenu: SelectMenuInteraction | unknown
+        selectMenu: StringSelectMenuInteraction | unknown
     ): Promise<unknown> | unknown;
 }
