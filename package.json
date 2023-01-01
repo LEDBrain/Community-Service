@@ -65,42 +65,5 @@
     },
     "publishConfig": {
         "access": "restricted"
-    },
-    "release": {
-        "branches": [
-            "main"
-        ],
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "preset": "angular",
-                    "releaseRules": [
-                        {
-                            "type": "docs",
-                            "scope": "README",
-                            "release": "patch"
-                        },
-                        {
-                            "type": "refactor",
-                            "release": "patch"
-                        },
-                        {
-                            "scope": "no-release",
-                            "release": false
-                        }
-                    ]
-                }
-            ],
-            "@semantic-release/release-notes-generator",
-            [
-                "@semantic-release/npm",
-                {
-                    "npmPublish": false
-                }
-            ],
-            "@semantic-release/github",
-            "@semantic-release/git"
-        ]
     }
 }
