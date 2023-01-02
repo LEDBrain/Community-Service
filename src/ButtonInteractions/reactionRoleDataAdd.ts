@@ -1,13 +1,18 @@
 import ReactionRole from '../base/ReactionRole';
-import { MessageCollector, MessageMentions } from 'discord.js';
+import {
+    ActionRowBuilder,
+    MessageCollector,
+    MessageMentions,
+    RoleSelectMenuBuilder,
+} from 'discord.js';
 import type {
     ButtonInteraction,
     Message,
     GuildMember,
     TextBasedChannel,
     Guild,
-    Role,
     MessageReaction,
+    ComponentType,
 } from 'discord.js';
 import ms from 'ms';
 
@@ -18,6 +23,7 @@ export default class ReactionDataAdd extends ReactionRole {
     async execute(button: ButtonInteraction) {
         await this.getReactionRole(button);
         if (!this.reactionRole) return;
+
         const emojiMessage = (await button.reply({
             content: 'Send the emoji as a message',
             fetchReply: true,
@@ -32,30 +38,35 @@ export default class ReactionDataAdd extends ReactionRole {
         );
         if (!isValidEmoji) return; // TODO: Do error handling
 
-        const roleMessage = (await button.followUp({
-            content: 'Tag the role to assing to the emoji',
-            fetchReply: true,
-        })) as Message;
-        const collectedRoleMessage = await this.collectMessage(
-            roleMessage.channel,
-            button.member as GuildMember
-        );
+        const roleSelectMenu = new RoleSelectMenuBuilder()
+            .setCustomId('roleSelectMenu')
+            .setPlaceholder('Select a role')
+            .setMinValues(1)
+            .setMaxValues(1);
+        const roleActionRow =
+            new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
+                roleSelectMenu
+            );
 
-        const role =
-            collectedRoleMessage.mentions.roles.size > 0
-                ? collectedRoleMessage.mentions
-                : collectedRoleMessage.cleanContent;
-        const isValidRole = this.validateRole(roleMessage.guild as Guild, role);
-        if (!isValidRole) return; // TODO: Do error handling
-        console.log(isValidRole);
+        const roleMessage = await button.followUp({
+            content: 'Select the role to assing to the emoji',
+            components: [roleActionRow],
+            ephemeral: true,
+        });
+
+        const submittedRole =
+            await roleMessage.awaitMessageComponent<ComponentType.RoleSelect>({
+                filter: i =>
+                    i.isRoleSelectMenu() && i.customId === 'roleSelectMenu',
+                time: ms('5m'),
+                dispose: true,
+            });
+        const roleId = submittedRole.values[0];
 
         await this.db.roleToEmoji.create({
             data: {
                 emojiId: isValidEmoji,
-                roleId:
-                    role instanceof MessageMentions
-                        ? (role.roles.first() as Role).id
-                        : role,
+                roleId,
                 ReactionRoleMessage: {
                     connect: {
                         id: this.reactionRole.id,
@@ -65,10 +76,10 @@ export default class ReactionDataAdd extends ReactionRole {
         });
 
         try {
+            submittedRole.deferUpdate();
             await emojiMessage.delete();
             await collectedEmojiMessage.delete();
             await roleMessage.delete();
-            await collectedRoleMessage.delete();
             // eslint-disable-next-line no-empty
         } catch (err) {}
 
@@ -115,5 +126,6 @@ export default class ReactionDataAdd extends ReactionRole {
         if (role instanceof MessageMentions)
             role = role.roles.first()?.id || '';
         return guild.roles.cache.has(role as string);
+        // TODO: validate if bot can assign role
     }
 }
