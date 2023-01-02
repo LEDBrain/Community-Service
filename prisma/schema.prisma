@@ -26,6 +26,7 @@ model GuildSettings {
   banApprovalsNeeded Int      @default(1)
   moderatorRoleId    String   @default("")
   welcomeMessage     String   @default("Welcome to {{servername}} {{username}}! Enjoy your stay!")
+  crosspostChannels  String[]
 }
 
 model Sanction {
@@ -40,7 +41,6 @@ model Sanction {
 
   sanctioning_end DateTime?
   terminatedBy    Int?
-
 
   User                User       @relation("sanctionUser", fields: [userId], references: [id])
   Moderator           User       @relation("sanctionModerator", fields: [moderatorId], references: [id])
