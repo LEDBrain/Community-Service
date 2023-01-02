@@ -42,8 +42,7 @@ export default class ReactionDataAdd extends ReactionRole {
             .setStyle(TextInputStyle.Paragraph)
             .setRequired(true)
             .setPlaceholder(
-                oldMessage.embeds[0]?.description ||
-                    'React to an emoji to get a role!'
+                'Set an embed description text e.g. "React to an emoji to get a role!" or leave empty to use the default or old description. Limit 4000 characters.'
             )
             .setValue(
                 oldMessage.embeds[0]?.description ||
