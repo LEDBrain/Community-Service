@@ -29,7 +29,7 @@
     "dependencies": {
         "@discordjs/rest": "^1.5.0",
         "@hapi/hapi": "^21.1.0",
-        "@prisma/client": "^4.8.0",
+        "@prisma/client": "^4.8.1",
         "concurrently": "^7.6.0",
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.37.25",
