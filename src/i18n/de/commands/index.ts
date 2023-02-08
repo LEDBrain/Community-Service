@@ -1,8 +1,7 @@
-import type { NamespaceCommandsTranslation } from '../../i18n-types'
+import type { NamespaceCommandsTranslation } from '../../i18n-types';
 
 const de_commands = {
-	// TODO: insert translations
+    // TODO: insert translations
+} satisfies NamespaceCommandsTranslation;
 
-} satisfies NamespaceCommandsTranslation
-
-export default de_commands
+export default de_commands;
