@@ -15,7 +15,9 @@
         "semantic-release": "semantic-release",
         "migrate:prod": "prisma migrate deploy",
         "test:api": "lab --typescript -v",
-        "typesafe-i18n": "typesafe-i18n"
+        "typesafe-i18n": "typesafe-i18n --no-watch",
+        "typesafe-i18n:watch": "typesafe-i18n",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
@@ -53,6 +55,7 @@
         "@typescript-eslint/parser": "^5.47.1",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.30.0",
+        "husky": "^8.0.3",
         "prettier": "^2.8.1",
         "prisma": "^4.8.0",
         "semantic-release": "^19.0.5",
