@@ -5,6 +5,7 @@ import fs from 'fs/promises';
 
 import { client } from './index';
 
+// Load all commands into the client.commands Collection
 const updateCommands = async () => {
     const commandFiles = (await fs.readdir(__dirname + '/commands')).filter(
         file => file.endsWith('.ts') || file.endsWith('.js')
@@ -29,6 +30,7 @@ const rest = new REST({ version: '9' }).setToken(
     process.env.DISCORD_TOKEN as string
 );
 
+// Send all commands to the Discord API
 export default async () => {
     try {
         console.log('Started refreshing application (/) commands.');
