@@ -1,7 +1,7 @@
 FROM node:18.14.0-alpine as build
 WORKDIR /usr/app
 COPY . .
-RUN npm install
+RUN npm install --omit=dev
 RUN npm run build
 
 FROM node:18.14.0-alpine as cleanup
@@ -9,7 +9,7 @@ WORKDIR /usr/app
 COPY --from=build /usr/app/package*.json ./
 COPY --from=build /usr/app/dist ./dist
 COPY --from=build /usr/app/prisma ./prisma
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 FROM node:18.14.0-alpine
 WORKDIR /usr/app
