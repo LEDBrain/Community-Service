@@ -14,7 +14,10 @@
         "commit": "cz",
         "semantic-release": "semantic-release",
         "migrate:prod": "prisma migrate deploy",
-        "test:api": "lab --typescript -v"
+        "test:api": "lab --typescript -v",
+        "typesafe-i18n": "typesafe-i18n --no-watch",
+        "typesafe-i18n:watch": "typesafe-i18n",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
@@ -35,7 +38,8 @@
         "discord-api-types": "^0.37.31",
         "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
-        "joi": "^17.7.0"
+        "joi": "^17.7.0",
+        "typesafe-i18n": "^5.24.0"
     },
     "devDependencies": {
         "@hapi/code": "^9.0.2",
@@ -51,6 +55,7 @@
         "@typescript-eslint/parser": "^5.51.0",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.33.0",
+        "husky": "^8.0.3",
         "prettier": "^2.8.4",
         "prisma": "^4.10.0",
         "semantic-release": "^20.1.0",
