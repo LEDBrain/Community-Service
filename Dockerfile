@@ -2,7 +2,7 @@ FROM node:18.14.0-alpine as build
 WORKDIR /usr/app
 COPY . .
 RUN npm pkg delete scripts.prepare
-RUN npm ci --omit=dev
+RUN npm ci
 RUN npm run build
 
 FROM node:18.14.0-alpine as cleanup
