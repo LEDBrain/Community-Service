@@ -14,15 +14,32 @@ export type Locales = 'de' | 'en';
 export type Translation = RootTranslation & DisallowNamespaces;
 
 export type Translations = RootTranslation & {
+    ButtonInteractions: NamespaceButtonInteractionsTranslation;
     commands: NamespaceCommandsTranslation;
 };
 
 type RootTranslation = {
     /**
-     * H​i​ ​{​n​a​m​e​}​!​ ​P​l​e​a​s​e​ ​l​e​a​v​e​ ​a​ ​s​t​a​r​ ​i​f​ ​y​o​u​ ​l​i​k​e​ ​t​h​i​s​ ​p​r​o​j​e​c​t​:​ ​h​t​t​p​s​:​/​/​g​i​t​h​u​b​.​c​o​m​/​i​v​a​n​h​o​f​e​r​/​t​y​p​e​s​a​f​e​-​i​1​8​n
-     * @param {string} name
+     * H​i
      */
-    HI: RequiredParams<'name'>;
+    HI: string;
+};
+
+export type NamespaceButtonInteractionsTranslation = {
+    banRequestApprove: {
+        /**
+         * Y​o​u​ ​c​a​n​n​o​t​ ​a​p​p​r​o​v​e​ ​y​o​u​r​ ​o​w​n​ ​b​a​n​ ​r​e​q​u​e​s​t
+         */
+        error_noOwnApproval: string;
+        /**
+         * Y​o​u​ ​h​a​v​e​ ​a​l​r​e​a​d​y​ ​a​p​p​r​o​v​e​d​ ​t​h​i​s​ ​b​a​n​ ​r​e​q​u​e​s​t
+         */
+        error_alreadyApproved: string;
+        /**
+         * T​h​e​r​e​ ​s​e​e​m​s​ ​t​o​ ​b​e​ ​a​n​ ​i​s​s​u​e​ ​r​e​g​a​r​d​i​n​g​ ​t​h​i​s​ ​g​u​i​l​d​s​ ​s​e​t​t​i​n​g​s​.​ ​P​l​e​a​s​e​ ​c​o​n​t​a​c​t​ ​a​n​ ​a​d​m​i​n​ ​o​f​ ​t​h​i​s​ ​s​e​r​v​e​r​.
+         */
+        error_guildSettingsError: string;
+    };
 };
 
 export type NamespaceCommandsTranslation = {
@@ -35,9 +52,15 @@ export type NamespaceCommandsTranslation = {
     };
 };
 
-export type Namespaces = 'commands';
+export type Namespaces = 'ButtonInteractions' | 'commands';
 
 type DisallowNamespaces = {
+    /**
+     * reserved for 'ButtonInteractions'-namespace\
+     * you need to use the `./ButtonInteractions/index.ts` file instead
+     */
+    ButtonInteractions?: "[typesafe-i18n] reserved for 'ButtonInteractions'-namespace. You need to use the `./ButtonInteractions/index.ts` file instead.";
+
     /**
      * reserved for 'commands'-namespace\
      * you need to use the `./commands/index.ts` file instead
@@ -47,9 +70,25 @@ type DisallowNamespaces = {
 
 export type TranslationFunctions = {
     /**
-     * Hi {name}! Please leave a star if you like this project: https://github.com/ivanhofer/typesafe-i18n
+     * Hi
      */
-    HI: (arg: { name: string }) => LocalizedString;
+    HI: () => LocalizedString;
+    ButtonInteractions: {
+        banRequestApprove: {
+            /**
+             * You cannot approve your own ban request
+             */
+            error_noOwnApproval: () => LocalizedString;
+            /**
+             * You have already approved this ban request
+             */
+            error_alreadyApproved: () => LocalizedString;
+            /**
+             * There seems to be an issue regarding this guilds settings. Please contact an admin of this server.
+             */
+            error_guildSettingsError: () => LocalizedString;
+        };
+    };
     commands: {
         ban: {
             /**

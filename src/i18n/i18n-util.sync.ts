@@ -8,16 +8,20 @@ import { loadedFormatters, loadedLocales, locales } from './i18n-util';
 import de from './de';
 import en from './en';
 
+import de_ButtonInteractions from './de/ButtonInteractions';
 import de_commands from './de/commands';
+import en_ButtonInteractions from './en/ButtonInteractions';
 import en_commands from './en/commands';
 
 const localeTranslations = {
     de: {
         ...de,
+        ButtonInteractions: de_ButtonInteractions,
         commands: de_commands,
     },
     en: {
         ...en,
+        ButtonInteractions: en_ButtonInteractions,
         commands: en_commands,
     },
 };

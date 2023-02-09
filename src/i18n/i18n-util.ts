@@ -25,7 +25,7 @@ export const baseLocale: Locales = 'en';
 
 export const locales: Locales[] = ['de', 'en'];
 
-export const namespaces: Namespaces[] = ['commands'];
+export const namespaces: Namespaces[] = ['ButtonInteractions', 'commands'];
 
 export const isLocale = (locale: string): locale is Locales =>
     locales.includes(locale as Locales);

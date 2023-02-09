@@ -12,9 +12,11 @@ const localeTranslationLoaders = {
 
 const localeNamespaceLoaders = {
     de: {
+        ButtonInteractions: () => import('./de/ButtonInteractions'),
         commands: () => import('./de/commands'),
     },
     en: {
+        ButtonInteractions: () => import('./en/ButtonInteractions'),
         commands: () => import('./en/commands'),
     },
 };

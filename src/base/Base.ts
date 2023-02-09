@@ -8,11 +8,8 @@ import type {
     Locales,
     Namespaces,
     TranslationFunctions,
-    Translations,
 } from '../i18n/i18n-types';
-import L from 'i18n/i18n-node';
-import type { LocaleTranslationFunctions } from 'typesafe-i18n';
-import { i18n, i18nObject } from '../i18n/i18n-util';
+import { i18nObject } from '../i18n/i18n-util';
 
 export default abstract class Base {
     db: typeof prisma;
