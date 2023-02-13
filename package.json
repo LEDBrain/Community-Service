@@ -44,7 +44,7 @@
     "devDependencies": {
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
-        "@hapi/lab": "^25.1.0",
+        "@hapi/lab": "^25.1.2",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/npm": "^9.0.2",
         "@tsconfig/node16": "^1.0.3",
