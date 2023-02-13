@@ -42,7 +42,7 @@
         "typesafe-i18n": "^5.24.1"
     },
     "devDependencies": {
-        "@hapi/code": "^9.0.2",
+        "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^25.1.0",
         "@semantic-release/git": "^10.0.1",
