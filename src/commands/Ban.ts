@@ -72,7 +72,9 @@ export default class Ban extends Command {
             )
         )
             return interaction.reply({
-                content: `You cannot ban ${member.toString()}`,
+                content: this.t.commands.ban.error_noPerms({
+                    member: member.toString(),
+                }), //`You cannot ban ${member.toString()}`,
                 ephemeral: true,
             });
 
