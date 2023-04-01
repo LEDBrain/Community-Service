@@ -1,8 +1,4 @@
-import {
-    readTranslationFromDisk,
-    type ExportLocaleMapping,
-} from 'typesafe-i18n/exporter';
-import { inspect } from 'util';
+import { readTranslationFromDisk } from 'typesafe-i18n/exporter';
 import fs from 'fs/promises';
 import path from 'path';
 
