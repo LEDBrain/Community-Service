@@ -15,12 +15,12 @@ jobs:
         needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: Generate Token
-              id: generate_token
-              uses: tibdex/github-app-token@v1
-              with:
-                  app_id: ${{ secrets.APP_ID }}
-                  private_key: ${{ secrets.APP_PRIVATE_KEY }}
+            # - name: Generate Token
+            #   id: generate_token
+            #   uses: tibdex/github-app-token@v1
+            #   with:
+            #       app_id: ${{ secrets.APP_ID }}
+            #       private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
@@ -37,5 +37,5 @@ jobs:
 
             - name: '🚀 Release'
               env:
-                  GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+                  GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
               run: npx semantic-release
