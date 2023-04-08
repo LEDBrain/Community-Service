@@ -26,7 +26,7 @@ model GuildSettings {
   banApprovalsNeeded Int      @default(1)
   moderatorRoleId    String   @default("")
   welcomeMessage     String   @default("Welcome to {{servername}} {{username}}! Enjoy your stay!")
-  crosspostChannels  String[]
+  crosspostChannels  String[] @default([])
 }
 
 model Sanction {
