@@ -31,12 +31,14 @@ export default class BanRequestApprove extends InteractionHandler {
         if (!banRequest) return button.deferUpdate(); // how did this even happen?
         if (banRequest.moderatorId === (button.member as GuildMember).id)
             return button.reply({
-                content: 'You cannot approve your own ban request',
+                content:
+                    this.t.ButtonInteractions.banRequestApprove.error_noOwnApproval(),
                 ephemeral: true,
             });
         if (banRequest.approved_by.includes((button.member as GuildMember).id))
             return button.reply({
-                content: 'You have already approved this ban request',
+                content:
+                    this.t.ButtonInteractions.banRequestApprove.error_alreadyApproved(),
                 ephemeral: true,
             });
 
@@ -51,7 +53,7 @@ export default class BanRequestApprove extends InteractionHandler {
         if (!guildSettings?.banApprovalsNeeded)
             return button.reply({
                 content:
-                    'There seems to be an issue regarding this guilds settings. Please contact an admin of this server.',
+                    this.t.ButtonInteractions.banRequestApprove.error_guildSettingsError(),
                 ephemeral: true,
             });
 
