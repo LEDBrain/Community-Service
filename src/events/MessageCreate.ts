@@ -3,6 +3,7 @@
 
 import Event from '../base/Event';
 import type { Message } from 'discord.js';
+import { ChannelType } from 'discord.js';
 import type Client from '../base/Client';
 export default class MessageCreate extends Event {
     constructor() {
@@ -15,6 +16,18 @@ export default class MessageCreate extends Event {
         ) {
             console.log(`Deploying...`);
             (await import('../deploy')).default();
+        }
+        if (
+            message.channel.type === ChannelType.GuildAnnouncement &&
+            message.crosspostable &&
+            message.inGuild() &&
+            (
+                await this.db.guildSettings.findUnique({
+                    where: { id: message.guildId },
+                })
+            )?.crosspostChannels.includes(message.channelId)
+        ) {
+            message.crosspost();
         }
     }
 }
