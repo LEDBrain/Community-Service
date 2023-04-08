@@ -5,6 +5,8 @@ on:
             - main
         paths-ignore:
             - 'package*.json'
+    repository_dispatch:
+
 jobs:
     test:
         name: '🧪 Test and lint'
