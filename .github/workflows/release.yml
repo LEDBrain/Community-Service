@@ -7,11 +7,11 @@ on:
             - 'package*.json'
     repository_dispatch:
 
-permissions:
-    contents: write
-    issues: write
-    pull-requests: write
-    packages: write
+# permissions:
+#     contents: write
+#     issues: write
+#     pull-requests: write
+#     packages: write
 
 jobs:
     test:
@@ -23,19 +23,19 @@ jobs:
         needs: test
         runs-on: ubuntu-latest
         steps:
-            - name: Generate Token
-              id: generate_token
-              uses: tibdex/github-app-token@v1
-              with:
-                  app_id: ${{ secrets.APP_ID }}
-                  private_key: ${{ secrets.APP_PRIVATE_KEY }}
+            # - name: Generate Token
+            #   id: generate_token
+            #   uses: tibdex/github-app-token@v1
+            #   with:
+            #       app_id: ${{ secrets.APP_ID }}
+            #       private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
                   persist-credentials: false
-                  token: ${{ steps.generate_token.outputs.token }}
+                  # token: ${{ steps.generate_token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v3
@@ -47,9 +47,10 @@ jobs:
 
             - name: '🚀 Release'
               env:
-                  GH_TOKEN: ${{ steps.generate_token.outputs.token }}
-                  GIT_AUTHOR_NAME: 'utils-app[bot]'
-                  GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
-                  GIT_COMMITTER_NAME: 'utils-app[bot]'
-                  GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
+                  #   GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+                  #   GIT_AUTHOR_NAME: 'utils-app[bot]'
+                  #   GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
+                  #   GIT_COMMITTER_NAME: 'utils-app[bot]'
+                  #   GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release --ci
