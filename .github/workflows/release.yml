@@ -48,9 +48,9 @@ jobs:
             - name: '🚀 Release'
               env:
                   #   GH_TOKEN: ${{ steps.generate_token.outputs.token }}
-                  #   GIT_AUTHOR_NAME: 'utils-app[bot]'
-                  #   GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
-                  #   GIT_COMMITTER_NAME: 'utils-app[bot]'
-                  #   GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
+                  GIT_AUTHOR_NAME: 'utils-app[bot]'
+                  GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
+                  GIT_COMMITTER_NAME: 'utils-app[bot]'
+                  GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release --ci
