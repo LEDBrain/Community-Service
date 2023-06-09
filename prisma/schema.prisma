@@ -41,7 +41,6 @@ model Sanction {
   sanctioning_end DateTime?
   terminatedBy    Int?
 
-
   User                User       @relation("sanctionUser", fields: [userId], references: [id])
   Moderator           User       @relation("sanctionModerator", fields: [moderatorId], references: [id])
   TerminatingSanction Sanction?  @relation("SanctionToSanction", fields: [terminatedBy], references: [id])
@@ -51,10 +50,21 @@ model Sanction {
 model User {
   id String @id
 
-  sanctions         Sanction[]   @relation("sanctionUser")
-  sanctioned        Sanction[]   @relation("sanctionModerator")
-  banRequest        BanRequest[] @relation("banRequestUser")
-  createdBanRequest BanRequest[] @relation("banRequestModerator")
+  sanctions         Sanction[]     @relation("sanctionUser")
+  sanctioned        Sanction[]     @relation("sanctionModerator")
+  banRequest        BanRequest[]   @relation("banRequestUser")
+  createdBanRequest BanRequest[]   @relation("banRequestModerator")
+  DiscordToken      DiscordToken[]
+}
+
+model DiscordToken {
+  id            Int    @id @default(autoincrement())
+  userId        String
+  access_token  String
+  refresh_token String
+  expires_at    Int
+
+  User User @relation(fields: [userId], references: [id])
 }
 
 model BanRequest {
