@@ -38,7 +38,7 @@
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.37.43",
         "discord.js": "^14.11.0",
-        "dotenv": "^16.1.1",
+        "dotenv": "^16.1.4",
         "joi": "^17.9.2",
         "typesafe-i18n": "^5.24.3"
     },
