@@ -1,6 +1,7 @@
 'use strict';
 
 import Hapi from '@hapi/hapi';
+import { env } from 'env';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -20,8 +21,8 @@ const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
 };
 
 const server: Hapi.Server = Hapi.server({
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || 'localhost',
+    port: env.PORT || 3000,
+    host: env.HOST || 'localhost',
 });
 
 export async function init() {
