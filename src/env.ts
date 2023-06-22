@@ -2,7 +2,7 @@ import { createEnv } from '@t3-oss/env-core';
 import { z } from 'zod';
 
 export const env = createEnv({
-    isServer: typeof window === 'undefined',
+    isServer: true,
     server: {
         DISCORD_TOKEN: z.string().min(1),
         DISCORD_CLIENT_ID: z.string().min(1),
@@ -12,6 +12,19 @@ export const env = createEnv({
 
         COOKIE_SECRET: z.string(),
         DATABASE_URL: z.string().url().min(1),
+
+        PORT: z
+            .string()
+            .min(1)
+            .transform(s => parseInt(s, 10))
+            .pipe(z.number()),
+        HOST: z.string().min(1),
+
+        // rm .min(1) and add .optional() if needed
+        GAME_DE: z.string().url().optional(),
+        GAME_DE_USERNAME: z.string().min(1),
+        GAME_DE_PASSWORD: z.string().min(1),
     },
     runtimeEnv: process.env,
+    skipValidation: process.env.NODE_ENV === 'development',
 });
