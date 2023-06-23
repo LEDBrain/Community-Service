@@ -43,7 +43,7 @@
         "typesafe-i18n": "^5.24.3"
     },
     "devDependencies": {
-        "@crowdin/crowdin-api-client": "^1.23.1",
+        "@crowdin/crowdin-api-client": "^1.23.2",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^25.1.2",
