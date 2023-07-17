@@ -1,6 +1,14 @@
 import Hapi from '@hapi/hapi';
+import type { PrismaClient } from '@prisma/client';
+import { env } from '../env';
 import fs from 'fs/promises';
 import path from 'path';
+
+declare module '@hapi/hapi' {
+    interface ServerApplicationState {
+        prisma: PrismaClient;
+    }
+}
 
 const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
     const plugins: Hapi.Plugin<unknown>[] = [];
@@ -18,8 +26,9 @@ const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
 };
 
 const server: Hapi.Server = Hapi.server({
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || 'localhost',
+    port: env.PORT || 3000,
+    host: env.HOST || 'localhost',
+});
 });
 
 export async function start(): Promise<Hapi.Server> {
