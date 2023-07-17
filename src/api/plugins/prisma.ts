@@ -1,12 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type Hapi from '@hapi/hapi';
 
-declare module '@hapi/hapi' {
-    interface ServerApplicationState {
-        prisma: PrismaClient;
-    }
-}
-
 // plugin to instantiate Prisma Client
 const prismaPlugin: Hapi.Plugin<null> = {
     name: 'prisma',

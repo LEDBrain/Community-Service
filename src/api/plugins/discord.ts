@@ -6,6 +6,7 @@ import type {
     RESTPostOAuth2AccessTokenResult,
 } from 'discord-api-types/v10';
 import { env } from '../../env';
+import crypto from 'crypto';
 
 declare module '@hapi/hapi' {
     interface ServerApplicationState {

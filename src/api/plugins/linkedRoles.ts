@@ -1,18 +1,10 @@
 import type Hapi from '@hapi/hapi';
 import Joi from 'joi';
-import { env } from '../../env';
 
 const linkedRolesPlugin = {
     name: 'app/linkedRoles',
     dependencies: ['prisma', 'discord'],
     register: async function (server: Hapi.Server) {
-        server.state('clientState', {
-            ttl: 1000 * 60 * 5,
-            sign: {
-                password: env.COOKIE_SECRET,
-            },
-        });
-
         server.route({
             method: 'GET',
             path: '/linked-role',
@@ -42,17 +34,17 @@ const linkedRoleHandler = async (
 ) => {
     const { getOAuthUrl } = request.server.app.discord;
     const { url, state } = getOAuthUrl();
+    console.log(url, state);
 
     // Store the signed state param in the user's cookies so we can verify
     // the value later. See:
     // https://discord.com/developers/docs/topics/oauth2#state-and-security
-    h.state('clientState', state, {
-        ttl: 1000 * 60 * 5,
-        sign: { password: process.env.COOKIE_SECRET as string },
-    });
+    //h.state('clientState', state);
 
     // Send the user to the Discord owned OAuth2 authorization endpoint
-    h.redirect(url);
+    h.unstate('clientState');
+    h.state('clientState', state);
+    return h.redirect(url);
 };
 
 const discordAuthCallbackHandler = async (
@@ -69,10 +61,12 @@ const discordAuthCallbackHandler = async (
 
         // make sure the state parameter exists
         // const { clientState } = request.signedCookies;
+        // console.log(request.payload, request.pre);
         const { clientState } = request.state;
+        console.log(clientState, discordState);
         if (clientState !== discordState) {
             console.error('State verification failed.');
-            return h.response().code(403);
+            return h.response('State verification failed.').code(403);
         }
 
         const tokens = await getOAuthTokens(code);
@@ -94,10 +88,10 @@ const discordAuthCallbackHandler = async (
         // 3. Update the users metadata, assuming future updates will be posted to the `/update-metadata` endpoint
         await updateMetadata(userId, request.server);
 
-        h.response('You did it!  Now go back to Discord.');
+        return h.response('You did it! Now go back to Discord.');
     } catch (e) {
         console.error(e);
-        h.response().code(500);
+        return h.response().code(500);
     }
 };
 
@@ -118,10 +112,16 @@ async function updateMetadata(userId: string, server: Hapi.Server) {
         // This data could be POST-ed to this endpoint, but every service
         // is going to be different.  To keep the example simple, we'll
         // just generate some random data.
+        const gameAccounts = await prisma.gameAccount.findMany({
+            where: {
+                discordUserId: userId,
+            },
+        });
+
         metadata = {
-            cookieseaten: 1483,
-            allergictonuts: 0, // 0 for false, 1 for true
-            firstcookiebaked: '2003-12-20',
+            game_de: gameAccounts.find(account => account.game === 'de_DE')
+                ? 1
+                : 0,
         };
     } catch (e: any) {
         e.message = `Error fetching external data: ${e.message}`;

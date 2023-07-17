@@ -29,6 +29,14 @@ const server: Hapi.Server = Hapi.server({
     port: env.PORT || 3000,
     host: env.HOST || 'localhost',
 });
+
+server.state('clientState', {
+    path: '/',
+    isSecure: false,
+    clearInvalid: true,
+    strictHeader: true,
+    isSameSite: 'Lax',
+    ttl: 1000 * 60 * 5,
 });
 
 export async function start(): Promise<Hapi.Server> {
