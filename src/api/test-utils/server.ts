@@ -1,7 +1,7 @@
 'use strict';
 
 import Hapi from '@hapi/hapi';
-import { env } from 'env';
+import { env } from '../../env';
 import fs from 'fs/promises';
 import path from 'path';
 
