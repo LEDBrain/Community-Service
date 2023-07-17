@@ -55,6 +55,34 @@ model User {
   banRequest        BanRequest[]   @relation("banRequestUser")
   createdBanRequest BanRequest[]   @relation("banRequestModerator")
   DiscordToken      DiscordToken[]
+  GameAccount       GameAccount[]
+}
+
+enum SupportedGames {
+  de_DE
+  nl_NL
+  en_GB
+  en_US
+}
+
+model GameAccount {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  discordUserId String
+  game          SupportedGames
+
+  OTP  OTP?
+  User User? @relation(fields: [discordUserId], references: [id])
+}
+
+model OTP {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  value     String
+  used      Boolean  @default(false)
+
+  gameAccountName String      @unique
+  gameAccount     GameAccount @relation(fields: [gameAccountName], references: [name])
 }
 
 model DiscordToken {
@@ -62,7 +90,7 @@ model DiscordToken {
   userId        String
   access_token  String
   refresh_token String
-  expires_at    Int
+  expires_at    BigInt
 
   User User @relation(fields: [userId], references: [id])
 }
