@@ -4,6 +4,7 @@ import type Command from './base/Command';
 import fs from 'fs/promises';
 
 import { client } from './index';
+import { env } from './env';
 
 // Load all commands into the client.commands Collection
 const updateCommands = async () => {
@@ -26,9 +27,7 @@ const updateCommands = async () => {
     }
 };
 
-const rest = new REST({ version: '9' }).setToken(
-    process.env.DISCORD_TOKEN as string
-);
+const rest = new REST({ version: '9' }).setToken(env.DISCORD_TOKEN);
 
 // Send all commands to the Discord API
 export default async () => {
@@ -45,8 +44,8 @@ export default async () => {
         //  Use this when in development phase
         await rest.put(
             Routes.applicationGuildCommands(
-                process.env.DISCORD_CLIENT_ID as string,
-                process.env.DISCORD_DEV_GUILD_ID as string
+                env.DISCORD_CLIENT_ID,
+                env.DISCORD_DEV_GUILD_ID
             ),
             {
                 body: commands,
@@ -58,6 +57,28 @@ export default async () => {
         // });
 
         console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+        console.error(error);
+    }
+
+    try {
+        console.log('Started refreshing Linked Roles.');
+        // supported types: number_lt=1, number_gt=2, number_eq=3 number_neq=4, datetime_lt=5, datetime_gt=6, boolean_eq=7, boolean_neq=8
+        const body = [
+            {
+                key: 'game_de',
+                name: 'Leistellenspiel.de',
+                description: 'Has a Leistellenspiel.de account',
+                type: 7,
+            },
+        ];
+        await rest.put(
+            Routes.applicationRoleConnectionMetadata(env.DISCORD_CLIENT_ID),
+            {
+                body,
+            }
+        );
+        console.log('Successfully reloaded Linked Roles.');
     } catch (error) {
         console.error(error);
     }

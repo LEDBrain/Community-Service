@@ -1,11 +1,12 @@
 import { GatewayIntentBits, Options } from 'discord.js';
-import Client from './base/Client';
 import fs from 'fs/promises';
+import Client from './base/Client';
+import type Event from './base/Event';
 
 // Load environment variables
 import dotenv from 'dotenv';
-import type Event from './base/Event';
 dotenv.config();
+import { env } from './env';
 
 // Load all locales
 import { loadAllLocales } from './i18n/i18n-util.sync';
@@ -18,8 +19,10 @@ const client = new Client({
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildModeration,
         GatewayIntentBits.GuildPresences,
         GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.MessageContent,
     ],
     sweepers: {
         messages: {
@@ -53,6 +56,6 @@ const client = new Client({
     //
 })();
 
-client.login(process.env.DISCORD_TOKEN).then(() => import('./api/server'));
+client.login(env.DISCORD_TOKEN).then(() => import('./api/server'));
 
 export { client };
