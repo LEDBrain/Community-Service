@@ -10,7 +10,7 @@ export const env = createEnv({
         DISCORD_CLIENT_SECRET: z.string().min(1),
         DISCORD_REDIRECT_URI: z.string().url().min(1),
 
-        COOKIE_SECRET: z.string(),
+        COOKIE_SECRET: z.string().min(32),
         DATABASE_URL: z.string().url().min(1),
 
         PORT: z
