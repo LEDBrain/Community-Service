@@ -68,7 +68,7 @@ export default async () => {
             {
                 key: 'game_de',
                 name: 'Leistellenspiel.de',
-                description: 'Leistellenspiel.de',
+                description: 'Has a Leistellenspiel.de account',
                 type: 7,
             },
         ];
