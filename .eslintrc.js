@@ -12,6 +12,7 @@ module.exports = {
     },
     rules: {
         '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/no-unused-vars': 'warn',
         'guard-for-in': 'error',
         'no-prototype-builtins': 'off',
         'semi': ['error', 'always'],
