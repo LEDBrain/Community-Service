@@ -37,7 +37,7 @@
         "@t3-oss/env-core": "^0.6.0",
         "concurrently": "^8.2.0",
         "cross-env": "^7.0.3",
-        "discord-api-types": "^0.37.49",
+        "discord-api-types": "^0.37.50",
         "discord.js": "^14.11.0",
         "dotenv": "^16.3.1",
         "joi": "^17.9.2",
