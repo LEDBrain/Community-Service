@@ -58,7 +58,7 @@
         "@types/jsdom": "^21.1.1",
         "@types/ms": "^0.7.31",
         "@types/node-fetch": "^2.6.4",
-        "@typescript-eslint/eslint-plugin": "^6.1.0",
+        "@typescript-eslint/eslint-plugin": "^6.2.0",
         "@typescript-eslint/parser": "^6.2.0",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.45.0",
