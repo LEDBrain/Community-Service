@@ -60,26 +60,4 @@ export default async () => {
     } catch (error) {
         console.error(error);
     }
-
-    try {
-        console.log('Started refreshing Linked Roles.');
-        // supported types: number_lt=1, number_gt=2, number_eq=3 number_neq=4, datetime_lt=5, datetime_gt=6, boolean_eq=7, boolean_neq=8
-        const body = [
-            {
-                key: 'game_de',
-                name: 'Leistellenspiel.de',
-                description: 'Has a Leistellenspiel.de account',
-                type: 7,
-            },
-        ];
-        await rest.put(
-            Routes.applicationRoleConnectionMetadata(env.DISCORD_CLIENT_ID),
-            {
-                body,
-            }
-        );
-        console.log('Successfully reloaded Linked Roles.');
-    } catch (error) {
-        console.error(error);
-    }
 };
