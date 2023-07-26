@@ -16,6 +16,11 @@ on:
         types: [published]
     workflow_dispatch:
 
+permissions:
+      contents: read
+      packages: write
+      id-token: write
+
 env:
     # Use docker.io for Docker Hub if empty
     REGISTRY: ghcr.io
@@ -86,7 +91,7 @@ jobs:
             - name: '✍️ Sign the published Docker image'
               if: ${{ github.event_name != 'pull_request' }}
               env:
-                  COSIGN_EXPERIMENTAL: 'true'
+                  # COSIGN_EXPERIMENTAL: 'true'
                   TAGS: ${{ steps.meta.outputs.tags }}
                   DIGEST: ${{ steps.build-and-push.outputs.digest }}
               # This step uses the identity token to provision an ephemeral certificate
