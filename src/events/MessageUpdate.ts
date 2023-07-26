@@ -12,7 +12,7 @@ export default class MessageUpdate extends Event {
         if (oldMessage.partial) await oldMessage.fetch();
         if (newMessage.partial) await newMessage.fetch();
 
-        const { version } = await import(`../../package.json`);
+        const { version } = await import('../../package.json');
 
         const messageDiff = diff(oldMessage.content, newMessage.content);
 
