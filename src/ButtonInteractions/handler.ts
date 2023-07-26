@@ -14,7 +14,7 @@ export default async (button: ButtonInteraction) => {
         console.log(
             'No handler found for button. Button ID: ' + button.customId
         );
-        await button.deferUpdate();
+
         return;
     }
     (
