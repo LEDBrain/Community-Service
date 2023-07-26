@@ -1,12 +1,19 @@
+import type { OTP } from '@prisma/client';
 import crypto from 'crypto';
 import type { ChatInputCommandInteraction } from 'discord.js';
-import { SlashCommandBuilder } from 'discord.js';
-import { env } from '../env';
+import {
+    ActionRowBuilder,
+    ModalBuilder,
+    SlashCommandBuilder,
+    TextInputBuilder,
+    TextInputStyle,
+    inlineCode,
+} from 'discord.js';
 import { JSDOM } from 'jsdom';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
+import { env } from '../env';
 import { curlRequest } from '../utils';
-import type { OTP } from '@prisma/client';
 
 const GAME_SERVERS = {
     de_DE: {
@@ -28,44 +35,27 @@ export default class Link extends Command {
         const cmd = new SlashCommandBuilder()
             .setName('link')
             .setDescription('Link a game account to your discord account')
-            .addSubcommand(subCommand =>
-                subCommand
-                    .setName('request')
-                    .setDescription('Request a one-time-passcode')
-                    .addStringOption(stringOption =>
-                        stringOption
-                            .setName('game')
-                            .setDescription(
-                                'The game version to link to your discord account'
-                            )
-                            .setRequired(true)
-                            .setChoices(
-                                { name: 'Leitstellenspiel', value: 'de_DE' },
-                                { name: 'Meldkamerspel', value: 'nl_NL' },
-                                { name: 'Missionchief (US)', value: 'en_US' },
-                                { name: 'Missionchief (UK)', value: 'en_GB' },
-                                { name: 'Missionchief (AU)', value: 'en_AU' }
-                            )
+            .addStringOption(stringOption =>
+                stringOption
+                    .setName('game')
+                    .setDescription(
+                        'The game version to link to your discord account'
                     )
-                    .addStringOption(stringOption =>
-                        stringOption
-                            .setName('username')
-                            .setDescription('Your username')
-                            .setRequired(true)
-                            .setMinLength(1)
+                    .setRequired(true)
+                    .setChoices(
+                        { name: 'Leitstellenspiel', value: 'de_DE' },
+                        { name: 'Meldkamerspel', value: 'nl_NL' },
+                        { name: 'Missionchief (US)', value: 'en_US' },
+                        { name: 'Missionchief (UK)', value: 'en_GB' },
+                        { name: 'Missionchief (AU)', value: 'en_AU' }
                     )
             )
-            .addSubcommand(subCommand =>
-                subCommand
-                    .setName('confirm')
-                    .setDescription('Confirm your one-time-passcode')
-                    .addStringOption(stringOption =>
-                        stringOption
-                            .setName('code')
-                            .setDescription('The received otp')
-                            .setRequired(true)
-                            .setMinLength(1)
-                    )
+            .addStringOption(stringOption =>
+                stringOption
+                    .setName('username')
+                    .setDescription('Your username')
+                    .setRequired(true)
+                    .setMinLength(1)
             );
 
         super(cmd as unknown as Config);
@@ -74,57 +64,82 @@ export default class Link extends Command {
         this.game = 'de_DE';
     }
     public async execute(interaction: ChatInputCommandInteraction) {
-        let responseText = '';
         this.discordUserId = interaction.user.id;
-        if (interaction.options.getSubcommand() === 'request') {
-            interaction.reply('Requesting OTP...');
-            const username = interaction.options.getString('username', true);
-            this.game = interaction.options.getString(
-                'game',
-                true
-            ) as keyof typeof GAME_SERVERS;
 
+        const username = interaction.options.getString('username', true);
+        this.game = interaction.options.getString(
+            'game',
+            true
+        ) as keyof typeof GAME_SERVERS;
+
+        const modal = new ModalBuilder()
+            .setCustomId('otpModal')
+            .setTitle('Link your account')
+            .setComponents([
+                new ActionRowBuilder<TextInputBuilder>().setComponents(
+                    new TextInputBuilder()
+                        .setCustomId('otp')
+                        .setStyle(TextInputStyle.Short)
+                        .setPlaceholder('Your OTP')
+                        .setRequired(true)
+                        .setMinLength(10)
+                        .setMaxLength(10)
+                        .setLabel('OTP')
+                ),
+            ]);
+        await interaction.showModal(modal);
+
+        try {
             await this.login().then(async response => {
                 // console.log(response);
-                const otp = await this.createOTP(username);
-                if (!otp)
-                    return (responseText =
-                        'There was an error while creating your One-Time-Password. Please try again later.');
-
-                const res = await this.sendOTP(username, otp);
-                // console.log(res);
-                if (res.status !== 200)
-                    return (responseText =
-                        'There was an error while sending your One-Time-Password. Please try again later.');
-
-                responseText =
-                    'OTP sent! Please check your inbox for messages from `UDOPT`.';
             });
-        } else if (interaction.options.getSubcommand() === 'confirm') {
-            interaction.reply('Confirming OTP...');
-            try {
-                const otpCode = interaction.options.getString('code', true);
-                const oTP = await this.db.oTP.findFirstOrThrow({
-                    where: { value: otpCode },
-                    include: { gameAccount: true },
+            const otp = await this.createOTP(username);
+            if (!otp)
+                return interaction.followUp({
+                    content:
+                        'There was an error while creating your One-Time-Password. Please try again later.',
                 });
-                const isLinked = await this.checkOTP(
-                    oTP.gameAccountName,
-                    otpCode
-                );
-                if (!isLinked)
-                    return (responseText =
-                        'The provided One-Time-Password is invalid. Please try again.');
-                responseText = 'Your account has been linked!';
-            } catch (error) {
-                console.log(error);
-                responseText =
-                    'There was an error while linking your account. Please try again later.';
-            }
-        }
-        return interaction.editReply(responseText);
-    }
 
+            const res = await this.sendOTP(username, otp);
+            console.log(res);
+            if (res.status !== 200)
+                return interaction.followUp(
+                    'There was an error while sending your One-Time-Password. Please try again later.'
+                );
+
+            const modalSubmitInteraction = await interaction.awaitModalSubmit({
+                time: 60000,
+                filter: i => i.customId === 'otpModal',
+                dispose: true,
+            });
+            const receivedOtpCode =
+                modalSubmitInteraction.fields.getTextInputValue('otp');
+
+            await modalSubmitInteraction.reply({
+                content: `Confirming OTP ${inlineCode(receivedOtpCode)}...`,
+                ephemeral: true,
+            });
+
+            const oTP = await this.db.oTP.findFirstOrThrow({
+                where: { value: receivedOtpCode },
+                include: { gameAccount: true },
+            });
+            const isValidOtp = await this.checkOTP(
+                oTP.gameAccountName,
+                receivedOtpCode
+            );
+            if (!isValidOtp)
+                return modalSubmitInteraction.editReply(
+                    'The provided One-Time-Password is invalid. Please try again.'
+                );
+            // this.linkAccounts(oTP.gameAccountName, this.discordUserId);
+            return modalSubmitInteraction.editReply(
+                'Your account has been linked!'
+            );
+        } catch (error) {
+            console.error(error);
+        }
+    }
     private updateAuthToken(html: string) {
         if (!html.includes('name="csrf-token"')) return;
 
@@ -136,6 +151,15 @@ export default class Link extends Command {
                 .querySelector('meta[name="csrf-token"]')
                 ?.getAttribute('content') ?? '';
     }
+
+    // private linkAccounts(username: string, discordId: string) {
+    //     return this.db.gameAccount.update({
+    //         where: { name: username },
+    //         data: {
+    //             discordUserId: discordId,
+    //         },
+    //     });
+    // }
 
     private async sendPN(username: string, message: string, subject: string) {
         const res = await curlRequest(
@@ -155,6 +179,7 @@ export default class Link extends Command {
                 },
             }
         );
+        console.log(res.body);
         this.updateAuthToken(res.body);
         return res;
     }
