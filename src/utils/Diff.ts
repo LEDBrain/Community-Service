@@ -107,7 +107,7 @@ export function format(diff: Difference[]): string {
                     : ''
             )
             .join('')
-            .replace(/```/g, '`​') +
+            .replace(/`/g, '`​') +
         '\n```'
     );
 }

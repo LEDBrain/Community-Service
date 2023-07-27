@@ -32,6 +32,7 @@ export default class MessageUpdate extends Event {
                 text: `Community Service v${version}`,
             })
             .setTimestamp();
+
         if (newMessage.inGuild())
             this.log(newMessage.guild, { embeds: [embed] });
     }
