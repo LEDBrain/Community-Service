@@ -15,7 +15,7 @@ RUN npm ci --omit=dev
 FROM node:18.16.0-alpine
 WORKDIR /home/node/
 COPY --from=cleanup /home/node/ ./
-USER 1000
+USER root
 
 EXPOSE 3000
 
