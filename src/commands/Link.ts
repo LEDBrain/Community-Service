@@ -100,7 +100,11 @@ export default class Link extends Command {
                         'There was an error while creating your One-Time-Password. Please try again later.',
                 });
 
-            const res = await this.sendOTP(username, otp);
+            const res = await this.sendOTP(
+                username,
+                interaction.user.username,
+                otp
+            );
             console.log(res);
             if (res.status !== 200)
                 return interaction.followUp(
@@ -267,12 +271,14 @@ export default class Link extends Command {
         return user;
     }
 
-    private async sendOTP(username: string, otp: OTP) {
+    private async sendOTP(username: string, discordUsername: string, otp: OTP) {
         const response = await this.sendPN(
             username,
             `Hallo ${username},
 
-    Anbei dein Einmalpasswort..
+    Anbei dein Einmalpasswort, um deinen ${
+        this.game
+    }-Account mit deinem Discord-Account (${discordUsername}) zu verbinden:
     ${otp.value}
     Dieses Einmalpasswort ist 20 Minuten gültig (bis ${new Date(
         otp.createdAt.getTime() + 20 * 60 * 1000
@@ -291,8 +297,8 @@ export default class Link extends Command {
     Solltest du kein Einmalpasswort angefordert haben, kannst du diese Nachricht einfach ignorieren.
 
     Viele Grüße
-    Dein UnitedDispatch Team`,
-            'Dein Einmalpasswort'
+    Dein Team vom United Dispatch`,
+            'Dein Einmalpasswort für Discord'
         );
 
         return response;
