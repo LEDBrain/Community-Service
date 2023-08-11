@@ -1,18 +1,18 @@
-FROM node:18.16.0-alpine as build
+FROM node:20.5.1-alpine as build
 WORKDIR /home/node/
 COPY . .
 RUN npm pkg delete scripts.prepare
 RUN npm ci
 RUN npm run build
 
-FROM node:18.16.0-alpine as cleanup
+FROM node:20.5.1-alpine as cleanup
 WORKDIR /home/node/
 COPY --from=build /home/node/package*.json ./
 COPY --from=build /home/node/dist ./dist
 COPY --from=build /home/node/prisma ./prisma
 RUN npm ci --omit=dev
 
-FROM node:18.16.0-alpine
+FROM node:20.5.1-alpine
 WORKDIR /home/node/
 COPY --from=cleanup /home/node/ ./
 USER root
