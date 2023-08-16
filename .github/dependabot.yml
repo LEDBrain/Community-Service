@@ -13,6 +13,17 @@ updates:
           - 'kdev'
       open-pull-requests-limit: 10
       target-branch: 'beta'
+      groups:
+        typescript-eslint:
+          patterns:
+            - "@typescript-eslint/*"
+        prisma:
+          patterns:
+            - "@prisma/client"
+            - "prisma"
+        types:
+          patterns:
+            - "@types/*"
 
     - package-ecosystem: 'github-actions'
       directory: '/'
