@@ -33,7 +33,7 @@
     "dependencies": {
         "@discordjs/rest": "^2.0.1",
         "@hapi/hapi": "^21.3.2",
-        "@prisma/client": "^5.3.0",
+        "@prisma/client": "^5.3.1",
         "@t3-oss/env-core": "^0.6.1",
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.37.56",
@@ -64,7 +64,7 @@
         "eslint": "^8.49.0",
         "husky": "^8.0.3",
         "prettier": "^3.0.3",
-        "prisma": "^5.3.0",
+        "prisma": "^5.3.1",
         "semantic-release": "^22.0.0",
         "ts-node": "^10.9.1",
         "ts-node-dev": "^2.0.0",
