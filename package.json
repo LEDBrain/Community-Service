@@ -39,7 +39,7 @@
         "discord-api-types": "^0.37.60",
         "discord.js": "^14.13.0",
         "dotenv": "^16.3.1",
-        "joi": "^17.10.2",
+        "joi": "^17.11.0",
         "jsdom": "^22.1.0",
         "node-libcurl": "^3.0.0",
         "typesafe-i18n": "^5.26.2",
