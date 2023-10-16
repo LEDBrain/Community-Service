@@ -34,7 +34,7 @@
         "@discordjs/rest": "^2.0.1",
         "@hapi/hapi": "^21.3.2",
         "@prisma/client": "^5.4.2",
-        "@t3-oss/env-core": "^0.7.0",
+        "@t3-oss/env-core": "^0.7.1",
         "cross-env": "^7.0.3",
         "discord-api-types": "^0.37.60",
         "discord.js": "^14.13.0",
