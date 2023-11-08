@@ -55,7 +55,7 @@
         "@tsconfig/node16": "^16.1.1",
         "@types/hapi__catbox": "^10.2.5",
         "@types/jsdom": "^21.1.4",
-        "@types/ms": "^0.7.33",
+        "@types/ms": "^0.7.34",
         "@types/node": "^20.8.10",
         "@types/node-fetch": "^2.6.8",
         "@typescript-eslint/eslint-plugin": "^6.9.1",
