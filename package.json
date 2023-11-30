@@ -46,7 +46,7 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
-        "@crowdin/crowdin-api-client": "^1.28.0",
+        "@crowdin/crowdin-api-client": "^1.28.1",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^25.1.3",
