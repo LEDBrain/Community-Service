@@ -3,3 +3,4 @@ node_modules
 db/database.sqlite
 dist
 .idea
+storage

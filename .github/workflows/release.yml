@@ -3,6 +3,7 @@ on:
     push:
         branches:
             - main
+            - beta
         paths-ignore:
             - 'package*.json'
     repository_dispatch:
@@ -16,7 +17,7 @@ on:
 jobs:
     test:
         name: '🧪 Test and lint'
-        uses: LEDBrain/Community-Service/.github/workflows/development.yml@main
+        uses: ./.github/workflows/development.yml
 
     release-github:
         if: ${{ !contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'skip release') }}
@@ -31,16 +32,16 @@ jobs:
             #       private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
                   persist-credentials: false
                   # token: ${{ steps.generate_token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: '18'
 
             - name: '📦 Install dependencies'
               run: npm ci

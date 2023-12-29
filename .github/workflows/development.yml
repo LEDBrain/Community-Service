@@ -14,12 +14,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: '☁️ checkout repository'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: '18'
 
             - name: '📦 install dependencies'
               run: npm ci
@@ -33,7 +33,7 @@ jobs:
     build-project:
         name: Build and test project
         needs: lint
-        if: "!contains(github.event.head_commit.message, 'skip ci')"
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         runs-on: ubuntu-latest
         env:
             PG_USER: postgres
@@ -57,12 +57,12 @@ jobs:
               run: echo "Database URL $DATABASE_URL; PG_USER $PG_USER; PG_PW $PG_PW; PG_DB $PG_DB"
 
             - name: '☁️ checkout repository'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: '18'
 
             - name: '📦 install dependencies'
               run: npm ci

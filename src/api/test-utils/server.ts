@@ -20,8 +20,8 @@ const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
 };
 
 const server: Hapi.Server = Hapi.server({
-    port: process.env.PORT || 3000,
-    host: process.env.HOST || 'localhost',
+    port: 3000,
+    host: 'localhost',
 });
 
 export async function init() {

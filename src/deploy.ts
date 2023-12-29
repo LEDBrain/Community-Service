@@ -4,6 +4,7 @@ import type Command from './base/Command';
 import fs from 'fs/promises';
 
 import { client } from './index';
+import { env } from './env';
 
 // Load all commands into the client.commands Collection
 const updateCommands = async () => {
@@ -26,9 +27,7 @@ const updateCommands = async () => {
     }
 };
 
-const rest = new REST({ version: '9' }).setToken(
-    process.env.DISCORD_TOKEN as string
-);
+const rest = new REST({ version: '9' }).setToken(env.DISCORD_TOKEN);
 
 // Send all commands to the Discord API
 export default async () => {
@@ -45,8 +44,8 @@ export default async () => {
         //  Use this when in development phase
         await rest.put(
             Routes.applicationGuildCommands(
-                process.env.DISCORD_CLIENT_ID as string,
-                process.env.DISCORD_DEV_GUILD_ID as string
+                env.DISCORD_CLIENT_ID,
+                env.DISCORD_DEV_GUILD_ID
             ),
             {
                 body: commands,
