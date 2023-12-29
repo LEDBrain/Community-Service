@@ -21,6 +21,9 @@ jobs:
               with:
                   node-version: '20'
 
+            - name: 'Install libcurl dev'
+              run: apt-get install libcurl-dev
+
             - name: '📦 install dependencies'
               run: npm ci
 
