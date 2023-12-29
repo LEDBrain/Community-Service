@@ -6,12 +6,14 @@ import type {
 } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
+import { PermissionFlagsBits } from 'discord-api-types/v10';
 
 export default class Warn extends Command {
     constructor() {
         const cmd = new SlashCommandBuilder()
             .setName('warn')
             .setDescription('warn command')
+            .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
             .addUserOption(userOption =>
                 userOption
                     .setName('user')
