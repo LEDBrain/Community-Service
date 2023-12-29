@@ -19,7 +19,7 @@ jobs:
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: '18'
 
             - name: '📦 install dependencies'
               run: npm ci
@@ -62,7 +62,7 @@ jobs:
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: '18'
 
             - name: '📦 install dependencies'
               run: npm ci
