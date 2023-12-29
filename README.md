@@ -1,6 +1,5 @@
-# Discord Bot in Typescript (with an SQLite database)
+# The official Discord Bot for the United Dispatch community Discord
 
-This is an **internal** Repository for creating a Discord Bot in Typescript with an SQLite database.
 
 ### Variables for upload to crowdin
 
