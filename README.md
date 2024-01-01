@@ -1,7 +1,10 @@
 # The official Discord Bot for the United Dispatch community Discord
 
+## ENVs
 
-### Variables for upload to crowdin
+All ENV variables needed can be found in either `prod.env.example` for production environments or `.env.example` for development environemts.
+
+## Variables for upload to crowdin
 
 ```env
 CROWDIN_PAT
