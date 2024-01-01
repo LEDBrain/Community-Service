@@ -1,5 +1,5 @@
 import type { GuildMember, Guild, Message, Interaction } from 'discord.js';
-import { InteractionType } from 'discord.js';
+import { InteractionType, PermissionFlagsBits } from 'discord.js';
 import { ButtonStyle } from 'discord.js';
 import { PermissionsBitField } from 'discord.js';
 import { ActionRowBuilder, ButtonBuilder } from 'discord.js';
@@ -12,6 +12,7 @@ export default class Ban extends Command {
         const cmd = new SlashCommandBuilder()
             .setName('ban')
             .setDescription('Ban command')
+            .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
             .addUserOption(userOption =>
                 userOption
                     .setName('user')
