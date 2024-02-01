@@ -1,7 +1,11 @@
-FROM node:20-alpine as build
+FROM node:20-slim as build
 WORKDIR /home/node/
 COPY . .
 RUN npm pkg delete scripts.prepare
+
+RUN apt update
+RUN apt install -y python3 libcurl4-openssl-dev libssl-dev build-essential
+
 RUN npm ci
 RUN npm run build
 
