@@ -21,7 +21,7 @@ export default class Serverinfo extends Command {
                 {
                     name: 'Serverowner',
                     value: `${(interaction.guild as Guild).members.resolve(
-                        (interaction.guild as Guild).ownerId
+                        await (interaction.guild as Guild).fetchOwner()
                     )}`,
                 },
                 {

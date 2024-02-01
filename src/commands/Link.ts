@@ -90,7 +90,8 @@ export default class Link extends Command {
         await interaction.showModal(modal);
 
         try {
-            await this.login().then(async response => {
+            await this.login().then(async () => {
+                // had "response"
                 // console.log(response);
             });
             const otp = await this.createOTP(username);

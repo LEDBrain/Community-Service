@@ -1,5 +1,6 @@
 import {
     InteractionType,
+    PermissionFlagsBits,
     PermissionsBitField,
     SlashCommandBuilder,
 } from 'discord.js';
@@ -12,6 +13,7 @@ export default class Mute extends Command {
         const cmd = new SlashCommandBuilder()
             .setName('mute')
             .setDescription('Mute command')
+            .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
             .addUserOption(userOption =>
                 userOption
                     .setName('user')

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import type {
     ChatInputCommandInteraction,
     Guild,
@@ -13,6 +13,7 @@ export default class Unmute extends Command {
         const cmd = new SlashCommandBuilder()
             .setName('unmute')
             .setDescription('unmute command')
+            .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
             .addUserOption(userOption =>
                 userOption
                     .setName('user')

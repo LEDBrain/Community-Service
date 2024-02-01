@@ -101,10 +101,10 @@ export function format(diff: Difference[]): string {
                 c.hasOwnProperty('=')
                     ? `\n${c['=']}`
                     : c.hasOwnProperty('+')
-                    ? `\n+ ${c['+']?.replace(/\n/g, '\n + ') ?? ''}`
-                    : c.hasOwnProperty('-')
-                    ? `\n- ${c['-']?.replace(/\n/g, '\n - ') ?? ''}`
-                    : ''
+                      ? `\n+ ${c['+']?.replace(/\n/g, '\n + ') ?? ''}`
+                      : c.hasOwnProperty('-')
+                        ? `\n- ${c['-']?.replace(/\n/g, '\n - ') ?? ''}`
+                        : ''
             )
             .join('')
             .replace(/`/g, '`​') +
