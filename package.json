@@ -62,7 +62,7 @@
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.56.0",
         "husky": "^9.0.10",
-        "node-libcurl": "^3.0.1-0",
+        "node-libcurl": "^4.0.0",
         "prettier": "^3.2.5",
         "prisma": "^5.9.1",
         "semantic-release": "^23.0.2",
