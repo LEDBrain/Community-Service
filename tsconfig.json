@@ -5,11 +5,12 @@
         "sourceMap": true,
         "target": "esnext",
         "noImplicitAny": true,
-        "module": "commonjs",
+        "module": "ES2020",
         "outDir": "./dist",
         "baseUrl": "./src",
         "lib": ["esnext"],
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "moduleResolution": "Bundler"
     },
     "include": ["src/**/*.ts", "src/**/.*.ts"],
     "exclude": ["node_modules"]
