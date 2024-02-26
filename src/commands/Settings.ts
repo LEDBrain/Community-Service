@@ -1,8 +1,9 @@
-import { SlashCommandBuilder } from 'discord.js';
-import type {
-    CommandInteraction,
-    ChatInputCommandInteraction,
+import {
+    ChannelType,
+    PermissionFlagsBits,
+    SlashCommandBuilder,
 } from 'discord.js';
+import type { ChatInputCommandInteraction } from 'discord.js';
 import type { Config } from '../base/Command';
 import Command from '../base/Command';
 
@@ -11,6 +12,7 @@ export default class Ping extends Command {
         const cmd = new SlashCommandBuilder()
             .setName('settings')
             .setDescription('Settings command')
+            .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
             .addSubcommand(subcommand =>
                 subcommand
                     .setName('channels')
@@ -35,7 +37,7 @@ export default class Ping extends Command {
                         channelOption
                             .setName('channel')
                             .setDescription('The channel to set')
-                            .addChannelTypes(0)
+                            .addChannelTypes(ChannelType.GuildText)
                             .setRequired(true)
                     )
             )

@@ -1,8 +1,10 @@
-# Discord Bot in Typescript (with an SQLite database)
+# The official Discord Bot for the United Dispatch community Discord
 
-This is an **internal** Repository for creating a Discord Bot in Typescript with an SQLite database.
+## ENVs
 
-### Variables for upload to crowdin
+All ENV variables needed can be found in either `prod.env.example` for production environments or `.env.example` for development environemts.
+
+## Variables for upload to crowdin
 
 ```env
 CROWDIN_PAT

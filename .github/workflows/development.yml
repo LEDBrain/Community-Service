@@ -15,11 +15,12 @@ jobs:
         steps:
             - name: '☁️ checkout repository'
               uses: actions/checkout@v4
+              uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: '18'
+                  node-version: '20'
 
             - name: '📦 install dependencies'
               run: npm ci
@@ -33,6 +34,7 @@ jobs:
     build-project:
         name: Build and test project
         needs: lint
+        if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         runs-on: ubuntu-latest
         env:
@@ -58,11 +60,12 @@ jobs:
 
             - name: '☁️ checkout repository'
               uses: actions/checkout@v4
+              uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: '18'
+                  node-version: '20'
 
             - name: '📦 install dependencies'
               run: npm ci
