@@ -18,7 +18,7 @@
         "typesafe-i18n": "typesafe-i18n --no-watch",
         "typesafe-i18n:watch": "typesafe-i18n",
         "i18n:export": "ts-node ./src/i18n/export.ts",
-        "prepare": "husky install"
+        "prepare": "husky"
     },
     "repository": {
         "type": "git",
@@ -77,9 +77,6 @@
     },
     "publishConfig": {
         "access": "restricted"
-    },
-    "overrides": {
-        "@sapphire/shapeshift": "3.9.2"
     },
     "overrides": {
         "@sapphire/shapeshift": "3.9.2"
