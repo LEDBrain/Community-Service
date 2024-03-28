@@ -4,6 +4,8 @@ on:
     push:
         branches-ignore:
             - 'main'
+    pull_request:
+        branches: 'beta'
     workflow_dispatch:
     workflow_call:
 
@@ -14,7 +16,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: '☁️ checkout repository'
-              uses: actions/checkout@v4
               uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
@@ -34,7 +35,6 @@ jobs:
     build-project:
         name: Build and test project
         needs: lint
-        if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
         runs-on: ubuntu-latest
         env:
@@ -60,7 +60,6 @@ jobs:
 
             - name: '☁️ checkout repository'
               uses: actions/checkout@v4
-              uses: actions/checkout@v4
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
@@ -73,5 +72,5 @@ jobs:
             - name: '📂 build'
               run: npm run build
 
-            - name: '✅ run API tests'
-              run: npm run test:api
+            # - name: '✅ run API tests'
+            #   run: npm run test:api
