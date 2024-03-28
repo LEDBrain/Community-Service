@@ -11,6 +11,7 @@ permissions:
 
 jobs:
     test:
+        name: '🧪 Test and lint'
         uses: ./.github/workflows/development.yml
 
     release-github:
