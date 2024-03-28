@@ -3,11 +3,12 @@
     "version": "1.5.1-beta.1",
     "description": "A Discord bot in Typescript",
     "main": "dist/index.js",
+    "type": "module",
     "scripts": {
         "build": "rm -rf dist && rm -rf dist && tsc -p tsconfig.json",
         "start": "cross-env NODE_ENV=production && node dist/index.js",
-        "dev": "cross-env NODE_ENV=development && ts-node src/index.ts",
-        "dev:hot": "cross-env NODE_ENV=development && ts-node-dev --respawn --transpile-only src/index.ts",
+        "dev": "cross-env NODE_ENV=development && tsx src/index.ts",
+        "dev:hot": "cross-env NODE_ENV=development && tsx watch src/index.ts",
         "lint": "prettier --write \"src/**/*.ts\" && eslint --fix . --ext .ts",
         "lint:prettier": "prettier --write \"src/**/*.ts\"",
         "lint:eslint": "eslint . --ext .ts",
@@ -17,7 +18,7 @@
         "test:api": "lab --typescript -v",
         "typesafe-i18n": "typesafe-i18n --no-watch",
         "typesafe-i18n:watch": "typesafe-i18n",
-        "i18n:export": "ts-node ./src/i18n/export.ts",
+        "i18n:export": "tsx ./src/i18n/export.ts",
         "prepare": "husky"
     },
     "repository": {
@@ -66,8 +67,7 @@
         "prettier": "^3.2.5",
         "prisma": "^5.11.0",
         "semantic-release": "^23.0.6",
-        "ts-node": "^10.9.2",
-        "ts-node-dev": "^2.0.0",
+        "tsx": "^4.7.1",
         "typescript": "^5.4.3"
     },
     "config": {
