@@ -7,7 +7,9 @@ on:
     repository_dispatch:
 
 permissions:
-    contents: read
+    contents: write
+    issues: write
+    pull-requests: write
 
 jobs:
     test:
@@ -17,25 +19,20 @@ jobs:
     release-github:
         needs: test
         runs-on: ubuntu-latest
-        permissions:
-            contents: write
-            issues: write
-            pull-requests: write
-            id-token: write
+
         steps:
-            # - name: Generate Token
-            #   id: generate_token
-            #   uses: tibdex/github-app-token@v1
-            #   with:
-            #       app_id: ${{ secrets.APP_ID }}
-            #       private_key: ${{ secrets.APP_PRIVATE_KEY }}
+            - name: Generate Token
+              id: app-token
+              uses: actions/create-github-app-token@v1
+              with:
+                  app-id: ${{ secrets.APP_ID }}
+                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
                   persist-credentials: false
-                  # token: ${{ steps.generate_token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
@@ -45,15 +42,11 @@ jobs:
             - name: '📦 Install dependencies'
               run: npm ci
 
-            # - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-            #   run: npm audit signatures
-
             - name: '🚀 Release'
               env:
-                  #   GH_TOKEN: ${{ steps.generate_token.outputs.token }}
                   GIT_AUTHOR_NAME: 'utils-app[bot]'
                   GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
                   GIT_COMMITTER_NAME: 'utils-app[bot]'
                   GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
               run: npx semantic-release --ci
