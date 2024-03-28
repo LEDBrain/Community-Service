@@ -3,7 +3,6 @@ on:
     push:
         branches:
             - main
-            - beta
     repository_dispatch:
 
 permissions:
@@ -16,7 +15,7 @@ jobs:
         name: '🧪 Test and lint'
         uses: ./.github/workflows/development.yml
 
-    release-github:
+    release-please:
         needs: test
         runs-on: ubuntu-latest
 
@@ -33,21 +32,16 @@ jobs:
               with:
                   fetch-depth: 0
                   persist-credentials: false
-                  token: ${{ secrets.PUSH_TOKEN }}
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
 
-            - name: '📦 Install dependencies'
-              run: npm ci
-
-            - name: '🚀 Release'
-              env:
-                  GIT_AUTHOR_NAME: 'utils-app[bot]'
-                  GIT_AUTHOR_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
-                  GIT_COMMITTER_NAME: 'utils-app[bot]'
-                  GIT_COMMITTER_EMAIL: '115021052+utils-app[bot]@users.noreply.github.com'
-                  GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
-              run: npx semantic-release --ci
+            - uses: google-github-actions/release-please-action@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  # this is a built-in strategy in release-please, see "Action Inputs"
+                  # for more options
+                  config-file: release-please-config.json
+                  manifest-file: .release-please-manifest.json
