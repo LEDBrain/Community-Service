@@ -9,6 +9,7 @@ export default class MessageUpdate extends Event {
     }
     public async execute(_: Client, oldMessage: Message, newMessage: Message) {
         if (newMessage.author.bot) return;
+        if (newMessage.content === oldMessage.content) return;
         if (oldMessage.partial) await oldMessage.fetch();
         if (newMessage.partial) await newMessage.fetch();
 
