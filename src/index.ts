@@ -4,8 +4,7 @@ import Client from './base/Client';
 import type Event from './base/Event';
 
 // Load environment variables
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 import { env } from './env';
 
 // Load all locales
@@ -37,14 +36,12 @@ const client = new Client({
 
 // Load event handlers
 (async () => {
-    const eventFiles = (await fs.readdir(__dirname + '/events')).filter(
+    const eventFiles = (await fs.readdir('./src/events')).filter(
         file => file.endsWith('.ts') || file.endsWith('.js')
     );
 
     for (const file of eventFiles) {
-        const event = new (
-            await import(`${__dirname}/events/${file}`)
-        ).default() as Event;
+        const event = new (await import(`./events/${file}`)).default() as Event;
         if (event.once) {
             client.once(event.name, (...args) =>
                 event.execute(client, ...args)
