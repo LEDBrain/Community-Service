@@ -45,3 +45,8 @@ jobs:
                   # for more options
                   config-file: release-please-config.json
                   manifest-file: .release-please-manifest.json
+
+            - name: Trigger Workflows
+              run: |
+                  gh workflow run docker-release.yml
+                  gh workflow run development.yml
