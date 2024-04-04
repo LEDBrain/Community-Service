@@ -12,8 +12,6 @@ export default class MessageUpdate extends Event {
         if (oldMessage.partial) await oldMessage.fetch();
         if (newMessage.partial) await newMessage.fetch();
 
-        const { version } = await import('../../package.json');
-
         const messageDiff = diff(oldMessage.content, newMessage.content);
 
         const formattedDiff = format(messageDiff);
@@ -29,7 +27,7 @@ export default class MessageUpdate extends Event {
             .setDescription(formattedDiff)
             .setColor('Blue')
             .setFooter({
-                text: `Community Service v${version}`,
+                text: `Community Service ${this.version}`,
             })
             .setTimestamp();
 
