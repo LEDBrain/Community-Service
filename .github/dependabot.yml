@@ -12,18 +12,18 @@ updates:
       reviewers:
           - 'kdev'
       open-pull-requests-limit: 10
-      target-branch: 'beta'
+      target-branch: 'dev'
       groups:
-        typescript-eslint:
-          patterns:
-            - "@typescript-eslint/*"
-        prisma:
-          patterns:
-            - "@prisma/client"
-            - "prisma"
-        types:
-          patterns:
-            - "@types/*"
+          typescript-eslint:
+              patterns:
+                  - '@typescript-eslint/*'
+          prisma:
+              patterns:
+                  - '@prisma/client'
+                  - 'prisma'
+          types:
+              patterns:
+                  - '@types/*'
 
     - package-ecosystem: 'github-actions'
       directory: '/'
@@ -36,16 +36,15 @@ updates:
           include: 'scope'
       reviewers:
           - 'kdev'
-      target-branch: 'beta'
-      
+      target-branch: 'dev'
+
     - package-ecosystem: 'docker'
       directory: '/'
       schedule:
           interval: 'daily'
       assignees:
-         - 'kdev'
+          - 'kdev'
       commit-message:
           prefix: 'chore'
           include: 'scope'
-      target-branch: 'beta'
-    
+      target-branch: 'dev'

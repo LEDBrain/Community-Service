@@ -2,16 +2,13 @@
 
 import Hapi from '@hapi/hapi';
 import fs from 'fs/promises';
-import path from 'path';
 
 const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
     const plugins: Hapi.Plugin<unknown>[] = [];
-    const files = await fs.readdir(path.join(__dirname, `/plugins`));
+    const files = await fs.readdir('./plugins');
     for await (const file of files) {
         if (file.endsWith('.js') || file.endsWith('.ts')) {
-            const plugin = (
-                await import(path.join(__dirname, `/plugins/${file}`))
-            ).default;
+            const plugin = (await import(`./plugins/${file}`)).default;
             plugins.push(plugin);
         }
     }

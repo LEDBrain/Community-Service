@@ -8,13 +8,13 @@ import { env } from './env';
 
 // Load all commands into the client.commands Collection
 const updateCommands = async () => {
-    const commandFiles = (await fs.readdir(__dirname + '/commands')).filter(
+    const commandFiles = (await fs.readdir('./src/commands')).filter(
         file => file.endsWith('.ts') || file.endsWith('.js')
     );
 
     for (const file of commandFiles) {
         const command = new (
-            await import(`${__dirname}/commands/${file}`)
+            await import(`./commands/${file}`)
         ).default() as Command;
         console.log({
             name: command.name,

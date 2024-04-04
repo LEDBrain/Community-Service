@@ -10,6 +10,7 @@ import type {
     TranslationFunctions,
 } from '../i18n/i18n-types';
 import { i18nObject } from '../i18n/i18n-util';
+import packageJson from '../../package.json';
 
 export default abstract class Base {
     db: typeof prisma;
@@ -45,5 +46,8 @@ export default abstract class Base {
     }
     async setLanguage(locale?: Locales) {
         this.t = i18nObject(locale ?? 'en');
+    }
+    get version() {
+        return `v${packageJson.version}`;
     }
 }

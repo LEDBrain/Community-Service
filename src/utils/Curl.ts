@@ -18,8 +18,8 @@ type RequestOptions = {
     postFields?: ConstructorParameters<typeof URLSearchParams>[0];
 };
 
-fs.mkdirSync(path.resolve(__dirname, '../../', 'storage'), { recursive: true });
-const cookieJar = path.resolve(__dirname, '../../', 'storage', 'cookies.txt');
+fs.mkdirSync(path.resolve('./../../', 'storage'), { recursive: true });
+const cookieJar = path.resolve('./../../', 'storage', 'cookies.txt');
 
 export const curlRequest = (
     path: string,
