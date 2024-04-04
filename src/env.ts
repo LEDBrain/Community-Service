@@ -25,6 +25,8 @@ export const env = createEnv({
         GAME_DE_USERNAME: z.string().min(1),
         GAME_DE_PASSWORD: z.string().min(1),
     },
-    runtimeEnv: process.env,
+    runtimeEnv: {
+        ...process.env,
+    },
     skipValidation: process.env.NODE_ENV === 'development',
 });
