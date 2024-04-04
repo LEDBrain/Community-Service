@@ -66,7 +66,7 @@
         "node-libcurl": "^4.0.0",
         "prettier": "^3.2.5",
         "prisma": "^5.11.0",
-        "semantic-release": "^23.0.6",
+        "semantic-release": "^23.0.7",
         "tsx": "^4.7.1",
         "typescript": "^5.4.3"
     },
