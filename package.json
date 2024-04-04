@@ -64,7 +64,7 @@
         "node-libcurl": "^4.0.0",
         "prettier": "^3.2.5",
         "prisma": "^5.12.1",
-        "tsx": "^4.7.1",
+        "tsx": "^4.7.2",
         "typescript": "^5.4.4"
     },
     "config": {
