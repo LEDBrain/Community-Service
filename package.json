@@ -65,7 +65,7 @@
         "prettier": "^3.2.5",
         "prisma": "^5.12.1",
         "tsx": "^4.7.1",
-        "typescript": "^5.4.3"
+        "typescript": "^5.4.4"
     },
     "config": {
         "commitizen": {
