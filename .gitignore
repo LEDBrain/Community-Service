@@ -4,3 +4,4 @@ db/database.sqlite
 dist
 .idea
 storage
+coverage
