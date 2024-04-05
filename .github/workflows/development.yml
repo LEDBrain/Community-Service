@@ -72,5 +72,5 @@ jobs:
             - name: '📂 build'
               run: npm run build
 
-            # - name: '✅ run API tests'
-            #   run: npm run test:api
+            - name: '✅ run API tests'
+              run: npm run test:api
