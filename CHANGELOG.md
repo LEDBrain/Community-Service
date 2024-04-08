@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.2](https://github.com/LEDBrain/Community-Service/compare/v1.7.1...v1.7.2) (2024-04-08)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group ([51953f8](https://github.com/LEDBrain/Community-Service/commit/51953f8b3e2f070ba6c68b89850b92726ead6c11))
+* **deps:** bump docker/setup-buildx-action from 3.2.0 to 3.3.0 ([07b0226](https://github.com/LEDBrain/Community-Service/commit/07b022651f646f7db010693b57ff7dd3b39c266e))
+
+
+### CI Changes
+
+* bump cosign version ([3914002](https://github.com/LEDBrain/Community-Service/commit/3914002a9ef18ecdf348729faa07ffe93afc83f1))
+
 ## [1.7.1](https://github.com/LEDBrain/Community-Service/compare/v1.7.0...v1.7.1) (2024-04-05)
 
 
