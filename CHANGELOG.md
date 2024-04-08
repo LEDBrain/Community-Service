@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.7.1](https://github.com/LEDBrain/Community-Service/compare/v1.7.0...v1.7.1) (2024-04-05)
+
+
+### Bug Fixes
+
+* **tests:** api tests ([e2d2018](https://github.com/LEDBrain/Community-Service/commit/e2d2018f706d019f7213fcc516847fef79ea630b))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @crowdin/crowdin-api-client from 1.31.0 to 1.33.0 ([11f630d](https://github.com/LEDBrain/Community-Service/commit/11f630d1414fe64d02ffaa60377740c296b232f3))
+* **deps-dev:** bump @types/node in the types group ([9a60278](https://github.com/LEDBrain/Community-Service/commit/9a6027839c47d29ae9245a60ff405729354c81ae))
+* **deps-dev:** bump tsx from 4.7.1 to 4.7.2 ([9aba393](https://github.com/LEDBrain/Community-Service/commit/9aba393222bf5f17db3841e9d8ea9efda5331909))
+* **deps-dev:** bump typescript from 5.4.3 to 5.4.4 ([e9c4c26](https://github.com/LEDBrain/Community-Service/commit/e9c4c26695946fa177a9db2837a783344d5ae0ab))
+* **deps:** bump @hapi/hapi from 21.3.7 to 21.3.8 ([92340ab](https://github.com/LEDBrain/Community-Service/commit/92340abb83f7c90a42f3d58aa11a19768cc50dbd))
+* **deps:** bump discord-api-types from 0.37.76 to 0.37.79 ([047df4b](https://github.com/LEDBrain/Community-Service/commit/047df4b725f53e9c5f0d978ecef77927f2985ccf))
+* **deps:** bump joi from 17.12.2 to 17.12.3 ([0f1de9f](https://github.com/LEDBrain/Community-Service/commit/0f1de9fae6ec7aed5c8c6bb741c3e1e26e674a8b))
+* **deps:** bump the prisma group with 2 updates ([98db5ef](https://github.com/LEDBrain/Community-Service/commit/98db5ef9a280c9c04d53122e9893ae703f8c5655))
+
 ## [1.7.0](https://github.com/LEDBrain/Community-Service/compare/v1.6.1...v1.7.0) (2024-04-04)
 
 
