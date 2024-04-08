@@ -54,7 +54,7 @@
         "@types/hapi__catbox": "^10.2.6",
         "@types/jsdom": "^21.1.6",
         "@types/ms": "^0.7.34",
-        "@types/node": "^20.12.4",
+        "@types/node": "^20.12.5",
         "@types/node-fetch": "^2.6.11",
         "@typescript-eslint/eslint-plugin": "^7.4.0",
         "@typescript-eslint/parser": "^7.4.0",
@@ -78,5 +78,10 @@
     },
     "overrides": {
         "@sapphire/shapeshift": "3.9.2"
+    },
+    "optionalDependencies": {
+        "bufferutil": "^4.0.8",
+        "utf-8-validate": "^6.0.3",
+        "zlib-sync": "^0.1.9"
     }
 }

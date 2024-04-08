@@ -50,7 +50,6 @@ const client = new Client({
             client.on(event.name, (...args) => event.execute(client, ...args));
         }
     }
-    //
 })();
 
 client.login(env.DISCORD_TOKEN).then(() => import('./api/server'));
