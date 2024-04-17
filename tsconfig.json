@@ -10,7 +10,8 @@
         "baseUrl": "./src",
         "lib": ["esnext"],
         "resolveJsonModule": true,
-        "moduleResolution": "Bundler"
+        "moduleResolution": "Bundler",
+        "isolatedModules": true
     },
     "include": ["src/**/*.ts", "src/**/.*.ts"],
     "exclude": ["node_modules"]

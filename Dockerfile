@@ -30,4 +30,4 @@ ENV DATABASE_URL $DATABASE_URL
 ENV PORT 3000
 ENV HOST $HOSTNAME
 
-CMD npm run migrate:prod && node dist/src/index.js
+CMD npm run migrate:prod && node dist/index.js
