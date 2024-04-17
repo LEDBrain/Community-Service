@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.8.0](https://github.com/LEDBrain/Community-Service/compare/v1.7.2...v1.8.0) (2024-04-17)
+
+
+### Features
+
+* **events/VoiceStateUpdate:** Add join, leave and move logs ([d409e7a](https://github.com/LEDBrain/Community-Service/commit/d409e7a19c35b25596e06998a934a3a66ce2eff4))
+
+
+### Bug Fixes
+
+* **build:** docker build and general build use esbuild now ([fefd540](https://github.com/LEDBrain/Community-Service/commit/fefd5403bbdba8c8b70e37764e25b5fb3115549a))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @crowdin/crowdin-api-client from 1.33.0 to 1.33.1 ([74b6cb1](https://github.com/LEDBrain/Community-Service/commit/74b6cb197d0d13942c3401bf226fc49f3e947313))
+* **deps-dev:** bump @types/node in the types group ([68d0ef3](https://github.com/LEDBrain/Community-Service/commit/68d0ef36c367c1b9dd7a58e7b8ce2bc9401e6ab4))
+* **deps-dev:** bump @types/node in the types group ([8c8a101](https://github.com/LEDBrain/Community-Service/commit/8c8a10153a91cb78e0843a2a3c03a96e57c2e8cf))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([ea0f63c](https://github.com/LEDBrain/Community-Service/commit/ea0f63c33d5efb20d73f58ead47e8077c5ec701a))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([240e486](https://github.com/LEDBrain/Community-Service/commit/240e486c529bb711635f6794c8a92836a49b6057))
+* **deps-dev:** bump typescript from 5.4.4 to 5.4.5 ([d86e263](https://github.com/LEDBrain/Community-Service/commit/d86e263f009a56d61c7cd785fce90cb4e06cfa61))
+* **deps:** bump @hapi/hapi from 21.3.8 to 21.3.9 ([fe0fb3b](https://github.com/LEDBrain/Community-Service/commit/fe0fb3bf3d1162070cd62263215eb63a9f84585f))
+* fix start script ([524878b](https://github.com/LEDBrain/Community-Service/commit/524878b8c3b0e79386ecd2e066d8f7ef6e7151e5))
+
 ## [1.7.2](https://github.com/LEDBrain/Community-Service/compare/v1.7.1...v1.7.2) (2024-04-08)
 
 
