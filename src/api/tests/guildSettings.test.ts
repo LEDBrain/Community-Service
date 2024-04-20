@@ -2,8 +2,8 @@
 
 import Lab from '@hapi/lab';
 import { expect } from '@hapi/code';
-const { afterEach, beforeEach, describe, it, experiment } = (exports.lab =
-    Lab.script());
+const { afterEach, beforeEach, describe, it, experiment } = Lab.script();
+export const lab = Lab.script();
 import { init } from '../test-utils/server';
 import type { Server } from '@hapi/hapi';
 
