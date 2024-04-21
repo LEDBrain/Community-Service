@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.8.1](https://github.com/LEDBrain/Community-Service/compare/v1.8.0...v1.8.1) (2024-04-21)
+
+
+### Bug Fixes
+
+* **build:** build cannot find files ([580c1ca](https://github.com/LEDBrain/Community-Service/commit/580c1cab9d5503c817904ccefe8bc15710b65c88))
+* **tests:** invalid export ([86523a9](https://github.com/LEDBrain/Community-Service/commit/86523a9a64cfd5a44375073cdf6b7b563640ea93))
+
+
+### Miscellaneous
+
+* add `.DS_STORE` to gitignore ([797243f](https://github.com/LEDBrain/Community-Service/commit/797243f124e1cb5a7f322a36f91a1f0a9d65f028))
+* **deps:** bump tar in the npm_and_yarn group across 1 directory ([3de0615](https://github.com/LEDBrain/Community-Service/commit/3de0615190ea848538961112a961bece8a47dbe4))
+* **deps:** bump zod from 3.22.4 to 3.22.5 ([16a4eb5](https://github.com/LEDBrain/Community-Service/commit/16a4eb5c7979647f303ded9c32759f7437242c6f))
+* **deps:** promote node-libcurl to dep from devDep ([6538525](https://github.com/LEDBrain/Community-Service/commit/6538525fac88c6b5a1ad593e0f52a50743ee5f3e))
+
 ## [1.8.0](https://github.com/LEDBrain/Community-Service/compare/v1.7.2...v1.8.0) (2024-04-17)
 
 
