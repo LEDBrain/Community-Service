@@ -5,3 +5,4 @@ dist
 .idea
 storage
 coverage
+.DS_Store
