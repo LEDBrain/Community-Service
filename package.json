@@ -44,7 +44,7 @@
         "jsdom": "^24.0.0",
         "node-libcurl": "^4.0.0",
         "typesafe-i18n": "^5.26.2",
-        "zod": "^3.23.3"
+        "zod": "^3.23.4"
     },
     "devDependencies": {
         "@crowdin/crowdin-api-client": "^1.33.1",
