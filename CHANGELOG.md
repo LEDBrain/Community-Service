@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.3](https://github.com/LEDBrain/Community-Service/compare/v1.8.2...v1.8.3) (2024-04-25)
+
+
+### Bug Fixes
+
+* missing ".js" ([b62730a](https://github.com/LEDBrain/Community-Service/commit/b62730a11b84e5ce081511557a6b15c50ade823b))
+
+
+### Miscellaneous
+
+* **release-please:** add Changelog sections ([486b3b5](https://github.com/LEDBrain/Community-Service/commit/486b3b5e4580bd9ba79772635a8d000d4f65958c))
+
 ## [1.8.2](https://github.com/LEDBrain/Community-Service/compare/v1.8.1...v1.8.2) (2024-04-25)
 
 
