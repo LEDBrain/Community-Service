@@ -5,7 +5,7 @@ import type Event from './base/Event.js';
 
 // Load environment variables
 import 'dotenv/config';
-import { env } from './env';
+import { env } from './env.js';
 
 // Create discord client
 const client = new Client({
