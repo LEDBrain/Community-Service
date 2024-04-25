@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.2](https://github.com/LEDBrain/Community-Service/compare/v1.8.1...v1.8.2) (2024-04-25)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([4ef7fae](https://github.com/LEDBrain/Community-Service/commit/4ef7faea834eda60c3d3ac979e06dcefa49333f7))
+* **deps:** bump @t3-oss/env-core from 0.9.2 to 0.10.1 ([6fb2690](https://github.com/LEDBrain/Community-Service/commit/6fb2690758aa7394858ff29285881416badf9312))
+* **deps:** bump discord-api-types from 0.37.79 to 0.37.81 ([2942bb9](https://github.com/LEDBrain/Community-Service/commit/2942bb9da22c60e670f86ac230e7e727e046f5f0))
+* **deps:** bump joi from 17.12.3 to 17.13.0 ([91eef87](https://github.com/LEDBrain/Community-Service/commit/91eef87da66e1a81f84ce2fdbcaacdf3d442c0dc))
+* **deps:** bump the prisma group with 2 updates ([ba0cab4](https://github.com/LEDBrain/Community-Service/commit/ba0cab43dfbc3ee19255c6989ebfa53bf593313e))
+* **deps:** bump zod from 3.22.5 to 3.23.3 ([41c2a60](https://github.com/LEDBrain/Community-Service/commit/41c2a601dff0b964d878827ea88b1e929cf2590e))
+* **deps:** bump zod from 3.23.3 to 3.23.4 ([b610ecc](https://github.com/LEDBrain/Community-Service/commit/b610ecc920e51dea09c7740a327007713f85c0a3))
+
 ## [1.8.1](https://github.com/LEDBrain/Community-Service/compare/v1.8.0...v1.8.1) (2024-04-21)
 
 
