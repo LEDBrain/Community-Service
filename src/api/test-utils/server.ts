@@ -1,5 +1,5 @@
 import Hapi from '@hapi/hapi';
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
 
 const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
     const plugins: Hapi.Plugin<unknown>[] = [];

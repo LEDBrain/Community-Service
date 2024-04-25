@@ -14,7 +14,7 @@
         "lint:eslint": "eslint . --ext .ts",
         "commit": "cz",
         "migrate:prod": "prisma migrate deploy",
-        "test:api": "c8 lab --typescript -v",
+        "test:api": "npm run build && c8 lab -v",
         "prepare": "husky"
     },
     "repository": {
