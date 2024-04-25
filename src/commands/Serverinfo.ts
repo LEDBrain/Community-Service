@@ -1,9 +1,8 @@
 import type { ChatInputCommandInteraction, Guild } from 'discord.js';
-import { ChannelType } from 'discord.js';
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
-import { Colors, Date as DateUtils } from '../utils';
+import { ChannelType, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
+import { Colors, Date as DateUtils } from '../utils/index.js';
 
 export default class Serverinfo extends Command {
     constructor() {

@@ -1,5 +1,4 @@
 import type { OTP } from '@prisma/client';
-import crypto from 'crypto';
 import type { ChatInputCommandInteraction } from 'discord.js';
 import {
     ActionRowBuilder,
@@ -10,10 +9,11 @@ import {
     inlineCode,
 } from 'discord.js';
 import { JSDOM } from 'jsdom';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
-import { env } from '../env';
-import { curlRequest } from '../utils';
+import crypto from 'node:crypto';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
+import { env } from '../env.js';
+import { curlRequest } from '../utils/index.js';
 
 const GAME_SERVERS = {
     de_DE: {

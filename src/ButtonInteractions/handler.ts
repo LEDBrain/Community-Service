@@ -1,6 +1,6 @@
-import fs from 'fs/promises';
 import type { ButtonInteraction } from 'discord.js';
-import type InteractionHandler from '../base/InteractionHandler';
+import fs from 'node:fs/promises';
+import type InteractionHandler from '../base/InteractionHandler.js';
 
 export default async (button: ButtonInteraction) => {
     const buttonFiles = (await fs.readdir('./'))
@@ -19,7 +19,7 @@ export default async (button: ButtonInteraction) => {
     }
     (
         new (
-            await import(`./${button.customId}`)
+            await import(`./${button.customId}.js`)
         ).default() as InteractionHandler
     ).execute(button);
 };

@@ -1,7 +1,7 @@
-import Event from '../base/Event';
 import { EmbedBuilder, messageLink, type Message } from 'discord.js';
-import type Client from '../base/Client';
-import { diff, format } from '../utils/Diff';
+import type Client from '../base/Client.js';
+import Event from '../base/Event.js';
+import { diff, format } from '../utils/Diff.js';
 
 export default class MessageUpdate extends Event {
     constructor() {

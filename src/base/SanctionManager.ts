@@ -1,5 +1,5 @@
-import { prisma } from './Prisma';
 import type { SanctionType } from '@prisma/client';
+import { prisma } from './Prisma.js';
 
 export default class SanctionManager {
     private member: string;

@@ -1,7 +1,7 @@
 import type { Curl, HeaderInfo } from 'node-libcurl';
 import { Curl as CURL } from 'node-libcurl';
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 
 interface CurlResponse {
     status: number;

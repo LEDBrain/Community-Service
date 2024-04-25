@@ -1,25 +1,16 @@
 import type { GuildSettings } from '@prisma/client';
-import { ChannelType } from 'discord.js';
 import type { Guild, TextChannel } from 'discord.js';
-import { prisma } from './Prisma';
-import SanctionManager from './SanctionManager';
-import { loadNamespaceAsync } from '../i18n/i18n-util.async';
-import type {
-    Locales,
-    Namespaces,
-    TranslationFunctions,
-} from '../i18n/i18n-types';
-import { i18nObject } from '../i18n/i18n-util';
+import { ChannelType } from 'discord.js';
 import packageJson from '../../package.json';
+import { prisma } from './Prisma.js';
+import SanctionManager from './SanctionManager';
 
 export default abstract class Base {
     db: typeof prisma;
     Sanction: typeof SanctionManager;
-    t: TranslationFunctions;
     constructor() {
         this.db = prisma;
         this.Sanction = SanctionManager;
-        this.t = i18nObject('en');
     }
     async getGuildSettings(guildId: string): Promise<GuildSettings | null> {
         return await this.db.guildSettings.findUnique({
@@ -40,12 +31,6 @@ export default abstract class Base {
         if (!channel || channel.type !== ChannelType.GuildText) return;
 
         return await channel.send(options);
-    }
-    async loadNS(locale: Locales, ns: Namespaces) {
-        await loadNamespaceAsync(locale, ns);
-    }
-    async setLanguage(locale?: Locales) {
-        this.t = i18nObject(locale ?? 'en');
     }
     get version() {
         return `v${packageJson.version}`;

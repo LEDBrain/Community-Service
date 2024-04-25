@@ -1,10 +1,11 @@
 // This file is optional since this uses
 // /-Commands
 
-import Event from '../base/Event';
 import type { Message } from 'discord.js';
 import { ChannelType } from 'discord.js';
-import type Client from '../base/Client';
+import type Client from '../base/Client.js';
+import Event from '../base/Event.js';
+
 export default class MessageCreate extends Event {
     constructor() {
         super({ name: 'messageCreate' });

@@ -1,5 +1,3 @@
-'use strict';
-
 import Hapi from '@hapi/hapi';
 import fs from 'fs/promises';
 

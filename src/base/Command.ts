@@ -1,7 +1,7 @@
 import type { Interaction, SlashCommandBuilder } from 'discord.js';
-import util from 'util';
 import type { TimerOptions } from 'node:timers';
-import Base from './Base';
+import util from 'node:util';
+import Base from './Base.js';
 const wait = util.promisify(setTimeout);
 
 export interface Config {

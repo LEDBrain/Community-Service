@@ -1,7 +1,7 @@
 import type { VoiceState } from 'discord.js';
-import { EmbedBuilder, Events, bold } from 'discord.js';
-import type Client from '../base/Client';
-import Event from '../base/Event';
+import { EmbedBuilder, Events } from 'discord.js';
+import type Client from '../base/Client.js';
+import Event from '../base/Event.js';
 
 export default class VoiceStateUpdate extends Event {
     constructor() {

@@ -1,5 +1,5 @@
 import type { ButtonInteraction } from 'discord.js';
-import Base from './Base';
+import Base from './Base.js';
 
 export default abstract class InteractionHandler extends Base {
     constructor() {

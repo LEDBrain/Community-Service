@@ -1,11 +1,11 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import type {
+    ChatInputCommandInteraction,
     Guild,
     GuildMember,
-    ChatInputCommandInteraction,
 } from 'discord.js';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
+import { PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
 
 export default class Warn extends Command {
     constructor() {

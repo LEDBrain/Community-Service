@@ -1,7 +1,7 @@
-import type { GuildMember } from 'discord.js';
 import type Hapi from '@hapi/hapi';
-import { client } from '../../index';
+import type { GuildMember } from 'discord.js';
 import Joi from 'joi';
+import { client } from '../../index.js';
 
 const botAppearancePlugin = {
     name: 'app/botAppearance',

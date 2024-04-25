@@ -1,7 +1,7 @@
-import Event from '../base/Event';
 import type { GuildMember } from 'discord.js';
 import { ChannelType } from 'discord.js';
-import type Client from '../base/Client';
+import type Client from '../base/Client.js';
+import Event from '../base/Event.js';
 
 export default class GuildMemberAdd extends Event {
     constructor() {

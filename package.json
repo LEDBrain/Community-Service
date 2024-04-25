@@ -2,7 +2,7 @@
     "name": "community-service",
     "version": "1.8.1",
     "description": "A Discord bot in Typescript",
-    "main": "dist/index.js",
+    "main": "dist/src/index.js",
     "type": "module",
     "scripts": {
         "build": "rimraf dist && node build/run-esbuild.js",
@@ -13,12 +13,8 @@
         "lint:prettier": "prettier --write \"src/**/*.ts\"",
         "lint:eslint": "eslint . --ext .ts",
         "commit": "cz",
-        "semantic-release": "semantic-release",
         "migrate:prod": "prisma migrate deploy",
         "test:api": "c8 lab --typescript -v",
-        "typesafe-i18n": "typesafe-i18n --no-watch",
-        "typesafe-i18n:watch": "typesafe-i18n",
-        "i18n:export": "tsx ./src/i18n/export.ts",
         "prepare": "husky"
     },
     "repository": {
@@ -43,11 +39,9 @@
         "joi": "^17.13.0",
         "jsdom": "^24.0.0",
         "node-libcurl": "^4.0.0",
-        "typesafe-i18n": "^5.26.2",
         "zod": "^3.23.4"
     },
     "devDependencies": {
-        "@crowdin/crowdin-api-client": "^1.33.1",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^25.2.0",

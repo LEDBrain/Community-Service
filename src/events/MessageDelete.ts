@@ -1,7 +1,7 @@
 import type { Guild, GuildAuditLogsEntry } from 'discord.js';
 import { AuditLogEvent, EmbedBuilder, Events, channelLink } from 'discord.js';
-import type Client from '../base/Client';
-import Event from '../base/Event';
+import type Client from '../base/Client.js';
+import Event from '../base/Event.js';
 
 export default class MessageDelete extends Event {
     constructor() {

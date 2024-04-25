@@ -1,11 +1,16 @@
-import type { GuildMember, Guild, Message, Interaction } from 'discord.js';
-import { InteractionType, PermissionFlagsBits } from 'discord.js';
-import { ButtonStyle } from 'discord.js';
-import { PermissionsBitField } from 'discord.js';
-import { ActionRowBuilder, ButtonBuilder } from 'discord.js';
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
+import type { Guild, GuildMember, Interaction, Message } from 'discord.js';
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    EmbedBuilder,
+    InteractionType,
+    PermissionFlagsBits,
+    PermissionsBitField,
+    SlashCommandBuilder,
+} from 'discord.js';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
 
 export default class Ban extends Command {
     constructor() {
@@ -73,9 +78,7 @@ export default class Ban extends Command {
             )
         )
             return interaction.reply({
-                content: this.t.commands.ban.error_noPerms({
-                    member: member.toString(),
-                }), //`You cannot ban ${member.toString()}`,
+                content: `You cannot ban ${member.toString()}`,
                 ephemeral: true,
             });
 
