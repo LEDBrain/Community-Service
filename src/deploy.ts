@@ -1,10 +1,10 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import type Command from './base/Command';
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
+import type Command from './base/Command.js';
 
-import { client } from './index';
-import { env } from './env';
+import { env } from './env.js';
+import { client } from './index.js';
 
 // Load all commands into the client.commands Collection
 const updateCommands = async () => {

@@ -1,7 +1,7 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
 
 export default class Ping extends Command {
     constructor() {

@@ -1,11 +1,9 @@
-'use strict';
-
-import Lab from '@hapi/lab';
 import { expect } from '@hapi/code';
+import type { Server } from '@hapi/hapi';
+import Lab from '@hapi/lab';
+import { init } from '../test-utils/server.js';
 const { afterEach, beforeEach, describe, it, experiment } = Lab.script();
 export const lab = Lab.script();
-import { init } from '../test-utils/server';
-import type { Server } from '@hapi/hapi';
 
 experiment('Guild Settings Tests', () => {
     describe('GET /guildSettings/${id} with no ID', () => {

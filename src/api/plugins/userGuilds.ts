@@ -1,7 +1,7 @@
 import type Hapi from '@hapi/hapi';
 import type { Guild } from 'discord.js';
 import Joi from 'joi';
-import { client } from '../../index';
+import { client } from '../../index.js';
 
 const userGuildsPlugin = {
     name: 'app/userGuilds',

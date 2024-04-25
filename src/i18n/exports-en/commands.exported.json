@@ -1,5 +1,0 @@
-{
-    "ban": {
-        "error_noPerms": "You cannot ban {member: string}"
-    }
-}

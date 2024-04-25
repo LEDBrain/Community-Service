@@ -1,5 +1,5 @@
-import Base from './Base';
-import type Client from './Client';
+import Base from './Base.js';
+import type Client from './Client.js';
 
 export interface EventConfig {
     name: string;

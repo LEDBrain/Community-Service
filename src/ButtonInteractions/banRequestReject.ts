@@ -1,12 +1,11 @@
-import InteractionHandler from '../base/InteractionHandler';
 import type {
     ButtonInteraction,
     Guild,
     GuildMember,
     Message,
 } from 'discord.js';
-import { PermissionsBitField } from 'discord.js';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, PermissionsBitField } from 'discord.js';
+import InteractionHandler from '../base/InteractionHandler.js';
 
 export default class BanRequestReject extends InteractionHandler {
     constructor() {

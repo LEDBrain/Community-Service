@@ -1,9 +1,9 @@
 import type { CommandInteraction, Guild, Interaction } from 'discord.js';
-import Event from '../base/Event';
-import type Client from '../base/Client';
-import { prisma } from '../base/Prisma';
-import buttonHandler from '../ButtonInteractions/handler';
-import type Command from '../base/Command';
+import buttonHandler from '../ButtonInteractions/handler.js';
+import type Client from '../base/Client.js';
+import type Command from '../base/Command.js';
+import Event from '../base/Event.js';
+import { prisma } from '../base/Prisma.js';
 
 export default class InteractionCreate extends Event {
     constructor() {

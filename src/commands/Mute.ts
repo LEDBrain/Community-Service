@@ -1,12 +1,12 @@
+import type { Guild, GuildMember, Interaction, Role } from 'discord.js';
 import {
     InteractionType,
     PermissionFlagsBits,
     PermissionsBitField,
     SlashCommandBuilder,
 } from 'discord.js';
-import type { Guild, GuildMember, Role, Interaction } from 'discord.js';
-import type { Config } from '../base/Command';
-import Command from '../base/Command';
+import type { Config } from '../base/Command.js';
+import Command from '../base/Command.js';
 
 export default class Mute extends Command {
     constructor() {

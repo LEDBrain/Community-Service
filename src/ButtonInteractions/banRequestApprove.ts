@@ -1,4 +1,4 @@
-import InteractionHandler from '../base/InteractionHandler';
+import type { BanRequest, GuildSettings } from '@prisma/client';
 import type {
     ButtonInteraction,
     EmbedField,
@@ -7,7 +7,7 @@ import type {
     Message,
 } from 'discord.js';
 import { EmbedBuilder, PermissionsBitField } from 'discord.js';
-import type { BanRequest, GuildSettings } from '@prisma/client';
+import InteractionHandler from '../base/InteractionHandler.js';
 
 export default class BanRequestApprove extends InteractionHandler {
     async execute(button: ButtonInteraction) {
@@ -31,14 +31,12 @@ export default class BanRequestApprove extends InteractionHandler {
         if (!banRequest) return button.deferUpdate(); // how did this even happen?
         if (banRequest.moderatorId === (button.member as GuildMember).id)
             return button.reply({
-                content:
-                    this.t.ButtonInteractions.banRequestApprove.error_noOwnApproval(),
+                content: 'You cannot approve your own ban request',
                 ephemeral: true,
             });
         if (banRequest.approved_by.includes((button.member as GuildMember).id))
             return button.reply({
-                content:
-                    this.t.ButtonInteractions.banRequestApprove.error_alreadyApproved(),
+                content: 'You have already approved this ban request',
                 ephemeral: true,
             });
 
@@ -53,7 +51,7 @@ export default class BanRequestApprove extends InteractionHandler {
         if (!guildSettings?.banApprovalsNeeded)
             return button.reply({
                 content:
-                    this.t.ButtonInteractions.banRequestApprove.error_guildSettingsError(),
+                    'There seems to be an issue regarding this guilds settings. Please contact an admin of this server.',
                 ephemeral: true,
             });
 

@@ -1,15 +1,11 @@
 import { GatewayIntentBits, Options } from 'discord.js';
-import fs from 'fs/promises';
-import Client from './base/Client';
-import type Event from './base/Event';
+import fs from 'node:fs/promises';
+import Client from './base/Client.js';
+import type Event from './base/Event.js';
 
 // Load environment variables
 import 'dotenv/config';
 import { env } from './env';
-
-// Load all locales
-import { loadAllLocales } from './i18n/i18n-util.sync';
-loadAllLocales();
 
 // Create discord client
 const client = new Client({
@@ -52,6 +48,6 @@ const client = new Client({
     }
 })();
 
-client.login(env.DISCORD_TOKEN).then(() => import('./api/server'));
+client.login(env.DISCORD_TOKEN).then(() => import('./api/server.js'));
 
 export { client };
