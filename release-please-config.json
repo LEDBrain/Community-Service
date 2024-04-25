@@ -16,7 +16,19 @@
                     "section": "Miscellaneous",
                     "hidden": false
                 },
-                { "type": "ci", "section": "CI Changes", "hidden": false }
+                { "type": "ci", "section": "CI Changes", "hidden": false },
+                {
+                    "type": "refactor",
+                    "section": "Refactored Code",
+                    "hidden": false
+                },
+                {
+                    "type": "docs",
+                    "section": "Documentation changes",
+                    "hidden": false
+                },
+                { "type": "test", "section": "Test changes", "hidden": false },
+                { "type": "build", "section": "Build changes" }
             ]
         }
     },
