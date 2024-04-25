@@ -7,7 +7,6 @@ import type Event from './base/Event.js';
 import 'dotenv/config';
 import { env } from './env';
 
-
 // Create discord client
 const client = new Client({
     intents: [
