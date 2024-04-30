@@ -1,4 +1,4 @@
-FROM node:20-slim as build
+FROM node:22-slim as build
 WORKDIR /home/node/
 COPY . .
 RUN npm pkg delete scripts.prepare
@@ -9,14 +9,14 @@ RUN apt install -y python3 libcurl4-openssl-dev libssl-dev build-essential
 RUN npm ci
 RUN npm run build
 
-FROM node:20-alpine as cleanup
+FROM node:22-alpine as cleanup
 WORKDIR /home/node/
 COPY --from=build /home/node/package*.json ./
 COPY --from=build /home/node/dist ./dist
 COPY --from=build /home/node/prisma ./prisma
 RUN npm ci --omit=dev
 
-FROM node:20-alpine
+FROM node:22-alpine
 WORKDIR /home/node/
 COPY --from=cleanup /home/node/ ./
 USER root
