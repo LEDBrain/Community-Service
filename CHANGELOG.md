@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.8.4](https://github.com/LEDBrain/Community-Service/compare/v1.8.3...v1.8.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **docker:** build and exec ([32e3d87](https://github.com/LEDBrain/Community-Service/commit/32e3d879b068792ee4ab3d564703dc6fb8b9b4ab))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group ([4c4b833](https://github.com/LEDBrain/Community-Service/commit/4c4b8336270e0d72c167a93907b5ab59438d4b12))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([84b8155](https://github.com/LEDBrain/Community-Service/commit/84b81555dcafa106b594008c4ea51b153d0e19d2))
+* **deps-dev:** bump tsx from 4.7.2 to 4.7.3 ([bfe0016](https://github.com/LEDBrain/Community-Service/commit/bfe00165e56ecf27aaad20ef51271ef6c00cf1f4))
+* **deps-dev:** bump tsx from 4.7.3 to 4.8.2 ([932fe3a](https://github.com/LEDBrain/Community-Service/commit/932fe3a8e83b3e515238c90a8b76a119b5dde065))
+* **deps:** bump discord-api-types from 0.37.81 to 0.37.82 ([7a2b2e0](https://github.com/LEDBrain/Community-Service/commit/7a2b2e04d6ef1b3d9abe8994e75ae10473a2ed8a))
+* **deps:** bump discord-api-types from 0.37.82 to 0.37.83 ([c035da1](https://github.com/LEDBrain/Community-Service/commit/c035da15149e42292d8b7fb27ba6109eddf3e976))
+* **deps:** bump joi from 17.13.0 to 17.13.1 ([9b021ac](https://github.com/LEDBrain/Community-Service/commit/9b021ac98d3a017258bd2a57df3f7d1d7b242fc7))
+* **deps:** bump zod from 3.23.4 to 3.23.5 ([15aea3a](https://github.com/LEDBrain/Community-Service/commit/15aea3aeac24fc9f2d627df1921281272f5f2c00))
+* **docker:** bump postgresql version from `14.2` to `16` ([210c62f](https://github.com/LEDBrain/Community-Service/commit/210c62f4c475b3e98c71a444b363d80d6bb52b41))
+
+
+### CI Changes
+
+* fix env vars ([207377f](https://github.com/LEDBrain/Community-Service/commit/207377ff5303d09097b0b711695fe4d4146a8448))
+* remove postgres version requirement ([692c714](https://github.com/LEDBrain/Community-Service/commit/692c714de1e1981ee24d1fc7497afde385f4a0e5))
+
+
+### Test changes
+
+* **config:** tests path corrected ([06cd377](https://github.com/LEDBrain/Community-Service/commit/06cd3773137b890c0f56d8429db57918b0418453))
+
 ## [1.8.3](https://github.com/LEDBrain/Community-Service/compare/v1.8.2...v1.8.3) (2024-04-25)
 
 
