@@ -1,9 +1,9 @@
 import type { GuildSettings } from '@prisma/client';
 import type { Guild, TextChannel } from 'discord.js';
 import { ChannelType } from 'discord.js';
-import packageJson from '../../package.json';
+import packageJson from '../../package.json' with { type: "json"};
 import { prisma } from './Prisma.js';
-import SanctionManager from './SanctionManager';
+import SanctionManager from './SanctionManager.js';
 
 export default abstract class Base {
     db: typeof prisma;

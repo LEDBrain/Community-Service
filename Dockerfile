@@ -9,17 +9,15 @@ RUN apt install -y python3 libcurl4-openssl-dev libssl-dev build-essential
 RUN npm ci
 RUN npm run build
 
-FROM node:20-alpine as cleanup
+FROM node:20-slim
 WORKDIR /home/node/
 COPY --from=build /home/node/package*.json ./
-COPY --from=build /home/node/dist ./dist
+COPY --from=build /home/node/dist ./
 COPY --from=build /home/node/prisma ./prisma
+RUN apt update
+RUN apt install -y python3 libcurl4-openssl-dev libssl-dev build-essential openssl
 RUN npm ci --omit=dev
-
-FROM node:20-alpine
-WORKDIR /home/node/
-COPY --from=cleanup /home/node/ ./
-USER root
+# USER root
 
 EXPOSE 3000
 
@@ -30,4 +28,4 @@ ENV DATABASE_URL $DATABASE_URL
 ENV PORT 3000
 ENV HOST $HOSTNAME
 
-CMD npm run migrate:prod && node dist/index.js
+CMD npm run migrate:prod && node ./src/index.js
