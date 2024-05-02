@@ -1,4 +1,4 @@
-FROM node:20-slim as build
+FROM node:22-slim as build
 WORKDIR /home/node/
 COPY . .
 RUN npm pkg delete scripts.prepare
@@ -9,7 +9,7 @@ RUN apt install -y python3 libcurl4-openssl-dev libssl-dev build-essential
 RUN npm ci
 RUN npm run build
 
-FROM node:20-slim
+FROM node:22-slim
 WORKDIR /home/node/
 COPY --from=build /home/node/package*.json ./
 COPY --from=build /home/node/dist ./
