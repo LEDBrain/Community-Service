@@ -45,7 +45,7 @@ jobs:
 
         services:
             postgres:
-                image: postgres:16
+                image: postgres
                 env:
                     POSTGRES_USER: ${ PG_USER }
                     POSTGRES_PASSWORD: ${ PG_PW }
