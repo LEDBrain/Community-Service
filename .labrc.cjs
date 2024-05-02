@@ -1,4 +1,4 @@
 module.exports = {
-    paths: ['dist/api/tests'],
+    paths: ['dist/src/api/tests'],
     reporter: ['console'],
 };

@@ -5,7 +5,7 @@
         "sourceMap": true,
         "target": "ESNext",
         "noImplicitAny": true,
-        "module": "ES2022",
+        "module": "ESNext",
         "outDir": "./dist",
         "baseUrl": "./src",
         "lib": ["esnext"],

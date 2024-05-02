@@ -5,6 +5,6 @@ export default class Ready extends Event {
     }
     public async execute() {
         console.log('Ready!');
-        (await import('../deploy')).default();
+        (await import('../deploy.js')).default();
     }
 }
