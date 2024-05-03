@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/LEDBrain/Community-Service/compare/v1.8.5...v1.9.0) (2024-05-03)
+
+
+### Features
+
+* **settings:** logic for enabling/disabling commands ([5f4e857](https://github.com/LEDBrain/Community-Service/commit/5f4e857020afd78d7a0dbdcedd31c76a76adefc6))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump tsx from 4.8.2 to 4.9.0 ([f70f323](https://github.com/LEDBrain/Community-Service/commit/f70f323e617fecc600e502aac31745d64bcb5f9f))
+* **deps:** bump zod from 3.23.5 to 3.23.6 ([6be3fe8](https://github.com/LEDBrain/Community-Service/commit/6be3fe822d18f66a374b747710f6c5f8f4d8eff3))
+
 ## [1.8.5](https://github.com/LEDBrain/Community-Service/compare/v1.8.4...v1.8.5) (2024-05-03)
 
 
