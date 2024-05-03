@@ -3,7 +3,9 @@ import {
     ChannelType,
     PermissionFlagsBits,
     SlashCommandBuilder,
+    inlineCode,
 } from 'discord.js';
+import { client } from 'index.js';
 import type { Config } from '../base/Command.js';
 import Command from '../base/Command.js';
 
@@ -68,7 +70,9 @@ export default class Ping extends Command {
             .addSubcommand(subcommand =>
                 subcommand
                     .setName('ban-approvals')
-                    .setDescription('Set ban approvals')
+                    .setDescription(
+                        'Set the numbers of ban approvals needed to ban the user.'
+                    )
                     .addNumberOption(numberOption =>
                         numberOption
                             .setName('ban-approvals-setting')
@@ -94,6 +98,31 @@ export default class Ping extends Command {
                             )
                             .setRequired(true)
                     )
+            )
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName('enabled-commands')
+                    .setDescription('Toggle active state of commands')
+                    .addStringOption(stringOption =>
+                        stringOption
+                            .setName('command-name')
+                            .setDescription(
+                                'The command name to toggle on/off.'
+                            )
+                            .setRequired(true)
+                            .setChoices(
+                                ...client.commands.map(command => ({
+                                    name: command.name,
+                                    value: command.name,
+                                }))
+                            )
+                    )
+                    .addBooleanOption(booleanOption =>
+                        booleanOption
+                            .setName('enabled')
+                            .setDescription('Set the status')
+                            .setRequired(true)
+                    )
             );
 
         super(cmd as unknown as Config);
@@ -112,6 +141,9 @@ export default class Ping extends Command {
             case 'welcome-message':
                 this.setWelcomeMessage(interaction);
                 break;
+            case 'enabled-commands':
+                this.setEnabledCommand(interaction);
+                break;
             default:
                 break;
         }
@@ -120,7 +152,7 @@ export default class Ping extends Command {
     private async setSetting(
         guildId: string,
         setting: string,
-        value: string | number
+        value: string | string[] | number
     ) {
         await this.db.guildSettings.upsert({
             where: {
@@ -149,40 +181,55 @@ export default class Ping extends Command {
     }
 
     private async setChannel(interaction: ChatInputCommandInteraction) {
-        const setting = interaction.options.getString('channel-setting');
+        if (!interaction.guildId) return;
+        const setting = interaction.options.getString('channel-setting', true);
         const channel = interaction.options.getChannel('channel', true);
 
-        await this.setSetting(
-            interaction.guildId as string,
-            setting as string,
-            channel.id
-        );
+        await this.setSetting(interaction.guildId, setting, channel.id);
 
         interaction.reply(`${setting} set to ${channel}`);
     }
 
     private async setRole(interaction: ChatInputCommandInteraction) {
-        const setting = interaction.options.getString('role-setting');
+        if (!interaction.guildId) return;
+        const setting = interaction.options.getString('role-setting', true);
         const role = interaction.options.getRole('role', true);
 
-        await this.setSetting(
-            interaction.guildId as string,
-            setting as string,
-            role.id
-        );
+        await this.setSetting(interaction.guildId, setting, role.id);
 
         interaction.reply(`${setting} set to ${role}`);
     }
 
     private async setWelcomeMessage(interaction: ChatInputCommandInteraction) {
+        if (!interaction.guildId) return;
         const welcomeMessage = interaction.options.getString(
-            'welcome-message-setting'
+            'welcome-message-setting',
+            true
         );
         await this.setSetting(
-            interaction.guildId as string,
+            interaction.guildId,
             'welcomeMessage',
-            welcomeMessage as string
+            welcomeMessage
         );
         interaction.reply(`welcomeMessage set to ${welcomeMessage}`);
+    }
+
+    private async setEnabledCommand(interaction: ChatInputCommandInteraction) {
+        if (!interaction.guildId) return;
+        const commandName = interaction.options.getString('command-name', true);
+        const isEnabled = interaction.options.getBoolean('enabled', true);
+        const guildSettings = await this.getGuildSettings(interaction.guildId);
+        if (!guildSettings) return;
+        const disabledCommands = new Set(guildSettings.disabledCommands);
+
+        if (isEnabled) disabledCommands.delete(commandName);
+        else disabledCommands.add(commandName);
+        await this.setSetting(interaction.guildId, 'disabledCommands', [
+            ...disabledCommands,
+        ]);
+
+        interaction.reply(
+            `disabledCommands set to ${inlineCode([...disabledCommands].join(', '))}`
+        );
     }
 }

@@ -39,7 +39,7 @@
         "joi": "^17.13.1",
         "jsdom": "^24.0.0",
         "node-libcurl": "^4.0.0",
-        "zod": "^3.23.5"
+        "zod": "^3.23.6"
     },
     "devDependencies": {
         "@hapi/code": "^9.0.3",
@@ -61,7 +61,7 @@
         "prettier": "^3.2.5",
         "prisma": "^5.13.0",
         "rimraf": "^5.0.5",
-        "tsx": "^4.8.2",
+        "tsx": "^4.9.0",
         "typescript": "^5.4.5"
     },
     "config": {

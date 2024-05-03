@@ -1,4 +1,3 @@
-import type { GuildSettings } from '@prisma/client';
 import type { Guild, TextChannel } from 'discord.js';
 import { ChannelType } from 'discord.js';
 import packageJson from '../../package.json' with { type: 'json' };
@@ -12,7 +11,7 @@ export default abstract class Base {
         this.db = prisma;
         this.Sanction = SanctionManager;
     }
-    async getGuildSettings(guildId: string): Promise<GuildSettings | null> {
+    async getGuildSettings(guildId: string) {
         return await this.db.guildSettings.findUnique({
             where: {
                 id: guildId,
