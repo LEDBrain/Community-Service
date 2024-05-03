@@ -20,19 +20,19 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            # - name: Generate Token
-            #   id: app-token
-            #   uses: actions/create-github-app-token@v1
-            #   with:
-            #       app-id: ${{ secrets.APP_ID }}
-            #       private-key: ${{ secrets.APP_PRIVATE_KEY }}
+            - name: Generate Token
+              id: app-token
+              uses: actions/create-github-app-token@v1
+              with:
+                  app-id: ${{ secrets.APP_ID }}
+                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
                   persist-credentials: false
-                  ssh-key: "${{ secrets.COMMIT_KEY }}"
+                  token: ${{ steps.app-token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
@@ -41,8 +41,6 @@ jobs:
 
             - uses: google-github-actions/release-please-action@v4
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  # this is a built-in strategy in release-please, see "Action Inputs"
-                  # for more options
+                  token: ${{ steps.app-token.outputs.token }}
                   config-file: release-please-config.json
                   manifest-file: .release-please-manifest.json
