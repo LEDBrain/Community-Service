@@ -10,6 +10,9 @@ RUN npm ci
 RUN npm run build
 
 FROM node:20-slim
+LABEL org.opencontainers.image.source=https://github.com/LEDBrain/Community-Service
+LABEL org.opencontainers.image.licenses=MIT
+
 WORKDIR /home/node/
 COPY --from=build /home/node/package*.json ./
 COPY --from=build /home/node/dist ./
