@@ -32,6 +32,7 @@ jobs:
               with:
                   fetch-depth: 0
                   persist-credentials: false
+                  ssh-key: "${{ secrets.COMMIT_KEY }}"
 
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
