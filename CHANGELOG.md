@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.5](https://github.com/LEDBrain/Community-Service/compare/v1.8.4...v1.8.5) (2024-05-03)
+
+
+### CI Changes
+
+* add deploy key for pulling repo ([ce366c9](https://github.com/LEDBrain/Community-Service/commit/ce366c9c6429b9e079d8d82430b5f0770e5888a3))
+* use app token ([a8a41e8](https://github.com/LEDBrain/Community-Service/commit/a8a41e82af4427907569c5a5079ecb145a4daf8e))
+
 ## [1.8.4](https://github.com/LEDBrain/Community-Service/compare/v1.8.3...v1.8.4) (2024-05-02)
 
 
