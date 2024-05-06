@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.9.1](https://github.com/LEDBrain/Community-Service/compare/v1.9.0...v1.9.1) (2024-05-06)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump tsx from 4.9.0 to 4.9.3 ([4e6896b](https://github.com/LEDBrain/Community-Service/commit/4e6896b4ad89c57721b5744b014562c88c069851))
+* **deps:** bump @discordjs/rest from 2.2.0 to 2.3.0 ([1735069](https://github.com/LEDBrain/Community-Service/commit/17350695381fb794c8b9596b0c3cf35975af7197))
+* **deps:** bump discord.js from 14.14.1 to 14.15.2 ([0e96033](https://github.com/LEDBrain/Community-Service/commit/0e9603357bf2f701d28fc93b9a747f28097af8a6))
+* **deps:** bump the npm_and_yarn group across 1 directory with 3 updates ([d7e7267](https://github.com/LEDBrain/Community-Service/commit/d7e726765c12b75b700168fc161ce4e3a8c7a6f7))
+* **dockerfile:** add Labels to build ([eb952a4](https://github.com/LEDBrain/Community-Service/commit/eb952a47e03ca559cb4cb7ca165fc9cd028040f7))
+
 ## [1.9.0](https://github.com/LEDBrain/Community-Service/compare/v1.8.5...v1.9.0) (2024-05-03)
 
 
