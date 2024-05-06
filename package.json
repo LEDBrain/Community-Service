@@ -42,6 +42,8 @@
         "zod": "^3.23.6"
     },
     "devDependencies": {
+        "@commitlint/cli": "^19.3.0",
+        "@commitlint/config-conventional": "^19.2.2",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^25.2.0",
@@ -58,6 +60,7 @@
         "esbuild": "0.20.2",
         "eslint": "^8.56.0",
         "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
         "prisma": "^5.13.0",
         "rimraf": "^5.0.5",
@@ -71,6 +74,9 @@
     },
     "publishConfig": {
         "access": "restricted"
+    },
+    "lint-staged": {
+        "*.{js,ts}": "npm run lint"
     },
     "overrides": {
         "@sapphire/shapeshift": "3.9.2"
