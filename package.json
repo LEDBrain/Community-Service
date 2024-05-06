@@ -28,7 +28,7 @@
     },
     "homepage": "https://github.com/LEDBrain/Community-Service#readme",
     "dependencies": {
-        "@discordjs/rest": "^2.2.0",
+        "@discordjs/rest": "^2.3.0",
         "@hapi/hapi": "^21.3.9",
         "@prisma/client": "^5.13.0",
         "@t3-oss/env-core": "^0.10.1",
