@@ -1,6 +1,6 @@
 {
     "name": "community-service",
-    "version": "1.9.0",
+    "version": "1.9.1",
     "description": "A Discord bot in Typescript",
     "main": "dist/src/index.js",
     "type": "module",
