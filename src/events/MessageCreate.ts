@@ -5,6 +5,7 @@ import type { Message } from 'discord.js';
 import { ChannelType } from 'discord.js';
 import type Client from '../base/Client.js';
 import Event from '../base/Event.js';
+import { env } from 'env.js';
 
 export default class MessageCreate extends Event {
     constructor() {
@@ -13,7 +14,7 @@ export default class MessageCreate extends Event {
     public async execute(_: Client, message: Message) {
         if (
             message.content.toLowerCase() === 'deploy' &&
-            message.author.id === '199964094357307392' // Change this to the bot admin/dev id
+            message.author.id === env.DISCORD_ADMIN_ID
         ) {
             console.log(`Deploying...`);
             (await import('../deploy')).default();

@@ -5,9 +5,9 @@ import {
     SlashCommandBuilder,
     inlineCode,
 } from 'discord.js';
-import { client } from 'index.js';
 import type { Config } from '../base/Command.js';
 import Command from '../base/Command.js';
+import { client } from '../index.js';
 
 export default class Ping extends Command {
     constructor() {
