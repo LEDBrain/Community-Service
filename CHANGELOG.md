@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.9.2](https://github.com/LEDBrain/Community-Service/compare/v1.9.1...v1.9.2) (2024-05-08)
+
+
+### Bug Fixes
+
+* wrong path in command file ([5829d03](https://github.com/LEDBrain/Community-Service/commit/5829d03c8adb7542e141c0b3963ffdab8160f28f))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group ([313e0c4](https://github.com/LEDBrain/Community-Service/commit/313e0c4794682a7533be9ef1ef8ba13c71d877f1))
+* **deps-dev:** bump esbuild from 0.20.2 to 0.21.0 ([06e73d7](https://github.com/LEDBrain/Community-Service/commit/06e73d7fd7b44def3b9108a0e75f396a00daf4d7))
+* **deps-dev:** bump esbuild from 0.21.0 to 0.21.1 ([490035e](https://github.com/LEDBrain/Community-Service/commit/490035effd9907dd8f28b0a83514d431e6775f95))
+* **deps:** bump zod from 3.23.6 to 3.23.7 ([0af57ea](https://github.com/LEDBrain/Community-Service/commit/0af57eaff3aaeb72ee4f25ee3b0ab5c47917a848))
+* **husky:** add lint-staged and commitlint ([9e71980](https://github.com/LEDBrain/Community-Service/commit/9e71980393a63758c3a3eed1d5280376398dc82b))
+
+
+### Refactored Code
+
+* **commands/deploy:** replace hardcoded admin id with env ([94f92cc](https://github.com/LEDBrain/Community-Service/commit/94f92cc433527875c00973aed358721cce09836e))
+
 ## [1.9.1](https://github.com/LEDBrain/Community-Service/compare/v1.9.0...v1.9.1) (2024-05-06)
 
 
