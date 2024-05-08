@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.3](https://github.com/LEDBrain/Community-Service/compare/v1.9.2...v1.9.3) (2024-05-08)
+
+
+### Bug Fixes
+
+* wrong path in MessageCreate event file ([9c8d77e](https://github.com/LEDBrain/Community-Service/commit/9c8d77edf694cc1341bd6ec5550564892c02db28))
+
 ## [1.9.2](https://github.com/LEDBrain/Community-Service/compare/v1.9.1...v1.9.2) (2024-05-08)
 
 
