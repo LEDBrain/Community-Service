@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.9.4](https://github.com/LEDBrain/Community-Service/compare/v1.9.3...v1.9.4) (2024-05-21)
+
+
+### Bug Fixes
+
+* **events/VoiceStateUpdate:** empty log messages ([85231e9](https://github.com/LEDBrain/Community-Service/commit/85231e9e4061db9192e09af4af084fa52c002db4))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group ([ec1af1e](https://github.com/LEDBrain/Community-Service/commit/ec1af1e609ab887d451ca23a056e1b588e2a1f04))
+* **deps-dev:** bump @types/node in the types group ([687c2f4](https://github.com/LEDBrain/Community-Service/commit/687c2f4cef72ef6f6e3dad4f746b79ed407a1f9a))
+* **deps-dev:** bump esbuild from 0.21.1 to 0.21.2 ([04dc2ab](https://github.com/LEDBrain/Community-Service/commit/04dc2ab65eac05da65c26db98eef8eb3755c291a))
+* **deps-dev:** bump esbuild from 0.21.2 to 0.21.3 ([807fe99](https://github.com/LEDBrain/Community-Service/commit/807fe9995cd0d34d20c8d9ae7588e676c0f2a8a5))
+* **deps-dev:** bump rimraf from 5.0.5 to 5.0.7 ([fbfc327](https://github.com/LEDBrain/Community-Service/commit/fbfc327f83aca348cf206164c9e2ccb04999e8a7))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([c228db6](https://github.com/LEDBrain/Community-Service/commit/c228db654e6d458535dda0cbae4a80df749e0db9))
+* **deps-dev:** bump tsx from 4.10.2 to 4.10.3 ([39ad01f](https://github.com/LEDBrain/Community-Service/commit/39ad01f67f1c8a5068aa74ee1d0903b2993d2aae))
+* **deps-dev:** bump tsx from 4.10.3 to 4.10.4 ([8b004a4](https://github.com/LEDBrain/Community-Service/commit/8b004a4cf8ab513652043257ad64e83f335868d9))
+* **deps-dev:** bump tsx from 4.10.4 to 4.10.5 ([643a3eb](https://github.com/LEDBrain/Community-Service/commit/643a3ebbe410f07fed11058798655d93f2ae01a7))
+* **deps-dev:** bump tsx from 4.9.3 to 4.10.2 ([21cc789](https://github.com/LEDBrain/Community-Service/commit/21cc789167eb98e3fc0d1e0e4234d507d06c85eb))
+* **deps:** bump discord-api-types from 0.37.83 to 0.37.84 ([04ba834](https://github.com/LEDBrain/Community-Service/commit/04ba834e4c98e9818fa6bca301b886a7e514a387))
+* **deps:** bump the prisma group with 2 updates ([3c37032](https://github.com/LEDBrain/Community-Service/commit/3c37032936f3efdb4bbebd360d766e000fb2642d))
+* **deps:** bump utf-8-validate from 6.0.3 to 6.0.4 ([8ff4fd4](https://github.com/LEDBrain/Community-Service/commit/8ff4fd4aa2b10eb4db72f135eaba981ac4903505))
+* **deps:** bump zod from 3.23.7 to 3.23.8 ([5399435](https://github.com/LEDBrain/Community-Service/commit/539943592f1a4073e70596995d34ba1a56e46f9e))
+
 ## [1.9.3](https://github.com/LEDBrain/Community-Service/compare/v1.9.2...v1.9.3) (2024-05-08)
 
 
