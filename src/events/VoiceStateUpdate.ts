@@ -3,6 +3,17 @@ import { EmbedBuilder, Events } from 'discord.js';
 import type Client from '../base/Client.js';
 import Event from '../base/Event.js';
 
+enum VoiceEvents {
+    'join',
+    'leave',
+    'move',
+}
+
+interface CompareVoiceStatesReturn {
+    embed: EmbedBuilder;
+    event: VoiceEvents | null;
+}
+
 export default class VoiceStateUpdate extends Event {
     constructor() {
         super({ name: Events.VoiceStateUpdate });
@@ -15,17 +26,18 @@ export default class VoiceStateUpdate extends Event {
         if (!oldState.member || !newState.member) return;
         // console.log(oldState.channelId, newState.channelId ?? 'NULL');
 
-        const embed = this.compareVoiceStates(oldState, newState);
+        const comparedVoiceStates = this.compareVoiceStates(oldState, newState);
 
-        this.log(newState.guild ? newState.guild : oldState.guild, {
-            embeds: [embed],
-        });
+        if (comparedVoiceStates.event)
+            this.log(newState.guild ? newState.guild : oldState.guild, {
+                embeds: [comparedVoiceStates.embed],
+            });
     }
 
     private compareVoiceStates(
         oldState: VoiceState,
         newState: VoiceState
-    ): EmbedBuilder {
+    ): CompareVoiceStatesReturn {
         const basicEmbed = new EmbedBuilder()
             .setAuthor({
                 name: newState.member?.user.tag ?? '',
@@ -34,10 +46,12 @@ export default class VoiceStateUpdate extends Event {
             .setTimestamp()
             .setFooter({ text: `Community Service ${this.version}` });
 
+        let voiceEvent: CompareVoiceStatesReturn['event'] = null;
+
         if (!oldState?.channelId && newState.channelId) {
             basicEmbed
                 .setDescription(
-                    `**${newState.member?.user.tag}** joined: ${newState.channel}.`
+                    `**${newState.member}** joined: ${newState.channel}.`
                 )
                 .addFields([
                     {
@@ -45,12 +59,13 @@ export default class VoiceStateUpdate extends Event {
                         value: `${newState.channel}`,
                     },
                 ]);
+            voiceEvent = VoiceEvents.join;
         }
 
         if (oldState.channelId && !newState.channelId) {
             basicEmbed
                 .setDescription(
-                    `**${newState.member?.user.tag}** left: ${oldState.channel}.`
+                    `**${newState.member}** left: ${oldState.channel}.`
                 )
                 .addFields([
                     {
@@ -58,6 +73,7 @@ export default class VoiceStateUpdate extends Event {
                         value: `${oldState.channel}`,
                     },
                 ]);
+            voiceEvent = VoiceEvents.leave;
         }
 
         if (
@@ -67,7 +83,7 @@ export default class VoiceStateUpdate extends Event {
         ) {
             basicEmbed
                 .setDescription(
-                    `**${newState.member?.user.tag}** moved to: ${newState.channel}.`
+                    `**${newState.member}** moved to: ${newState.channel}.`
                 )
                 .addFields([
                     {
@@ -79,7 +95,9 @@ export default class VoiceStateUpdate extends Event {
                         value: `${newState.channel}`,
                     },
                 ]);
+            voiceEvent = VoiceEvents.leave;
         }
-        return basicEmbed;
+
+        return { embed: basicEmbed, event: voiceEvent };
     }
 }
