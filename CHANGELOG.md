@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.9.5](https://github.com/LEDBrain/Community-Service/compare/v1.9.4...v1.9.5) (2024-06-02)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/jsdom in the types group ([28a854f](https://github.com/LEDBrain/Community-Service/commit/28a854f7112f9e77c97fb42b42ddec1dd916ed1c))
+* **deps-dev:** bump @types/node in the types group ([9b2d40f](https://github.com/LEDBrain/Community-Service/commit/9b2d40f915957c1d31c6c928c67f98cb448345a8))
+* **deps-dev:** bump @types/node in the types group ([c74e3c9](https://github.com/LEDBrain/Community-Service/commit/c74e3c975389b7ba4fb6fff80d6eb792106a3ffe))
+* **deps-dev:** bump esbuild from 0.21.3 to 0.21.4 ([339e568](https://github.com/LEDBrain/Community-Service/commit/339e568bc635ffa037f640c9d83d3e932ebfa6af))
+* **deps-dev:** bump lint-staged from 15.2.4 to 15.2.5 ([8cb1454](https://github.com/LEDBrain/Community-Service/commit/8cb1454eb0e692d9562b219015388b0e36a5c808))
+* **deps-dev:** bump prettier from 3.2.5 to 3.3.0 ([149669b](https://github.com/LEDBrain/Community-Service/commit/149669bee78783941ce5129082e9ed1f6a8e3afc))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([ca15f3f](https://github.com/LEDBrain/Community-Service/commit/ca15f3f1b0d040f2f9901c6c7ecdcf3967550596))
+* **deps-dev:** bump tsx from 4.10.5 to 4.11.0 ([7013917](https://github.com/LEDBrain/Community-Service/commit/7013917e1f4d8f8e9459ef688ba2617e3a8b0768))
+* **deps:** bump discord-api-types from 0.37.84 to 0.37.85 ([2f5188d](https://github.com/LEDBrain/Community-Service/commit/2f5188da19778f7c6593b01ce2801d65d06da45d))
+* **deps:** bump discord-api-types from 0.37.85 to 0.37.86 ([d2776d2](https://github.com/LEDBrain/Community-Service/commit/d2776d2d19069029d9b02d9ab357741ad2c90c84))
+* **deps:** bump docker/login-action from 3.1.0 to 3.2.0 ([ba6276c](https://github.com/LEDBrain/Community-Service/commit/ba6276c0fe45867a09286cf6da4f0865d4027c3f))
+* **deps:** bump jsdom from 24.0.0 to 24.1.0 ([7fc5b0d](https://github.com/LEDBrain/Community-Service/commit/7fc5b0d53ff22dcae349e17a93bef11840470f36))
+
 ## [1.9.4](https://github.com/LEDBrain/Community-Service/compare/v1.9.3...v1.9.4) (2024-05-21)
 
 
