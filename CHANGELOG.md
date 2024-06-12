@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.9.6](https://github.com/LEDBrain/Community-Service/compare/v1.9.5...v1.9.6) (2024-06-12)
+
+
+### Bug Fixes
+
+* do proper command deployment and require NODE_ENV ([948c563](https://github.com/LEDBrain/Community-Service/commit/948c563f32b5d67823f524ce5abe9529c0bacdd1))
+* required ENVs ([3855455](https://github.com/LEDBrain/Community-Service/commit/3855455c738e6b39c249d84a1105435677c6e688))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group across 1 directory ([cc46f7c](https://github.com/LEDBrain/Community-Service/commit/cc46f7cf27526be0248b6dfcbc543a4bfd011482))
+* **deps-dev:** bump c8 from 9.1.0 to 10.1.1 ([3668c76](https://github.com/LEDBrain/Community-Service/commit/3668c76fb213083229c30da7933d6ff221be5ed7))
+* **deps-dev:** bump esbuild from 0.21.4 to 0.21.5 ([f952949](https://github.com/LEDBrain/Community-Service/commit/f95294948d0f33ad5402e0f26ad2c4c5eb3ab936))
+* **deps-dev:** bump lint-staged from 15.2.5 to 15.2.6 ([1dc7a94](https://github.com/LEDBrain/Community-Service/commit/1dc7a94360fba477b2486a671dec392161bdeaab))
+* **deps-dev:** bump prettier from 3.3.0 to 3.3.1 ([7367e4f](https://github.com/LEDBrain/Community-Service/commit/7367e4f334a7ed8ea5f802e15ddd78ddf77dcf2c))
+* **deps-dev:** bump prettier from 3.3.1 to 3.3.2 ([e867429](https://github.com/LEDBrain/Community-Service/commit/e8674296171ea09c4279e9f56af2db4565b6b94e))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([039e387](https://github.com/LEDBrain/Community-Service/commit/039e387156287ee443e74fb951d827742877a8ab))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([d929768](https://github.com/LEDBrain/Community-Service/commit/d929768a5d51ac72702c97fa418d67924bb53736))
+* **deps-dev:** bump tsx from 4.11.0 to 4.11.2 ([cda7959](https://github.com/LEDBrain/Community-Service/commit/cda795910d766f2ec0c6a924168bcee589f24383))
+* **deps-dev:** bump tsx from 4.11.2 to 4.12.0 ([c4441a4](https://github.com/LEDBrain/Community-Service/commit/c4441a4b788848380dce82865c87165e6504f780))
+* **deps-dev:** bump tsx from 4.12.0 to 4.13.1 ([7c6dd3f](https://github.com/LEDBrain/Community-Service/commit/7c6dd3f32e64bf0cf173e98748f3effb005c6a4d))
+* **deps-dev:** bump tsx from 4.13.1 to 4.15.1 ([d3496b6](https://github.com/LEDBrain/Community-Service/commit/d3496b64439005b7affc64c52d9078c2b1adf8f7))
+* **deps-dev:** bump tsx from 4.15.1 to 4.15.2 ([9288d94](https://github.com/LEDBrain/Community-Service/commit/9288d944995584d6a3a509b4da58035531126ba3))
+* **deps:** bump @hapi/hapi from 21.3.9 to 21.3.10 ([c2cb2d1](https://github.com/LEDBrain/Community-Service/commit/c2cb2d18c205eceff4def754f8dcddabac16b0b7))
+* **deps:** bump discord-api-types from 0.37.86 to 0.37.87 ([5cf0e6f](https://github.com/LEDBrain/Community-Service/commit/5cf0e6f2d4916d30098172d118c44c0edc82dd23))
+* **deps:** bump discord-api-types from 0.37.87 to 0.37.88 ([d18d257](https://github.com/LEDBrain/Community-Service/commit/d18d257c28520008be784e6da9930518bff638c5))
+* **deps:** bump discord.js from 14.15.2 to 14.15.3 ([5a99a11](https://github.com/LEDBrain/Community-Service/commit/5a99a11ce24232c59d5a05ca33adcdd02b7e3aa0))
+* **deps:** bump docker/build-push-action from 5.3.0 to 5.4.0 ([219b1ae](https://github.com/LEDBrain/Community-Service/commit/219b1ae7d4fd51ed2eba745a149f6f54778c6a83))
+* **deps:** bump the prisma group with 2 updates ([ebe59b4](https://github.com/LEDBrain/Community-Service/commit/ebe59b40b823245d6139db59b74b200b259c32d8))
+
 ## [1.9.5](https://github.com/LEDBrain/Community-Service/compare/v1.9.4...v1.9.5) (2024-06-02)
 
 
