@@ -42,19 +42,22 @@ export default async () => {
         console.log(commands);
 
         //  Use this when in development phase
-        await rest.put(
-            Routes.applicationGuildCommands(
-                env.DISCORD_CLIENT_ID,
-                env.DISCORD_DEV_GUILD_ID
-            ),
-            {
+        if (env.NODE_ENV === 'development') {
+            await rest.put(
+                Routes.applicationGuildCommands(
+                    env.DISCORD_CLIENT_ID,
+                    env.DISCORD_DEV_GUILD_ID
+                ),
+                {
+                    body: commands,
+                }
+            );
+        } else if (env.NODE_ENV === 'production') {
+            if (!client.isReady()) return;
+            await rest.put(Routes.applicationCommands(client.user.id), {
                 body: commands,
-            }
-        );
-
-        // await rest.put(Routes.applicationCommands(client.user.id), {
-        //     body: commands,
-        // });
+            });
+        }
 
         console.log('Successfully reloaded application (/) commands.');
     } catch (error) {

@@ -1,6 +1,8 @@
 import { createEnv } from '@t3-oss/env-core';
 import { z } from 'zod';
 
+const nodeEnvs = ['production', 'development'] as const;
+
 export const env = createEnv({
     isServer: true,
     server: {
@@ -26,6 +28,7 @@ export const env = createEnv({
         GAME_DE: z.string().url().optional(),
         GAME_DE_USERNAME: z.string().min(1),
         GAME_DE_PASSWORD: z.string().min(1),
+        NODE_ENV: z.enum(nodeEnvs),
     },
     runtimeEnv: {
         ...process.env,
