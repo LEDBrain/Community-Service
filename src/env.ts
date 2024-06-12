@@ -7,9 +7,9 @@ export const env = createEnv({
     isServer: true,
     server: {
         DISCORD_TOKEN: z.string().min(1),
-        DISCORD_CLIENT_ID: z.string().min(1),
-        DISCORD_DEV_GUILD_ID: z.string().min(1),
-        DISCORD_CLIENT_SECRET: z.string().min(1),
+        DISCORD_CLIENT_ID: z.string(),
+        DISCORD_DEV_GUILD_ID: z.string(),
+        DISCORD_CLIENT_SECRET: z.string(),
         DISCORD_REDIRECT_URI: z.string().url().min(1),
 
         DISCORD_ADMIN_ID: z.string().min(1),
