@@ -30,7 +30,7 @@ export default class InteractionCreate extends Event {
         if (!interaction.isCommand()) return;
         if (!client.commands.has(interaction.commandName)) return;
         if (!(await this.isEnabled(interaction))) {
-            interaction.reply({
+            await interaction.reply({
                 content: 'This command is disabled',
                 ephemeral: true,
             });
@@ -41,7 +41,7 @@ export default class InteractionCreate extends Event {
                 client.commands.get(interaction.commandName) as Command
             ).execute(interaction);
         } catch (error) {
-            console.error(error);
+            console.warn(error);
             if (interaction.deferred || interaction.replied) return;
             await interaction.reply({
                 content: 'Es gab einen Fehler beim Ausführen des Commands!',
