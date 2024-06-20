@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.9.7](https://github.com/LEDBrain/Community-Service/compare/v1.9.6...v1.9.7) (2024-06-20)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node in the types group ([8dbea79](https://github.com/LEDBrain/Community-Service/commit/8dbea79bc93e786a3117fa8ace3125abbb3e2e96))
+* **deps-dev:** bump @types/node in the types group ([47710f6](https://github.com/LEDBrain/Community-Service/commit/47710f6b3ca2dacbbb1d4289f4992aa5278f7912))
+* **deps-dev:** bump c8 from 10.1.1 to 10.1.2 ([838a6d5](https://github.com/LEDBrain/Community-Service/commit/838a6d5db0973cbd0961e2d2f5c50358825382f9))
+* **deps-dev:** bump lint-staged from 15.2.6 to 15.2.7 ([319b241](https://github.com/LEDBrain/Community-Service/commit/319b24182db232ad659af7e1d6c4433a987c2715))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([3a64fbd](https://github.com/LEDBrain/Community-Service/commit/3a64fbdc1dc3da6bd9d6cf2070d70256a3344c2c))
+* **deps-dev:** bump tsx from 4.15.2 to 4.15.6 ([0e098ab](https://github.com/LEDBrain/Community-Service/commit/0e098ab4783532647cded16b36440f6600043911))
+* **deps:** bump discord-api-types from 0.37.88 to 0.37.89 ([5e2679b](https://github.com/LEDBrain/Community-Service/commit/5e2679b884405fd7b2a44afc85d851a5bd55734c))
+* **deps:** bump discord-api-types from 0.37.89 to 0.37.90 ([326e192](https://github.com/LEDBrain/Community-Service/commit/326e192b0ef8280ad2c36c8a990dfbb110b92cf5))
+* **deps:** bump docker/build-push-action from 5.4.0 to 6.0.0 ([3e1a899](https://github.com/LEDBrain/Community-Service/commit/3e1a899ee85d5b5f92530453191596e7c8548de5))
+* **deps:** bump docker/build-push-action from 6.0.0 to 6.0.1 ([a8e0f6a](https://github.com/LEDBrain/Community-Service/commit/a8e0f6a90760c2f0df338a026d2b4152dd29a037))
+* **deps:** bump joi from 17.13.1 to 17.13.3 ([e8c64b4](https://github.com/LEDBrain/Community-Service/commit/e8c64b4225f5ed4a7545e88d41c47db123ed781b))
+* **deps:** bump the prisma group with 2 updates ([9eb4124](https://github.com/LEDBrain/Community-Service/commit/9eb4124e698364ff8b9d9f29c4975df14e7697fb))
+* **deps:** bump ws in the npm_and_yarn group across 1 directory ([7c0d67b](https://github.com/LEDBrain/Community-Service/commit/7c0d67b0604279ca684646d2c243bb84139f6a26))
+
+
+### CI Changes
+
+* **release:** switch release please action owner ([eac9f5d](https://github.com/LEDBrain/Community-Service/commit/eac9f5dead762096ce9efaa2d58a55356b599243))
+
+
+### Refactored Code
+
+* **events/InteractionCreate:** change console log level ([4d16595](https://github.com/LEDBrain/Community-Service/commit/4d165955ea669076956d1a315d372fd00d58d11b))
+
 ## [1.9.6](https://github.com/LEDBrain/Community-Service/compare/v1.9.5...v1.9.6) (2024-06-12)
 
 
