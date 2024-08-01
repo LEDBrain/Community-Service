@@ -64,7 +64,7 @@
         "prettier": "^3.3.3",
         "prisma": "^5.17.0",
         "rimraf": "^6.0.1",
-        "tsx": "^4.16.2",
+        "tsx": "^4.16.4",
         "typescript": "^5.5.4"
     },
     "config": {
