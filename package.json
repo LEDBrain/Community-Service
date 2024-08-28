@@ -42,7 +42,7 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
-        "@commitlint/cli": "^19.4.0",
+        "@commitlint/cli": "^19.4.1",
         "@commitlint/config-conventional": "^19.2.2",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
