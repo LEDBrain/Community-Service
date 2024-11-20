@@ -43,7 +43,7 @@
     },
     "devDependencies": {
         "@commitlint/cli": "^19.5.0",
-        "@commitlint/config-conventional": "^19.5.0",
+        "@commitlint/config-conventional": "^19.6.0",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.0",
         "@hapi/lab": "^26.0.0",
