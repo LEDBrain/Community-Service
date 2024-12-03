@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.8](https://github.com/LEDBrain/Community-Service/compare/v1.9.7...v1.9.8) (2024-12-03)
+
+
+### Miscellaneous
+
+* **deps:** bump cross-spawn ([c0feef1](https://github.com/LEDBrain/Community-Service/commit/c0feef1cbb086107a8cbf71e8fc05ba2e7583d01))
+
 ## [1.9.7](https://github.com/LEDBrain/Community-Service/compare/v1.9.6...v1.9.7) (2024-06-20)
 
 
