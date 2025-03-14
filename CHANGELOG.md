@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.9.9](https://github.com/LEDBrain/Community-Service/compare/v1.9.8...v1.9.9) (2025-03-14)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump esbuild ([fa75b3c](https://github.com/LEDBrain/Community-Service/commit/fa75b3c8a81c88d0002fd0ac61212a04a2ff2035))
+* **deps-dev:** bump esbuild from 0.25.0 to 0.25.1 in the npm_and_yarn group across 1 directory ([4023fd2](https://github.com/LEDBrain/Community-Service/commit/4023fd28b3282c3b3fbb3537b363779737d3f0a4))
+* **deps:** bump the npm_and_yarn group across 1 directory with 4 updates ([6af9e98](https://github.com/LEDBrain/Community-Service/commit/6af9e980c2e161f3eafb40a6e7ed110a6f29cccb))
+* **deps:** bump the npm_and_yarn group across 1 directory with 4 updates ([1c34c4d](https://github.com/LEDBrain/Community-Service/commit/1c34c4df30c190f4c58e7539a10a9b679bb196d0))
+
 ## [1.9.8](https://github.com/LEDBrain/Community-Service/compare/v1.9.7...v1.9.8) (2024-12-12)
 
 
