@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - bufferutil
+  - esbuild
+  - node-libcurl
+  - prisma
+  - utf-8-validate
+  - zlib-sync
