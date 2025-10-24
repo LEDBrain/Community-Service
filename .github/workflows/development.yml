@@ -18,19 +18,22 @@ jobs:
             - name: '☁️ checkout repository'
               uses: actions/checkout@v4
 
+            - name: '📦 Setup pnpm'
+              uses: pnpm/action-setup@v4
+
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
 
             - name: '📦 install dependencies'
-              run: npm ci
+              run: pnpm install --frozen-lockfile
 
             - name: '✅ run ESLint'
-              run: npm run lint:eslint
+              run: pnpm run lint:eslint
 
             - name: '✅ run Prettier'
-              run: npm run lint:prettier
+              run: pnpm run lint:prettier
 
     build-project:
         name: Build and test project
@@ -61,16 +64,19 @@ jobs:
             - name: '☁️ checkout repository'
               uses: actions/checkout@v4
 
+            - name: '📦 Setup pnpm'
+              uses: pnpm/action-setup@v4
+
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
 
             - name: '📦 install dependencies'
-              run: npm ci
+              run: pnpm install --frozen-lockfile
 
             - name: '📂 build'
-              run: npm run build
+              run: pnpm run build
 
             - name: '✅ run API tests'
-              run: npm run test:api
+              run: pnpm run test:api
