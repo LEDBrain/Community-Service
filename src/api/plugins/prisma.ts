@@ -1,5 +1,5 @@
 import type Hapi from '@hapi/hapi';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../../prisma/generated/prisma-client';
 
 // plugin to instantiate Prisma Client
 const prismaPlugin: Hapi.Plugin<null> = {

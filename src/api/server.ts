@@ -1,6 +1,6 @@
 import Hapi from '@hapi/hapi';
-import type { PrismaClient } from '@prisma/client';
 import fs from 'node:fs/promises';
+import type { PrismaClient } from '../../prisma/generated/prisma-client';
 import { env } from '../env.js';
 
 declare module '@hapi/hapi' {
