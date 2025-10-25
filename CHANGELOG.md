@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.11](https://github.com/LEDBrain/Community-Service/compare/v1.9.10...v1.9.11) (2025-10-25)
+
+
+### CI Changes
+
+* **build:** update Dockerfile to Node 24 and use pnpm via corepack ([c281592](https://github.com/LEDBrain/Community-Service/commit/c281592cb9241a8d336e18067c5a216ec4906341))
+
 ## [1.9.10](https://github.com/LEDBrain/Community-Service/compare/v1.9.9...v1.9.10) (2025-10-25)
 
 
