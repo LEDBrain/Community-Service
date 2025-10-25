@@ -6,4 +6,5 @@ await esbuild.build({
     platform: 'node',
     packages: 'external',
     format: 'esm',
+    external: ['./src/generated/*']
 });
