@@ -1,4 +1,6 @@
 name: Development workflow
+permissions:
+  contents: read
 
 on:
     push:
