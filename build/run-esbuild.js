@@ -6,6 +6,5 @@ await esbuild.build({
     platform: 'node',
     packages: 'external',
     format: 'esm',
-    external: ['./prisma/generated/*'],
-    bundle: true
+    bundle: true,
 });
