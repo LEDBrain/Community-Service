@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.9.10](https://github.com/LEDBrain/Community-Service/compare/v1.9.9...v1.9.10) (2025-10-25)
+
+
+### Bug Fixes
+
+* use new prisma client ([cdbc832](https://github.com/LEDBrain/Community-Service/commit/cdbc83212092febf8d294763be5e2a7791e191a8))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump esbuild ([#1364](https://github.com/LEDBrain/Community-Service/issues/1364)) ([de870f8](https://github.com/LEDBrain/Community-Service/commit/de870f8d7a9f1a4588a6abead4755d7971f2dd77))
+* **deps:** switch to pnpm ([c011f95](https://github.com/LEDBrain/Community-Service/commit/c011f951ab26712b52545cd3391b1181c0f1a049))
+* **deps:** update esbuild to `0.25.2` ([6b6941a](https://github.com/LEDBrain/Community-Service/commit/6b6941a2ab47933563b9fd09099a1e2516308d00))
+* **prisma:** import local generated PrismaClient instead of @prisma/client ([4a44c67](https://github.com/LEDBrain/Community-Service/commit/4a44c67932e1b00e2a1832b9b12ecfa9f1732858))
+* **prisma:** relocate generated client to prisma/generated and update references ([7514e6a](https://github.com/LEDBrain/Community-Service/commit/7514e6ab0f89dee927b5d5d5721dc613b791eb48))
+
+
+### CI Changes
+
+* **build:** Add bundling option to run-esbuild.js ([0125a57](https://github.com/LEDBrain/Community-Service/commit/0125a57fb608151cde8317bd5d275cca943dffed))
+* **build:** make dynamic imports extension-agnostic and correct plugins path; tidy server config ([026bb1a](https://github.com/LEDBrain/Community-Service/commit/026bb1a4149f5e4ebbeb7b4d17d0aca534a9db28))
+* **build:** remove external exclude for prisma/generated so generated client is bundled ([e49e12b](https://github.com/LEDBrain/Community-Service/commit/e49e12b79e5834788efb4afc1a1f903b765eba80))
+* **development:** use pnpm ([e80132f](https://github.com/LEDBrain/Community-Service/commit/e80132fe841248a192887135bcee1f7ba42aeffe))
+* do not include generated prisma in builds ([3073af4](https://github.com/LEDBrain/Community-Service/commit/3073af43e3ca269c36b86237e57bb662a20db0e3))
+* **test:** add extensive c8/lab ignore patterns for TS/runtime helpers ([1bdce7e](https://github.com/LEDBrain/Community-Service/commit/1bdce7e37ef4a1815f9f7f56c04898f379d677b8))
+
+
+### Refactored Code
+
+* migrato to eslint v9 ([8684b75](https://github.com/LEDBrain/Community-Service/commit/8684b75f38c71f957c509a3f0196bf8e9ab599d6))
+* **prisma:** use Rust-free client ([e491c9f](https://github.com/LEDBrain/Community-Service/commit/e491c9f284b732650b3cbcec41ce6a92a0864e6a))
+
 ## [1.9.9](https://github.com/LEDBrain/Community-Service/compare/v1.9.8...v1.9.9) (2025-03-14)
 
 
