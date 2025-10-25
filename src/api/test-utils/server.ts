@@ -6,7 +6,7 @@ const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
     const files = await fs.readdir('./plugins');
     for await (const file of files) {
         if (file.endsWith('.js') || file.endsWith('.ts')) {
-            const plugin = (await import(`./plugins/${file}`)).default;
+            const plugin = (await import(`../plugins/${file}`)).default;
             plugins.push(plugin);
         }
     }
@@ -14,10 +14,7 @@ const getPlugins = async (): Promise<Hapi.Plugin<unknown>[]> => {
     return plugins;
 };
 
-const server: Hapi.Server = Hapi.server({
-    port: 3000,
-    host: 'localhost',
-});
+const server: Hapi.Server = Hapi.server({ port: 3000, host: 'localhost' });
 
 export async function init() {
     await server.initialize();

@@ -19,7 +19,7 @@ export default async (button: ButtonInteraction) => {
     }
     (
         new (
-            await import(`./${button.customId}.js`)
+            await import(`./${button.customId}`)
         ).default() as InteractionHandler
     ).execute(button);
 };
