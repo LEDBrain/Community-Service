@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.10](https://github.com/LEDBrain/Community-Service/compare/v1.9.9...v1.9.10) (2025-10-24)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump esbuild ([#1364](https://github.com/LEDBrain/Community-Service/issues/1364)) ([de870f8](https://github.com/LEDBrain/Community-Service/commit/de870f8d7a9f1a4588a6abead4755d7971f2dd77))
+
 ## [1.9.9](https://github.com/LEDBrain/Community-Service/compare/v1.9.8...v1.9.9) (2025-03-14)
 
 
