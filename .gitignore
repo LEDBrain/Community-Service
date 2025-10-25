@@ -7,4 +7,4 @@ storage
 coverage
 .DS_Store
 data
-src/generated/prisma-client
+prisma/generated/prisma-client
