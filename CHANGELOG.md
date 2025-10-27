@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.12](https://github.com/LEDBrain/Community-Service/compare/v1.9.11...v1.9.12) (2025-10-27)
+
+
+### Miscellaneous
+
+* **deps:** update discord.js to `14.24.0` ([78d3713](https://github.com/LEDBrain/Community-Service/commit/78d371319db09c97a4fd86e6f543608d7ba1c89e))
+* **deps:** update node-libcurl to `5.0.0-2` ([c1cb6e8](https://github.com/LEDBrain/Community-Service/commit/c1cb6e87cfe3eee0256ec11485c5c6e06191baf1))
+
+
+### CI Changes
+
+* **workflows:** bump Node.js to 24 in development and release GitHub Actions workflows ([558e5c0](https://github.com/LEDBrain/Community-Service/commit/558e5c0e8c342701baf35e02f379fb725024924a))
+
 ## [1.9.11](https://github.com/LEDBrain/Community-Service/compare/v1.9.10...v1.9.11) (2025-10-25)
 
 
