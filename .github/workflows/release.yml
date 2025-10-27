@@ -22,20 +22,20 @@ jobs:
         steps:
             - name: Generate Token
               id: app-token
-              uses: actions/create-github-app-token@v1
+              uses: actions/create-github-app-token@v2
               with:
                   app-id: ${{ secrets.APP_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
               with:
                   fetch-depth: 0
                   persist-credentials: false
                   token: ${{ steps.app-token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
                   node-version: '24'
 
