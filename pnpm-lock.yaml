@@ -24,8 +24,8 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0
       discord-api-types:
-        specifier: ^0.37.120
-        version: 0.37.120
+        specifier: ^0.38.31
+        version: 0.38.31
       discord.js:
         specifier: ^14.24.0
         version: 14.24.0(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -1343,9 +1343,6 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
-
-  discord-api-types@0.37.120:
-    resolution: {integrity: sha512-7xpNK0EiWjjDFp2nAhHXezE4OUWm7s1zhc/UXXN6hnFFU8dfoPHgV0Hx0RPiCa3ILRpdeh152icc68DGCyXYIw==}
 
   discord-api-types@0.38.31:
     resolution: {integrity: sha512-kC94ANsk8ackj8ENTuO8joTNEL0KtymVhHy9dyEC/s4QAZ7GCx40dYEzQaadyo8w+oP0X8QydE/nzAWRylTGtQ==}
@@ -4368,8 +4365,6 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
-
-  discord-api-types@0.37.120: {}
 
   discord-api-types@0.38.31: {}
 

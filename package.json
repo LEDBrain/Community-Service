@@ -34,7 +34,7 @@
         "@prisma/client": "^6.18.0",
         "@t3-oss/env-core": "^0.11.1",
         "cross-env": "^10.1.0",
-        "discord-api-types": "^0.37.120",
+        "discord-api-types": "^0.38.31",
         "discord.js": "^14.24.0",
         "dotenv": "^17.2.3",
         "joi": "^17.13.3",
