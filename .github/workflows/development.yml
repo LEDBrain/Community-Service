@@ -1,6 +1,6 @@
 name: Development workflow
 permissions:
-  contents: read
+    contents: read
 
 on:
     push:
@@ -26,7 +26,7 @@ jobs:
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
+                  node-version: '24'
 
             - name: '📦 install dependencies'
               run: pnpm install --frozen-lockfile
@@ -72,7 +72,7 @@ jobs:
             - name: '🔧 Setup Node.js'
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
+                  node-version: '24'
 
             - name: '📦 install dependencies'
               run: pnpm install --frozen-lockfile
