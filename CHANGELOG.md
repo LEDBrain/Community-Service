@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.9.13](https://github.com/LEDBrain/Community-Service/compare/v1.9.12...v1.9.13) (2025-10-27)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @commitlint/cli from 19.8.1 to 20.1.0 ([#1380](https://github.com/LEDBrain/Community-Service/issues/1380)) ([fb253a3](https://github.com/LEDBrain/Community-Service/commit/fb253a3447c42c199ffc3049d4bea84181f4331d))
+* **deps-dev:** bump @commitlint/config-conventional ([#1385](https://github.com/LEDBrain/Community-Service/issues/1385)) ([585860a](https://github.com/LEDBrain/Community-Service/commit/585860a058cfea15bbb0498182ac9179a765aa37))
+* **deps-dev:** bump esbuild from 0.25.2 to 0.25.11 ([#1381](https://github.com/LEDBrain/Community-Service/issues/1381)) ([be4f389](https://github.com/LEDBrain/Community-Service/commit/be4f389f439c4694739951309b35b648174e0536))
+* **deps-dev:** bump lint-staged from 15.5.2 to 16.2.6 ([#1390](https://github.com/LEDBrain/Community-Service/issues/1390)) ([e218b00](https://github.com/LEDBrain/Community-Service/commit/e218b0043f7fd06645c07c083af95e2400d39d70))
+* **deps-dev:** bump the types group with 3 updates ([#1378](https://github.com/LEDBrain/Community-Service/issues/1378)) ([ffe9272](https://github.com/LEDBrain/Community-Service/commit/ffe92729b9f8f0fec1971c96604caac61bc6895b))
+* **deps:** bump @t3-oss/env-core from 0.11.1 to 0.13.8 ([#1384](https://github.com/LEDBrain/Community-Service/issues/1384)) ([973f543](https://github.com/LEDBrain/Community-Service/commit/973f543f51d0a1e1e0546bce1ab5b4555fcd86fd))
+* **deps:** bump actions/checkout from 4 to 5 ([#1376](https://github.com/LEDBrain/Community-Service/issues/1376)) ([3df59d6](https://github.com/LEDBrain/Community-Service/commit/3df59d689d39f938c31cccbf81c5a908a947164f))
+* **deps:** bump actions/create-github-app-token from 1 to 2 ([#1391](https://github.com/LEDBrain/Community-Service/issues/1391)) ([a9ce274](https://github.com/LEDBrain/Community-Service/commit/a9ce274671c2f0dcdad6b90a955cc515b6e70e33))
+* **deps:** bump actions/setup-node from 4 to 6 ([#1373](https://github.com/LEDBrain/Community-Service/issues/1373)) ([9335ca2](https://github.com/LEDBrain/Community-Service/commit/9335ca29e694ed69cab3c652c5681c39abba5e71))
+* **deps:** bump cross-env from 7.0.3 to 10.1.0 ([#1382](https://github.com/LEDBrain/Community-Service/issues/1382)) ([84be90e](https://github.com/LEDBrain/Community-Service/commit/84be90e112bae76b294b7dda5feaad520b1cd0a8))
+* **deps:** bump discord-api-types from 0.37.120 to 0.38.31 ([#1379](https://github.com/LEDBrain/Community-Service/issues/1379)) ([3017173](https://github.com/LEDBrain/Community-Service/commit/3017173ac4efbcfdb1ab1570457473f129effa8a))
+* **deps:** bump docker/build-push-action from 6.10.0 to 6.18.0 ([#1392](https://github.com/LEDBrain/Community-Service/issues/1392)) ([a593c8e](https://github.com/LEDBrain/Community-Service/commit/a593c8e3ae85f10458f5b740125978633521c744))
+* **deps:** bump docker/login-action from 3.3.0 to 3.6.0 ([#1375](https://github.com/LEDBrain/Community-Service/issues/1375)) ([d43dc3e](https://github.com/LEDBrain/Community-Service/commit/d43dc3e31904cea5bb1597987b436ad31240ea40))
+* **deps:** bump docker/metadata-action from 5.6.1 to 5.8.0 ([#1377](https://github.com/LEDBrain/Community-Service/issues/1377)) ([ccf19d1](https://github.com/LEDBrain/Community-Service/commit/ccf19d1f79b8f193aeda64956a766b594480ca92))
+* **deps:** bump docker/setup-buildx-action from 3.7.1 to 3.11.1 ([#1374](https://github.com/LEDBrain/Community-Service/issues/1374)) ([ee1269b](https://github.com/LEDBrain/Community-Service/commit/ee1269bb954de8f4b530153a8dce592fb70f87f6))
+* **deps:** bump dotenv from 16.6.1 to 17.2.3 ([#1383](https://github.com/LEDBrain/Community-Service/issues/1383)) ([32c0d48](https://github.com/LEDBrain/Community-Service/commit/32c0d48bd0af25aced218954543089f85fda1d87))
+* **deps:** bump joi from 17.13.3 to 18.0.1 ([#1389](https://github.com/LEDBrain/Community-Service/issues/1389)) ([7d236b5](https://github.com/LEDBrain/Community-Service/commit/7d236b5869b653208ae4690afa280b7350c29fd2))
+* **deps:** bump jsdom and @types/jsdom ([#1387](https://github.com/LEDBrain/Community-Service/issues/1387)) ([66189c9](https://github.com/LEDBrain/Community-Service/commit/66189c920eb2b08ad31c9756a76d26d8d523fac7))
+* **deps:** bump zod from 3.25.76 to 4.1.12 ([#1388](https://github.com/LEDBrain/Community-Service/issues/1388)) ([c3fc2e5](https://github.com/LEDBrain/Community-Service/commit/c3fc2e5383940a910d6daa22798ea770c5a74483))
+
 ## [1.9.12](https://github.com/LEDBrain/Community-Service/compare/v1.9.11...v1.9.12) (2025-10-27)
 
 
