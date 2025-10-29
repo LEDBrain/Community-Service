@@ -39,8 +39,8 @@ importers:
         specifier: ^27.0.1
         version: 27.0.1(bufferutil@4.0.9)(postcss@8.5.6)(utf-8-validate@6.0.5)
       node-libcurl:
-        specifier: ^v5.0.0-2
-        version: 5.0.0-2(encoding@0.1.13)
+        specifier: ^v5.0.0-3
+        version: 5.0.0-3(encoding@0.1.13)
       zod:
         specifier: ^4.1.12
         version: 4.1.12
@@ -2224,8 +2224,8 @@ packages:
     engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
 
-  node-libcurl@5.0.0-2:
-    resolution: {integrity: sha512-SvLrQZ/G79eMIGETBrh9DGgRSHDOXAKrpl+Nwd9AdoBPLnomKkuZjFNTuyyZhIMriVU2UN/50GMJMGaKYtyt8A==}
+  node-libcurl@5.0.0-3:
+    resolution: {integrity: sha512-CeYWUpRzp1ZTJINvGOFiSjZZoeLToW5zh0bBuySlK+3k4ucVpVMdhOmNDJ9KCAHm6GvuaEQ7L9jxC+IQa5Pu5Q==}
     engines: {node: '>=22.14'}
 
   node-releases@2.0.26:
@@ -5269,7 +5269,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  node-libcurl@5.0.0-2(encoding@0.1.13):
+  node-libcurl@5.0.0-3(encoding@0.1.13):
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.0(encoding@0.1.13)
       env-paths: 2.2.0
