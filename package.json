@@ -54,7 +54,7 @@
         "@types/hapi__catbox": "^12.1.0",
         "@types/jsdom": "^27.0.0",
         "@types/ms": "^2.1.0",
-        "@types/node": "^24.9.1",
+        "@types/node": "^24.9.2",
         "@types/node-fetch": "^2.6.13",
         "@typescript-eslint/eslint-plugin": "^8.46.2",
         "@typescript-eslint/parser": "^8.46.2",
