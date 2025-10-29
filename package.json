@@ -39,7 +39,7 @@
         "dotenv": "^17.2.3",
         "joi": "^18.0.1",
         "jsdom": "^27.0.1",
-        "node-libcurl": "^v5.0.0-2",
+        "node-libcurl": "^v5.0.0-3",
         "zod": "^4.1.12"
     },
     "devDependencies": {
