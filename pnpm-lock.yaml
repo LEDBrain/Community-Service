@@ -118,8 +118,8 @@ importers:
         specifier: ^6.18.0
         version: 6.18.0(typescript@5.9.3)
       rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^6.1.0
+        version: 6.1.0
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -2118,8 +2118,8 @@ packages:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
     engines: {node: '>=18'}
 
-  minimatch@10.0.3:
-    resolution: {integrity: sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==}
+  minimatch@10.1.1:
+    resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
     engines: {node: 20 || >=22}
 
   minimatch@3.1.2:
@@ -2490,8 +2490,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  rimraf@6.0.1:
-    resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
+  rimraf@6.1.0:
+    resolution: {integrity: sha512-DxdlA1bdNzkZK7JiNWH+BAx1x4tEJWoTofIopFo6qWUU94jYrFZ0ubY05TqH3nWPJ1nKa1JWVFDINZ3fnrle/A==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -2960,7 +2960,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))':
+  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
@@ -3493,7 +3493,7 @@ snapshots:
   '@hapi/lab@25.3.2(@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.38.0(jiti@2.6.1))))(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
-      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))
+      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))
       '@hapi/bossy': 6.0.1
       '@hapi/eslint-plugin': 6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.38.0(jiti@2.6.1)))
       '@hapi/hoek': 11.0.7
@@ -4742,7 +4742,7 @@ snapshots:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 4.1.1
-      minimatch: 10.0.3
+      minimatch: 10.1.1
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.0
@@ -5170,7 +5170,7 @@ snapshots:
 
   mimic-function@5.0.1: {}
 
-  minimatch@10.0.3:
+  minimatch@10.1.1:
     dependencies:
       '@isaacs/brace-expansion': 5.0.0
 
@@ -5519,7 +5519,7 @@ snapshots:
     dependencies:
       glob: 10.4.5
 
-  rimraf@6.0.1:
+  rimraf@6.1.0:
     dependencies:
       glob: 11.0.3
       package-json-from-dist: 1.0.1
