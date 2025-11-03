@@ -46,7 +46,7 @@
         "@commitlint/cli": "^20.1.0",
         "@commitlint/config-conventional": "^20.0.0",
         "@eslint/eslintrc": "^3.3.1",
-        "@eslint/js": "^9.38.0",
+        "@eslint/js": "^9.39.0",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.1",
         "@hapi/lab": "^25.3.2",
