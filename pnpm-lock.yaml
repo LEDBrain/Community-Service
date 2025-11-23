@@ -118,8 +118,8 @@ importers:
         specifier: ^6.18.0
         version: 6.18.0(typescript@5.9.3)
       rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^6.1.0
+        version: 6.1.0
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -2494,8 +2494,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  rimraf@6.0.1:
-    resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
+  rimraf@6.1.0:
+    resolution: {integrity: sha512-DxdlA1bdNzkZK7JiNWH+BAx1x4tEJWoTofIopFo6qWUU94jYrFZ0ubY05TqH3nWPJ1nKa1JWVFDINZ3fnrle/A==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -2964,7 +2964,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))':
+  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
@@ -3499,7 +3499,7 @@ snapshots:
   '@hapi/lab@25.3.2(@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.1(jiti@2.6.1))))(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
-      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))
+      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))
       '@hapi/bossy': 6.0.1
       '@hapi/eslint-plugin': 6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.1(jiti@2.6.1)))
       '@hapi/hoek': 11.0.7
@@ -5525,7 +5525,7 @@ snapshots:
     dependencies:
       glob: 10.4.5
 
-  rimraf@6.0.1:
+  rimraf@6.1.0:
     dependencies:
       glob: 11.0.3
       package-json-from-dist: 1.0.1
