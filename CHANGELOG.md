@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.14](https://github.com/LEDBrain/Community-Service/compare/v1.9.13...v1.9.14) (2025-11-23)
+
+
+### Miscellaneous
+
+* **deps:** bump the npm_and_yarn group across 1 directory with 2 updates ([#1410](https://github.com/LEDBrain/Community-Service/issues/1410)) ([4648123](https://github.com/LEDBrain/Community-Service/commit/464812345e662de74483683d10431abc6a722c7d))
+
 ## [1.9.13](https://github.com/LEDBrain/Community-Service/compare/v1.9.12...v1.9.13) (2025-10-27)
 
 
