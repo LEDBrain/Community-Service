@@ -24,8 +24,8 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0
       discord-api-types:
-        specifier: ^0.38.32
-        version: 0.38.32
+        specifier: ^0.38.34
+        version: 0.38.34
       discord.js:
         specifier: ^14.25.1
         version: 14.25.1(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -1498,9 +1498,6 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
-
-  discord-api-types@0.38.32:
-    resolution: {integrity: sha512-UhIqkFuUVwBzejLPPWF18qixYPucMf718RnGh1NxZYNS7czXUmcUsWWkzWR7lRWj5pjfj4LwrnN9McvpfLvGqQ==}
 
   discord-api-types@0.38.34:
     resolution: {integrity: sha512-muq7xKGznj5MSFCzuIm/2TO7DpttuomUTemVM82fRqgnMl70YRzEyY24jlbiV6R9tzOTq6A6UnZ0bsfZeKD38Q==}
@@ -3367,7 +3364,7 @@ snapshots:
       '@sapphire/async-queue': 1.5.5
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
-      discord-api-types: 0.38.32
+      discord-api-types: 0.38.34
       magic-bytes.js: 1.12.1
       tslib: 2.8.1
       undici: 6.21.3
@@ -4512,8 +4509,6 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
-
-  discord-api-types@0.38.32: {}
 
   discord-api-types@0.38.34: {}
 
