@@ -50,7 +50,7 @@
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.1",
         "@hapi/lab": "^25.3.2",
-        "@tsconfig/node16": "^16.1.6",
+        "@tsconfig/node16": "^16.1.8",
         "@types/hapi__catbox": "^12.1.0",
         "@types/jsdom": "^27.0.0",
         "@types/ms": "^2.1.0",
