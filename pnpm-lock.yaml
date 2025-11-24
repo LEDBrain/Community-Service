@@ -67,8 +67,8 @@ importers:
         specifier: ^25.3.2
         version: 25.3.2(@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.1(jiti@2.6.1))))(typescript@5.9.3)
       '@tsconfig/node16':
-        specifier: ^16.1.6
-        version: 16.1.6
+        specifier: ^16.1.8
+        version: 16.1.8
       '@types/hapi__catbox':
         specifier: ^12.1.0
         version: 12.1.0
@@ -1014,8 +1014,8 @@ packages:
       zod:
         optional: true
 
-  '@tsconfig/node16@16.1.6':
-    resolution: {integrity: sha512-QXflIthykZUjZMUWp3sKQP8Pikqtncs2KF0iulzsEHXeQI58FH7ypJYHvYEM1CP0RtkNAC70FQOXssQJB+ZZ0Q==}
+  '@tsconfig/node16@16.1.8':
+    resolution: {integrity: sha512-T/CfdwFry660WjZor56z0F3pxeCllt8KOxWcHFW6ZEuULKUObTDEMdgtctyuJPxwqyWDsvHRfxHaJ4FIICyoqQ==}
 
   '@types/conventional-commits-parser@5.0.2':
     resolution: {integrity: sha512-BgT2szDXnVypgpNxOK8aL5SGjUdaQbC++WZNjF1Qge3Og2+zhHj+RWhmehLhYyvQwqAmvezruVfOf8+3m74W+g==}
@@ -3989,7 +3989,7 @@ snapshots:
       typescript: 5.9.3
       zod: 4.1.12
 
-  '@tsconfig/node16@16.1.6': {}
+  '@tsconfig/node16@16.1.8': {}
 
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
