@@ -5,7 +5,7 @@
     "main": "dist/src/index.js",
     "type": "module",
     "scripts": {
-        "build": "rimraf dist && node build/run-esbuild.js",
+        "build": "rimraf dist && prisma generate &&node build/run-esbuild.js",
         "start": "cross-env NODE_ENV=production && node dist/index.js",
         "dev": "cross-env NODE_ENV=development && tsx src/index.ts",
         "dev:hot": "cross-env NODE_ENV=development && tsx watch src/index.ts",
