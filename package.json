@@ -40,7 +40,7 @@
         "joi": "^18.0.2",
         "jsdom": "^27.3.0",
         "node-libcurl": "^v5.0.1",
-        "zod": "^4.3.4"
+        "zod": "^4.3.5"
     },
     "devDependencies": {
         "@commitlint/cli": "^20.2.0",
