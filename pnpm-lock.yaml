@@ -19,7 +19,7 @@ importers:
         version: 6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.6)
       cross-env:
         specifier: ^10.1.0
         version: 10.1.0
@@ -42,8 +42,8 @@ importers:
         specifier: ^v5.0.1
         version: 5.0.1(encoding@0.1.13)
       zod:
-        specifier: ^4.3.5
-        version: 4.3.5
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.3.0
@@ -2916,8 +2916,8 @@ packages:
   zlib-sync@0.1.10:
     resolution: {integrity: sha512-t7/pYg5tLBznL1RuhmbAt8rNp5tbhr+TSrJFnMkRtrGIaPJZ6Dc0uR4u3OoQI2d6cGlVI62E3Gy6gwkxyIqr/w==}
 
-  zod@4.3.5:
-    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
 snapshots:
 
@@ -3791,10 +3791,10 @@ snapshots:
 
   '@standard-schema/spec@1.0.0': {}
 
-  '@t3-oss/env-core@0.13.10(typescript@5.9.3)(zod@4.3.5)':
+  '@t3-oss/env-core@0.13.10(typescript@5.9.3)(zod@4.3.6)':
     optionalDependencies:
       typescript: 5.9.3
-      zod: 4.3.5
+      zod: 4.3.6
 
   '@tsconfig/node16@16.1.8': {}
 
@@ -5911,4 +5911,4 @@ snapshots:
       nan: 2.23.0
     optional: true
 
-  zod@4.3.5: {}
+  zod@4.3.6: {}
