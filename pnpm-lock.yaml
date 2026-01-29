@@ -39,8 +39,8 @@ importers:
         specifier: ^27.4.0
         version: 27.4.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)
       node-libcurl:
-        specifier: ^v5.0.1
-        version: 5.0.1(encoding@0.1.13)
+        specifier: ^v5.0.2
+        version: 5.0.2(encoding@0.1.13)
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -2240,8 +2240,8 @@ packages:
     engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
 
-  node-libcurl@5.0.1:
-    resolution: {integrity: sha512-t5DK8+QNpT5mB4yao78ZYsCVDQnjUu+d7YucujJszciN5ztGqrQD1prwESeThJ4VKbK45iMyFk69/Hxz2fyT5w==}
+  node-libcurl@5.0.2:
+    resolution: {integrity: sha512-/TabkZYSebHBhLRBA+7Qo7yvZsj4kC3Y0/ly0W5vPGknw73fSTtZrFcSgaB/uRmSRHX6DqzmZRMVtiBlHeFCXw==}
     engines: {node: '>=22.14'}
 
   node-releases@2.0.26:
@@ -2654,10 +2654,9 @@ packages:
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
 
-  tar@7.5.2:
-    resolution: {integrity: sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg==}
+  tar@7.5.7:
+    resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
     engines: {node: '>=18'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   test-exclude@7.0.1:
     resolution: {integrity: sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg==}
@@ -2969,7 +2968,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))':
+  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
@@ -3539,7 +3538,7 @@ snapshots:
   '@hapi/lab@25.3.2(@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.2(jiti@2.6.1))))(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
-      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))
+      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))
       '@hapi/bossy': 6.0.1
       '@hapi/eslint-plugin': 6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.2(jiti@2.6.1)))
       '@hapi/hoek': 11.0.7
@@ -3705,7 +3704,7 @@ snapshots:
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
       semver: 7.7.3
-      tar: 7.5.2
+      tar: 7.5.7
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4085,7 +4084,7 @@ snapshots:
       minipass-pipeline: 1.2.4
       p-map: 7.0.4
       ssri: 12.0.0
-      tar: 7.5.2
+      tar: 7.5.7
       unique-filename: 4.0.0
 
   cachedir@2.3.0: {}
@@ -5300,13 +5299,13 @@ snapshots:
       nopt: 8.1.0
       proc-log: 5.0.0
       semver: 7.7.3
-      tar: 7.5.2
+      tar: 7.5.7
       tinyglobby: 0.2.15
       which: 5.0.0
     transitivePeerDependencies:
       - supports-color
 
-  node-libcurl@5.0.1(encoding@0.1.13):
+  node-libcurl@5.0.2(encoding@0.1.13):
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.0(encoding@0.1.13)
       env-paths: 2.2.0
@@ -5685,7 +5684,7 @@ snapshots:
 
   symbol-tree@3.2.4: {}
 
-  tar@7.5.2:
+  tar@7.5.7:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
