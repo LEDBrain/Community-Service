@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.16](https://github.com/LEDBrain/Community-Service/compare/v1.9.15...v1.9.16) (2026-02-04)
+
+
+### Miscellaneous
+
+* **deps:** bump @isaacs/brace-expansion ([#1482](https://github.com/LEDBrain/Community-Service/issues/1482)) ([4abf0b9](https://github.com/LEDBrain/Community-Service/commit/4abf0b9392b0a5497291eeadd9b15bb12152ce1f))
+
 ## [1.9.15](https://github.com/LEDBrain/Community-Service/compare/v1.9.14...v1.9.15) (2026-01-29)
 
 
