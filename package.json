@@ -36,7 +36,7 @@
         "cross-env": "^10.1.0",
         "discord-api-types": "^0.38.38",
         "discord.js": "^14.25.1",
-        "dotenv": "^17.2.3",
+        "dotenv": "^17.2.4",
         "joi": "^18.0.2",
         "jsdom": "^28.0.0",
         "node-libcurl": "^v5.0.2",
