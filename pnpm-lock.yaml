@@ -12,8 +12,8 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0
       '@hapi/hapi':
-        specifier: ^21.4.4
-        version: 21.4.4
+        specifier: ^21.4.5
+        version: 21.4.5
       '@prisma/client':
         specifier: ^7.4.0
         version: 7.4.0(prisma@7.4.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
@@ -667,6 +667,10 @@ packages:
     resolution: {integrity: sha512-9GM9ECEHfR8lk5ASOKG4+4ZsEzFqLfhiryIJ2ISePVB92OHLp/yne4m+zn7z9dgvM98TLpiFebjDFQ0UHcqxXQ==}
     engines: {node: '>=14.0.0'}
 
+  '@hapi/cryptiles@6.0.3':
+    resolution: {integrity: sha512-r6VKalpbMHz4ci3gFjFysBmhwCg70RpYZy6OkjEpdXzAYnYFX5XsW7n4YMJvuIYpnMwLxGUjK/cBhA7X3JDvXw==}
+    engines: {node: '>=14.0.0'}
+
   '@hapi/eslint-plugin@6.0.0':
     resolution: {integrity: sha512-6eN1fnBO742nTTSpQtYB35aFGAT9I7r4u2v/+R2c9ToYTQp4QBoPOBA5R3+C7+Az3I0ugs+lTIqAsMPDLpsRAg==}
     peerDependencies:
@@ -684,8 +688,8 @@ packages:
   '@hapi/formula@3.0.2':
     resolution: {integrity: sha512-hY5YPNXzw1He7s0iqkRQi+uMGh383CGdyyIGYtB+W5N3KHPXoqychklvHhKCC9M3Xtv0OCs/IHw+r4dcHtBYWw==}
 
-  '@hapi/hapi@21.4.4':
-    resolution: {integrity: sha512-vI6JPLR99WZDKI1nriD0qXDPp8sKFkZfNVGrDDZafDQ8jU+3ERMwS0vPac5aGae6yyyoGZGOBiYExw4N8ScSTQ==}
+  '@hapi/hapi@21.4.5':
+    resolution: {integrity: sha512-5KU3BJ2/zdy1GR/cV96Idh4dxnStQvSWptUDATPhnIeDS/qP0KI6AxyfJwHCHRHVmzEzYpgR2pJh98MaJ8zcRQ==}
     engines: {node: '>=14.15.0'}
 
   '@hapi/heavy@8.0.1':
@@ -2809,6 +2813,7 @@ packages:
   tar@7.5.7:
     resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   test-exclude@7.0.1:
     resolution: {integrity: sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg==}
@@ -3679,6 +3684,10 @@ snapshots:
     dependencies:
       '@hapi/boom': 10.0.1
 
+  '@hapi/cryptiles@6.0.3':
+    dependencies:
+      '@hapi/boom': 10.0.1
+
   '@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.39.2(jiti@2.6.1)))':
     optionalDependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
@@ -3688,7 +3697,7 @@ snapshots:
 
   '@hapi/formula@3.0.2': {}
 
-  '@hapi/hapi@21.4.4':
+  '@hapi/hapi@21.4.5':
     dependencies:
       '@hapi/accept': 6.0.3
       '@hapi/ammo': 6.0.1
@@ -3787,7 +3796,7 @@ snapshots:
       '@hapi/boom': 10.0.1
       '@hapi/bounce': 3.0.2
       '@hapi/bourne': 3.0.0
-      '@hapi/cryptiles': 6.0.1
+      '@hapi/cryptiles': 6.0.3
       '@hapi/hoek': 11.0.7
       '@hapi/iron': 7.0.1
       '@hapi/validate': 2.0.1
