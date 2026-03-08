@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.17](https://github.com/LEDBrain/Community-Service/compare/v1.9.16...v1.9.17) (2026-03-08)
+
+
+### Miscellaneous
+
+* **deps:** bump tar in the npm_and_yarn group across 1 directory ([#1497](https://github.com/LEDBrain/Community-Service/issues/1497)) ([016aad8](https://github.com/LEDBrain/Community-Service/commit/016aad8e6a98367d372f423d9c1e38c12b916bb4))
+* **deps:** bump the npm_and_yarn group across 1 directory with 3 updates ([#1517](https://github.com/LEDBrain/Community-Service/issues/1517)) ([c72ecd2](https://github.com/LEDBrain/Community-Service/commit/c72ecd2affae831a398d8a19fdc04c61230bc3f1))
+
 ## [1.9.16](https://github.com/LEDBrain/Community-Service/compare/v1.9.15...v1.9.16) (2026-02-04)
 
 
