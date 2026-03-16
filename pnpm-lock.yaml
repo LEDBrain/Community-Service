@@ -1611,8 +1611,8 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flatted@3.3.3:
-    resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+  flatted@3.4.1:
+    resolution: {integrity: sha512-IxfVbRFVlV8V/yRaGzk0UVIcsKKHMSfYw66T/u4nTwlWteQePsxe//LjudR1AMX4tZW3WFCh3Zqa/sjlqpbURQ==}
 
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
@@ -2964,7 +2964,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))':
+  '@babel/eslint-parser@7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
@@ -3497,7 +3497,7 @@ snapshots:
   '@hapi/lab@25.3.2(@hapi/eslint-plugin@6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.38.0(jiti@2.6.1))))(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.5(supports-color@8.1.1)
-      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5)(eslint@8.57.1(supports-color@8.1.1))
+      '@babel/eslint-parser': 7.28.5(@babel/core@7.28.5(supports-color@8.1.1))(eslint@8.57.1(supports-color@8.1.1))
       '@hapi/bossy': 6.0.1
       '@hapi/eslint-plugin': 6.0.0(@babel/core@7.28.5)(@babel/eslint-parser@7.28.5(@babel/core@7.28.5)(eslint@9.38.0(jiti@2.6.1)))
       '@hapi/hoek': 11.0.7
@@ -4629,16 +4629,16 @@ snapshots:
 
   flat-cache@3.2.0:
     dependencies:
-      flatted: 3.3.3
+      flatted: 3.4.1
       keyv: 4.5.4
       rimraf: 3.0.2
 
   flat-cache@4.0.1:
     dependencies:
-      flatted: 3.3.3
+      flatted: 3.4.1
       keyv: 4.5.4
 
-  flatted@3.3.3: {}
+  flatted@3.4.1: {}
 
   foreground-child@3.3.1:
     dependencies:
