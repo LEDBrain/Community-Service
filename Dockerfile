@@ -1,4 +1,4 @@
-FROM node:24-trixie-slim as build
+FROM node:26-trixie-slim as build
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
@@ -14,7 +14,7 @@ RUN corepack install
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM node:24-trixie-slim
+FROM node:26-trixie-slim
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
