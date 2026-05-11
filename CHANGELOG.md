@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.20](https://github.com/LEDBrain/Community-Service/compare/v1.9.19...v1.9.20) (2026-05-11)
+
+
+### Miscellaneous
+
+* **deps:** bump fast-uri in the npm_and_yarn group across 1 directory ([#1532](https://github.com/LEDBrain/Community-Service/issues/1532)) ([58b8459](https://github.com/LEDBrain/Community-Service/commit/58b845906b3ee7cd2f4f4ee2629c19ffd49a4f29))
+* **deps:** bump ip-address ([#1529](https://github.com/LEDBrain/Community-Service/issues/1529)) ([125e37a](https://github.com/LEDBrain/Community-Service/commit/125e37a535cdb6dc59eb4aea3aceb0a8fa9256e4))
+
 ## [1.9.19](https://github.com/LEDBrain/Community-Service/compare/v1.9.18...v1.9.19) (2026-04-12)
 
 
