@@ -1,6 +1,6 @@
 {
     "name": "community-service",
-    "version": "1.9.12",
+    "version": "1.9.21",
     "description": "A Discord bot in Typescript",
     "main": "dist/src/index.js",
     "type": "module",
@@ -37,7 +37,7 @@
         "discord-api-types": "^0.38.41",
         "discord.js": "^14.25.1",
         "dotenv": "^17.3.1",
-        "joi": "^18.0.2",
+        "joi": "^18.2.1",
         "jsdom": "^29.1.1",
         "node-libcurl": "^v5.0.2",
         "zod": "^4.3.6"
