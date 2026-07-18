@@ -1,4 +1,4 @@
-import type { OTP } from '@prisma/client';
+import type { OTP } from '@prisma-client';
 import type { ChatInputCommandInteraction } from 'discord.js';
 import {
     ActionRowBuilder,
