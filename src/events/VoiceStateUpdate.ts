@@ -4,9 +4,9 @@ import type Client from '../base/Client.js';
 import Event from '../base/Event.js';
 
 enum VoiceEvents {
-    'join',
-    'leave',
-    'move',
+    join,
+    leave,
+    move,
 }
 
 interface CompareVoiceStatesReturn {
