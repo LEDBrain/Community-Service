@@ -31,7 +31,7 @@ export default userGuildsPlugin;
 
 const userGuilds = async (req: Hapi.Request, h: Hapi.ResponseToolkit) => {
     const { userId: user } = req.params;
-    const force = req.query?.force ?? false;
+    const force = Boolean(req.query?.force);
     try {
         const guilds = [] as Guild[];
         for await (const guild of client.guilds.cache.values()) {
@@ -40,7 +40,7 @@ const userGuilds = async (req: Hapi.Request, h: Hapi.ResponseToolkit) => {
             }
         }
         return h.response(guilds).code(200);
-    } catch (error) {
+    } catch (_) {
         return h
             .response({
                 statusCode: 404,
