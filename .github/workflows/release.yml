@@ -22,24 +22,24 @@ jobs:
         steps:
             - name: Generate Token
               id: app-token
-              uses: actions/create-github-app-token@v2
+              uses: actions/create-github-app-token@v3
               with:
                   app-id: ${{ secrets.APP_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: '☁️ Checkout repository'
-              uses: actions/checkout@v5
+              uses: actions/checkout@v7
               with:
                   fetch-depth: 0
                   persist-credentials: false
                   token: ${{ steps.app-token.outputs.token }}
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v7
               with:
                   node-version: '24'
 
-            - uses: googleapis/release-please-action@v4
+            - uses: googleapis/release-please-action@v5
               with:
                   token: ${{ steps.app-token.outputs.token }}
                   config-file: release-please-config.json

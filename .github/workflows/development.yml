@@ -18,13 +18,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: '☁️ checkout repository'
-              uses: actions/checkout@v5
+              uses: actions/checkout@v7
 
             - name: '📦 Setup pnpm'
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@v6
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v7
               with:
                   node-version: '24'
 
@@ -64,13 +64,13 @@ jobs:
               run: echo "Database URL $DATABASE_URL; PG_USER $PG_USER; PG_PW $PG_PW; PG_DB $PG_DB"
 
             - name: '☁️ checkout repository'
-              uses: actions/checkout@v5
+              uses: actions/checkout@v7
 
             - name: '📦 Setup pnpm'
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@v6
 
             - name: '🔧 Setup Node.js'
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v7
               with:
                   node-version: '24'
 

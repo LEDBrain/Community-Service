@@ -1,13 +1,17 @@
-import type { Guild, GuildMember, Interaction, Message } from 'discord.js';
 import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
+    ChatInputCommandInteraction,
     EmbedBuilder,
-    InteractionType,
+    messageLink,
     PermissionFlagsBits,
     PermissionsBitField,
     SlashCommandBuilder,
+    type Guild,
+    type GuildMember,
+    type Interaction,
+    type Message,
 } from 'discord.js';
 import type { Config } from '../base/Command.js';
 import Command from '../base/Command.js';
@@ -59,14 +63,13 @@ export default class Ban extends Command {
         super(cmd as unknown as Config);
     }
     public async execute(interaction: Interaction) {
-        if (interaction.type !== InteractionType.ApplicationCommand) return;
+        if (!(interaction instanceof ChatInputCommandInteraction)) return;
 
         const member = interaction.options.getMember('user') as GuildMember;
         const reason = interaction.options.get('reason', true).value as string;
         const force =
             (interaction.options.get('force', false)?.value as
-                | boolean
-                | null) ?? false;
+                boolean | null) ?? false;
         const days =
             (interaction.options.get('days', false)?.value as number) ?? 0;
 
@@ -144,9 +147,11 @@ export default class Ban extends Command {
         });
         if (banRequests)
             return interaction.reply(
-                `There already is a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
-                    (interaction.guild as Guild).id
-                }/${guildSettings.logChannelId}/${banRequests.messageId})`
+                `There already is a ban request for ${member.toString()} (see it here: ${messageLink(
+                    (interaction.guild as Guild).id,
+                    guildSettings.logChannelId,
+                    banRequests.messageId
+                )}`
             );
 
         const banEmbed = new EmbedBuilder()
@@ -225,9 +230,11 @@ export default class Ban extends Command {
         });
 
         await interaction.reply(
-            `I've created a ban request for ${member.toString()} (see it here: https://discord.com/channels/${
-                interaction.guildId
-            }/${guildSettings.logChannelId}/${(message as Message).id})`
+            `I've created a ban request for ${member.toString()} (see it here: ${messageLink(
+                (interaction.guild as Guild).id,
+                guildSettings.logChannelId,
+                (message as Message).id
+            )}`
         );
     }
 
