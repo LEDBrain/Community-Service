@@ -7,11 +7,14 @@
         "noImplicitAny": true,
         "module": "ESNext",
         "outDir": "./dist",
-        "baseUrl": "./src",
         "lib": ["esnext"],
         "resolveJsonModule": true,
+        "paths": {
+            "@prisma-client": ["./prisma/generated/prisma-client"]
+        },
         "moduleResolution": "Bundler",
-        "isolatedModules": true
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true
     },
     "include": ["src/**/*.ts", "src/**/.*.ts"],
     "exclude": ["node_modules"]

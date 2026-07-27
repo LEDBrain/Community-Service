@@ -1,3 +1,11 @@
+allowBuilds:
+  '@prisma/engines': true
+  bufferutil: true
+  esbuild: true
+  node-libcurl: true
+  prisma: true
+  utf-8-validate: true
+  zlib-sync: true
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
