@@ -1,5 +1,5 @@
 # ---- Builder ----------------------------------------------------------------
-FROM node:24-trixie-slim AS builder
+FROM node:26-trixie-slim AS builder
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -36,7 +36,7 @@ RUN pnpm run build
 
 
 # ---- Runtime ----------------------------------------------------------------
-FROM node:24-trixie-slim
+FROM node:26-trixie-slim
 
 LABEL org.opencontainers.image.source=https://github.com/LEDBrain/Community-Service
 LABEL org.opencontainers.image.licenses=MIT
