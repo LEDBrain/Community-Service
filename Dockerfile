@@ -66,7 +66,7 @@ COPY --from=builder /app/prisma ./prisma
 # dist/src/ is the esbuild output; copy it so ./src/index.js is available.
 COPY --from=builder /app/dist ./
 
-RUN corepack install
+RUN corepack install && pnpm pkg delete scripts.prepare
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod
 
 COPY entrypoint.sh ./
