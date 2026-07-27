@@ -14,4 +14,3 @@ coverage
 data
 storage
 prisma/generated
-build
