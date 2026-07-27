@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.9.22](https://github.com/LEDBrain/Community-Service/compare/v1.9.21...v1.9.22) (2026-07-27)
+
+
+### Bug Fixes
+
+* **docker:** delete prepare script in runtime stage before prod install ([315dbde](https://github.com/LEDBrain/Community-Service/commit/315dbdee65b58dc25562538fc74511a3e77e87d7))
+* remove build dir from .dockerignore so run-esbuild.js is available ([54c8010](https://github.com/LEDBrain/Community-Service/commit/54c801041002ee4c206a934119dc182ce525ff66))
+
+
+### Miscellaneous
+
+* add .nvmrc ([b79d333](https://github.com/LEDBrain/Community-Service/commit/b79d333fd83150e6def3e9cb7a37d9b6e442e1c7))
+* **deps:** bump actions/setup-node from 6 to 7 ([#1546](https://github.com/LEDBrain/Community-Service/issues/1546)) ([09506d0](https://github.com/LEDBrain/Community-Service/commit/09506d068ae257f8813df3b5fcce7e8a4aa4e5cf))
+* **deps:** bump docker/login-action from 4.3.0 to 4.4.0 ([#1545](https://github.com/LEDBrain/Community-Service/issues/1545)) ([7fabc1c](https://github.com/LEDBrain/Community-Service/commit/7fabc1cfc5644d382d76b3db07b3b3ff50c24487))
+* **deps:** bump docker/login-action from 4.4.0 to 4.5.1 ([#1551](https://github.com/LEDBrain/Community-Service/issues/1551)) ([b6f2ee9](https://github.com/LEDBrain/Community-Service/commit/b6f2ee958e13c3f8e46b52c491e4e472d04f7283))
+* **deps:** bump docker/metadata-action from 6.1.0 to 6.2.0 ([#1543](https://github.com/LEDBrain/Community-Service/issues/1543)) ([450202c](https://github.com/LEDBrain/Community-Service/commit/450202c99df32959eb383eb31fc508e60d19af75))
+* **deps:** bump docker/setup-buildx-action from 4.1.0 to 4.2.0 ([#1544](https://github.com/LEDBrain/Community-Service/issues/1544)) ([4e5fd9f](https://github.com/LEDBrain/Community-Service/commit/4e5fd9f082b62d4a2be287e6d6a7e4bf790b3590))
+* **deps:** fix broken lockfile ([0128555](https://github.com/LEDBrain/Community-Service/commit/0128555f9180858f04c306918d98a0d09dff4d95))
+* **deps:** update versions ([ec8cde4](https://github.com/LEDBrain/Community-Service/commit/ec8cde4eef66e23d1481fcc64fe416e2ca85ad1a))
+* fix lockfile ([e593b4e](https://github.com/LEDBrain/Community-Service/commit/e593b4e85e6de2811599f9cc9fd923e3868d94e0))
+* update husky to use pnpm ([264d5bc](https://github.com/LEDBrain/Community-Service/commit/264d5bcc97f92b16e83e1b91af5cd4f501db00b0))
+* update test:api script to use c8 with --leaks ([d3c25c4](https://github.com/LEDBrain/Community-Service/commit/d3c25c43a30e725c9c738f8d1429ebd4475ebee9))
+* use pnpm in package.json & downgrade ts version 6 ([1368cea](https://github.com/LEDBrain/Community-Service/commit/1368cea102058b52e0f6222107969b3f1ab1a7d1))
+
+
+### CI Changes
+
+* **Dockerfile:** downgrade to node.js v24 ([02203e6](https://github.com/LEDBrain/Community-Service/commit/02203e61c3ead2a8fae399592eee16aad8a39075))
+* rebuild dockerfile ([4f79554](https://github.com/LEDBrain/Community-Service/commit/4f795543b9ab5abb75d897e5a6e322e796dd3aea))
+
+
+### Refactored Code
+
+* improve interaction type checking and update message link generation in Ban command ([4bf3886](https://github.com/LEDBrain/Community-Service/commit/4bf38867f872d9bd815d0139200b3549ae861e57))
+* lint ([ab6ba7d](https://github.com/LEDBrain/Community-Service/commit/ab6ba7dfbb16d3ad8a6628c9b6e0fe6f0f57cf30))
+* **prisma:** update to use prisma.config.ts file ([cd2f618](https://github.com/LEDBrain/Community-Service/commit/cd2f618d622550a027fa57fddd49207d4b0cde23))
+* remove legacy date formatting function ([7b6ca8c](https://github.com/LEDBrain/Community-Service/commit/7b6ca8cad826d2b89d33d79dc8e946b17da7b503))
+* simplify force parameter handling in userGuilds function ([a95b366](https://github.com/LEDBrain/Community-Service/commit/a95b36691e512905ad8c1001fae41e30d8b63771))
+* update PrismaClient import paths to use [@prisma-client](https://github.com/prisma-client) ([d0ee317](https://github.com/LEDBrain/Community-Service/commit/d0ee3170e578dd76af6102c0cc4fb3fa5b715382))
+
 ## [1.9.21](https://github.com/LEDBrain/Community-Service/compare/v1.9.20...v1.9.21) (2026-07-17)
 
 
