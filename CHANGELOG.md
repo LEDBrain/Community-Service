@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.23](https://github.com/LEDBrain/Community-Service/compare/v1.9.22...v1.9.23) (2026-09-09)
+
+
+### Miscellaneous
+
+* **deps:** bump joi from 18.2.3 to 18.2.5 in the npm_and_yarn group across 1 directory ([#1559](https://github.com/LEDBrain/Community-Service/issues/1559)) ([41e6fac](https://github.com/LEDBrain/Community-Service/commit/41e6fac1c6823adf50f015f768a7685d855dd72f))
+
 ## [1.9.22](https://github.com/LEDBrain/Community-Service/compare/v1.9.21...v1.9.22) (2026-07-27)
 
 
