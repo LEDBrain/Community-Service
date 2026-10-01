@@ -46,7 +46,7 @@
     "devDependencies": {
         "@commitlint/cli": "^21.2.1",
         "@commitlint/config-conventional": "^21.2.0",
-        "@eslint/eslintrc": "^3.3.4",
+        "@eslint/eslintrc": "^3.3.7",
         "@eslint/js": "^10.0.1",
         "@hapi/code": "^9.0.3",
         "@hapi/iron": "^7.0.1",
