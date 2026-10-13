@@ -31,7 +31,7 @@
     "dependencies": {
         "@discordjs/rest": "^2.6.3",
         "@hapi/hapi": "^21.4.10",
-        "@prisma/client": "^7.9.0",
+        "@prisma/client": "^7.10.0",
         "@t3-oss/env-core": "^0.13.10",
         "cross-env": "^10.1.0",
         "discord-api-types": "^0.38.51",
@@ -40,7 +40,7 @@
         "joi": "^18.2.1",
         "jsdom": "^29.1.1",
         "node-libcurl": "^v5.0.2",
-        "prisma": "^7.9.0",
+        "prisma": "^7.10.0",
         "zod": "^4.3.6"
     },
     "devDependencies": {
