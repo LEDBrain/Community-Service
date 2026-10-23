@@ -70,8 +70,8 @@ importers:
         specifier: ^26.0.1
         version: 26.0.1(@hapi/eslint-plugin@7.0.0(@babel/core@7.29.7(supports-color@8.1.1))(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))))(jiti@2.7.0)(typescript@6.0.3)
       '@tsconfig/node16':
-        specifier: ^16.1.8
-        version: 16.1.8
+        specifier: ^16.1.9
+        version: 16.1.9
       '@types/jsdom':
         specifier: ^28.0.0
         version: 28.0.3
@@ -1023,8 +1023,8 @@ packages:
       zod:
         optional: true
 
-  '@tsconfig/node16@16.1.8':
-    resolution: {integrity: sha512-T/CfdwFry660WjZor56z0F3pxeCllt8KOxWcHFW6ZEuULKUObTDEMdgtctyuJPxwqyWDsvHRfxHaJ4FIICyoqQ==}
+  '@tsconfig/node16@16.1.9':
+    resolution: {integrity: sha512-vzI9adb8N9w0/LS15qTfOAdi+QndGxjhOr7mXOrZ/aqCnkVvjc7O5k9uSyhf+Yb+5E3+17valm7CNscs5QNkmg==}
 
   '@types/d3-array@3.0.3':
     resolution: {integrity: sha512-Reoy+pKnvsksN0lQUlcH6dOGjRZ/3WRwXR//m+/8lt1BXeI4xyaUZoqULNjyXXRuh0Mj4LNpkCvhUpQlY3X5xQ==}
@@ -4033,7 +4033,7 @@ snapshots:
       valibot: 1.4.2(typescript@6.0.3)
       zod: 4.4.3
 
-  '@tsconfig/node16@16.1.8': {}
+  '@tsconfig/node16@16.1.9': {}
 
   '@types/d3-array@3.0.3': {}
 
